@@ -23,7 +23,7 @@ public:
   void setIndexFilePath(std::string indexfilepath);
   std::string getIndexFilePath();
   bool hasIndexFilePath();
-  void ExitIfNoFilePath();
+  void exitIfNoFilePath();
   bool FileExists(std::string filename);
   void initialize();
   std::string getSeqbyPosition(std::string chromosome, int64_t start, int64_t end);

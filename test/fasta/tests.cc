@@ -8,8 +8,8 @@
 
 TEST(FilePathTest, getTestFasta1)
 {
-    std::string referencepath = "../../test/data/reference";
-    std::string referenceindexpath = "../../test/data/reference.fai";
+    std::string referencepath = "../../test/data/reference.fa";
+    std::string referenceindexpath = "../../test/data/reference.fa.fai";
 
     FastaReader fastaReader;
     fastaReader.setFilePath(referencepath);
@@ -17,6 +17,7 @@ TEST(FilePathTest, getTestFasta1)
     fastaReader.initialize();
     std::cout << fastaReader.hasIndexFilePath() << std::endl;
     std::cout << fastaReader.hasFilePath() << std::endl;
+    fastaReader.exitIfNoFilePath();
     std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,10);
     ASSERT_EQ("CGAGCCGAAC", seqrefString);
 }

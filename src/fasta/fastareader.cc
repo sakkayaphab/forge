@@ -26,7 +26,7 @@ bool FastaReader::hasFilePath() {
     return FileExists(getFilePath());
 }
 
-void FastaReader::ExitIfNoFilePath() {
+void FastaReader::exitIfNoFilePath() {
     if (!hasIndexFilePath()) {
         exit (EXIT_FAILURE);
     }
