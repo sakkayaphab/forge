@@ -13,7 +13,7 @@ void FastaReader::initialize()
     faidx.initialize();
 }
 
-bool FastaReader::FileExists(const std::string& filename) {
+bool FastaReader::FileExists(std::string filename) {
     std::ifstream ifile(filename.c_str());
     return (bool)ifile;
 }
