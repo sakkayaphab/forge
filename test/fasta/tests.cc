@@ -22,8 +22,8 @@ void list_dir(const char *path) {
 
 TEST(FilePathTest, getTestFasta1)
 {
-    std::string referencepath = "../test/data/reference.fa";
-    std::string referenceindexpath = "../test/data/reference.fa.fai";
+    std::string referencepath = "../../../test/data/reference.fa";
+    std::string referenceindexpath = "../../../test/data/reference.fa.fai";
     list_dir("../../..");
 
     FastaReader fastaReader;
