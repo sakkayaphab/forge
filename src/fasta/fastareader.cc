@@ -19,12 +19,16 @@ bool FastaReader::FileExists(std::string filename) {
 }
 
 bool FastaReader::hasIndexFilePath() {
+    return FileExists(getIndexFilePath());
+}
+
+bool FastaReader::hasFilePath() {
     return FileExists(getFilePath());
 }
 
 void FastaReader::setIndexFilePath(std::string t_indexfilepath)
 {
-    return FileExists(getIndexFilePath());
+    fasta.setFilePath(t_indexfilepath);
 }
 
 std::string FastaReader::getIndexFilePath()
