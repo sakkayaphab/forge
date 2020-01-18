@@ -2,8 +2,8 @@
 #include <iostream>
 #include "fasta/fastareader.h"
 
-std::string referencepath = "../../test/data/reference"
-std::string referenceindexpath = "../../test/data/reference.fai"
+std::string referencepath = "../../test/data/reference";
+std::string referenceindexpath = "../../test/data/reference.fai";
 
 TEST(FilePathTest, getTestFasta1)
 {
