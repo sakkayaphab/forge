@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <iostream>
 //#include "caller/alignment.h"
 //#include "caller/readdepthanalysis.h"
 //#include "bwt/bwt.h"
