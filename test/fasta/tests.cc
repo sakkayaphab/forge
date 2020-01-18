@@ -59,12 +59,12 @@ TEST(FilePathTest, getTestFasta5)
     std::cout << seqrefString << std::endl;
 }
 
-TEST(FilePathTest, getTestFasta5)
+TEST(FilePathTest, getTestFasta6)
 {
-FastaReader fastaReader;
-fastaReader.setFilePath(referencepath);
-fastaReader.setIndexFilePath(referenceindexpath);
-fastaReader.initialize();
-std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,50);
-std::cout << seqrefString << std::endl;
+    FastaReader fastaReader;
+    fastaReader.setFilePath(referencepath);
+    fastaReader.setIndexFilePath(referenceindexpath);
+    fastaReader.initialize();
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,50);
+    std::cout << seqrefString << std::endl;
 }
