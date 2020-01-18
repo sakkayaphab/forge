@@ -26,6 +26,16 @@ bool FastaReader::hasFilePath() {
     return FileExists(getFilePath());
 }
 
+void FastaReader::ExitIfNoFilePath() {
+    if (!hasIndexFilePath()) {
+        exit (EXIT_FAILURE);
+    }
+
+    if (!hasFilePath()) {
+        exit (EXIT_FAILURE);
+    }
+}
+
 void FastaReader::setIndexFilePath(std::string t_indexfilepath)
 {
     fasta.setFilePath(t_indexfilepath);
