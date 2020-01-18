@@ -3,13 +3,16 @@
 #include "fasta/fastareader.h"
 #include <string>
 #include <bits/stdc++.h>
-
+#include <filesystem>
 
 
 TEST(FilePathTest, getTestFasta1)
 {
     std::string referencepath = "../test/data/reference.fa";
     std::string referenceindexpath = "../test/data/reference.fa.fai";
+    std::string path = "../";
+    for (const auto & entry : fs::directory_iterator(path))
+        std::cout << entry.path() << std::endl;
 
     FastaReader fastaReader;
     fastaReader.setFilePath(referencepath);
