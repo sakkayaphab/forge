@@ -14,7 +14,7 @@ jobs:
       - name: Build
         run: cd build && make
       - name: Testing
-        run: cd build && make test -v
+        run: cd build && ctest --verbose
       - name: Install
         run: cd build && sudo make install
       - name: Run forge
