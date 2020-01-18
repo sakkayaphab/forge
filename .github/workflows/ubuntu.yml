@@ -18,7 +18,7 @@ jobs:
       - name: Run forge
         run: forge
       - name: Testing
-        run: /build/bin/test_caller
+        run: cd build && make test
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
