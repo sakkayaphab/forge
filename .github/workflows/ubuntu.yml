@@ -15,8 +15,10 @@ jobs:
         run: cd build && make
       - name: Install
         run: cd build && sudo make install
-      - name: Run test
+      - name: Run forge
         run: forge
+      - name: Testing
+        run: /build/bin/test_caller
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
