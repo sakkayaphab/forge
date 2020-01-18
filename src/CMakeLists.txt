@@ -6,9 +6,13 @@ add_executable(forge ${SOURCES})
 include_directories(shortread)
 
 add_subdirectory(shortread)
+add_subdirectory(fasta)
+add_subdirectory(vcf)
 
 target_link_libraries(forge
         shortread
+        fasta
+        vcf
   )
 
 if (NOT ${INSTALL_BIN_PREFIX} STREQUAL "")
