@@ -8,8 +8,8 @@
 
 TEST(FilePathTest, getTestFasta1)
 {
-    std::string referencepath = "../../test/data/reference.fa";
-    std::string referenceindexpath = "../../test/data/reference.fa.fai";
+    std::string referencepath = "../test/data/reference.fa";
+    std::string referenceindexpath = "../test/data/reference.fa.fai";
 
     FastaReader fastaReader;
     fastaReader.setFilePath(referencepath);
