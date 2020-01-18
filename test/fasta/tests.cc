@@ -56,7 +56,7 @@ TEST(FilePathTest, getTestFasta5)
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
     std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,0);
-    std::cout << seqrefString << std::endl;
+    ASSERT_EQ("", seqrefString);
 }
 
 TEST(FilePathTest, getTestFasta6)
@@ -66,25 +66,45 @@ TEST(FilePathTest, getTestFasta6)
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
     std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,50);
-    std::cout << seqrefString << std::endl;
+    ASSERT_EQ("", seqrefString);
 }
 
 TEST(FilePathTest, getTestFasta7)
 {
-FastaReader fastaReader;
-fastaReader.setFilePath(referencepath);
-fastaReader.setIndexFilePath(referenceindexpath);
-fastaReader.initialize();
-std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,1);
-std::cout << seqrefString << std::endl;
+    FastaReader fastaReader;
+    fastaReader.setFilePath(referencepath);
+    fastaReader.setIndexFilePath(referenceindexpath);
+    fastaReader.initialize();
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,1);
+    ASSERT_EQ("C", seqrefString);
 }
 
 TEST(FilePathTest, getTestFasta8)
 {
-FastaReader fastaReader;
-fastaReader.setFilePath(referencepath);
-fastaReader.setIndexFilePath(referenceindexpath);
-fastaReader.initialize();
-std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,51);
-std::cout << seqrefString << std::endl;
+    FastaReader fastaReader;
+    fastaReader.setFilePath(referencepath);
+    fastaReader.setIndexFilePath(referenceindexpath);
+    fastaReader.initialize();
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,51);
+    ASSERT_EQ("T", seqrefString);
+}
+
+TEST(FilePathTest, getTestFasta9)
+{
+    FastaReader fastaReader;
+    fastaReader.setFilePath(referencepath);
+    fastaReader.setIndexFilePath(referenceindexpath);
+    fastaReader.initialize();
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr1",51,52);
+    ASSERT_EQ("A", seqrefString);
+}
+
+TEST(FilePathTest, getTestFasta10)
+{
+    FastaReader fastaReader;
+    fastaReader.setFilePath(referencepath);
+    fastaReader.setIndexFilePath(referenceindexpath);
+    fastaReader.initialize();
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr2",75,76);
+    ASSERT_EQ("G", seqrefString);
 }
