@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <iostream>
-//#include "caller/alignment.h"
+#include "fasta/fastareader.h"
 //#include "caller/readdepthanalysis.h"
 //#include "bwt/bwt.h"
 //#include "caller/stringsearch.h"
@@ -8,5 +8,8 @@
 
 TEST(FilePathTest, getFilePathName)
 {
-    std::cout << "Hello world" << std::endl;
+FastaReader fastaReader;
+fastaReader.setFilePath("../../test/data/reference");
+fastaReader.setIndexFilePath("../../test/data/reference" + ".fai");
+fastaReader.initialize();
 }
