@@ -17,7 +17,7 @@ class Cli
   public:
     Cli(int argc, char **argv);
     std::string getCommand();
-    int callSV();
+    int vcfSV();
     void showHelpCallSV();
     int debug();
     void ShowHelp();

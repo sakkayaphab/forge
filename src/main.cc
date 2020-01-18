@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 
     if (cli.getCommand()=="call")
     {
-        return cli.callSV();
+        return cli.vcfSV();
     }
     else if (cli.getCommand()=="debug")
     {

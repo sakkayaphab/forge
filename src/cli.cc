@@ -55,7 +55,7 @@ std::string Cli::getCommand()
     return "";
 }
 
-int Cli::callSV()
+int Cli::vcfSV()
 {
 
     if (args_lists.size() < 2)
@@ -70,31 +70,7 @@ int Cli::callSV()
         return 0;
     }
 
-    // Find BAM
-    bool foundBam = false;
-    std::string bamPath;
-    for (auto n : args_lists)
-    {
-        if (foundBam)
-        {
-            bamPath = n;
-            break;
-        }
-
-        if (n == "-b")
-        {
-            foundBam = true;
-        }
-    }
-
-    if (bamPath == "")
-    {
-        std::cout << "not found bam file path" << std::endl;
-        return 1;
-    }
-
-    // std::cout << "bam file = " << bamPath << std::endl;
-
+    
     // Find Reference
     bool foundRef = false;
     std::string refPath;
