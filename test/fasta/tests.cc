@@ -11,7 +11,7 @@ TEST(FilePathTest, getTestFasta1)
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
-    std::string seqrefString = fastareader.getSeqbyPosition("chr1",0,10);
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,10);
     ASSERT_EQ("CGAGCCGAAC", seqrefString);
 }
 
@@ -21,7 +21,7 @@ TEST(FilePathTest, getTestFasta2)
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
-    std::string seqrefString = fastareader.getSeqbyPosition("chr2",0,10);
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr2",0,10);
     ASSERT_EQ("GTCCTCGGTG", seqrefString);
 }
 
@@ -31,7 +31,7 @@ TEST(FilePathTest, getTestFasta3)
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
-    std::string seqrefString = fastareader.getSeqbyPosition("chr1",51,51+10);
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr1",51,51+10);
     ASSERT_EQ("TAAAGGGGTC", seqrefString);
 }
 
@@ -41,6 +41,6 @@ TEST(FilePathTest, getTestFasta4)
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
-    std::string seqrefString = fastareader.getSeqbyPosition("chr2",76,76+10);
+    std::string seqrefString = fastaReader.getSeqbyPosition("chr2",76,76+10);
     ASSERT_EQ("GCCCCAGCTC", seqrefString);
 }
