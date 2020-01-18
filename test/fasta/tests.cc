@@ -68,3 +68,23 @@ TEST(FilePathTest, getTestFasta6)
     std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,50);
     std::cout << seqrefString << std::endl;
 }
+
+TEST(FilePathTest, getTestFasta7)
+{
+FastaReader fastaReader;
+fastaReader.setFilePath(referencepath);
+fastaReader.setIndexFilePath(referenceindexpath);
+fastaReader.initialize();
+std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,1);
+std::cout << seqrefString << std::endl;
+}
+
+TEST(FilePathTest, getTestFasta8)
+{
+FastaReader fastaReader;
+fastaReader.setFilePath(referencepath);
+fastaReader.setIndexFilePath(referenceindexpath);
+fastaReader.initialize();
+std::string seqrefString = fastaReader.getSeqbyPosition("chr1",50,51);
+std::cout << seqrefString << std::endl;
+}
