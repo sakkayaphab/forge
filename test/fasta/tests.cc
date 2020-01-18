@@ -2,6 +2,8 @@
 #include <iostream>
 #include "fasta/fastareader.h"
 #include <string>
+#include <bits/stdc++.h>
+
 std::string referencepath = "../../test/data/reference";
 std::string referenceindexpath = "../../test/data/reference.fai";
 
