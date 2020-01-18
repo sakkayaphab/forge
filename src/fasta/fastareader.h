@@ -19,9 +19,11 @@ public:
   FastaReader();
   void setFilePath(std::string filepath);
   std::string getFilePath();
+  bool hasFilePath();
   void setIndexFilePath(std::string indexfilepath);
   std::string getIndexFilePath();
-
+  bool hasIndexFilePath();
+  bool FileExists(const std::string& filename);
   void initialize();
   std::string getSeqbyPosition(std::string chromosome, int64_t start, int64_t end);
 

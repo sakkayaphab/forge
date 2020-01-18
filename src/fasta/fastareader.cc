@@ -13,9 +13,18 @@ void FastaReader::initialize()
     faidx.initialize();
 }
 
+bool FastaReader::FileExists(const std::string& filename) {
+    std::ifstream ifile(filename.c_str());
+    return (bool)ifile;
+}
+
+bool FastaReader::hasIndexFilePath() {
+    return FileExists(getFilePath());
+}
+
 void FastaReader::setIndexFilePath(std::string t_indexfilepath)
 {
-    faidx.setIndexFilePath(t_indexfilepath);
+    return FileExists(getIndexFilePath());
 }
 
 std::string FastaReader::getIndexFilePath()
