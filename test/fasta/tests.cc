@@ -4,11 +4,13 @@
 #include <string>
 #include <bits/stdc++.h>
 
-std::string referencepath = "../../test/data/reference";
-std::string referenceindexpath = "../../test/data/reference.fai";
+
 
 TEST(FilePathTest, getTestFasta1)
 {
+    std::string referencepath = "../../test/data/reference";
+    std::string referenceindexpath = "../../test/data/reference.fai";
+
     FastaReader fastaReader;
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
