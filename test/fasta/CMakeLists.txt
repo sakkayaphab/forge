@@ -7,7 +7,8 @@ add_executable(
 
 target_link_libraries(
         test_fasta
-    gtest_main
+        gtest_main
+        fasta
     )
 
 add_test(
