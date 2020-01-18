@@ -70,7 +70,7 @@ int Cli::vcfSV()
         return 0;
     }
 
-    
+
     // Find Reference
     bool foundRef = false;
     std::string refPath;
