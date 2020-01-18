@@ -5,7 +5,7 @@
 std::string referencepath = "../../test/data/reference"
 std::string referenceindexpath = "../../test/data/reference.fai"
 
-TEST(FilePathTest, getFilePathName)
+TEST(FilePathTest, getTestFasta1)
 {
     FastaReader fastaReader;
     fastaReader.setFilePath(referencepath);
@@ -13,4 +13,14 @@ TEST(FilePathTest, getFilePathName)
     fastaReader.initialize();
     std::string seqrefString = fastareader.getSeqbyPosition("chr1",0,10);
     ASSERT_EQ("CGAGCCGAAC", seqrefString);
+}
+
+TEST(FilePathTest, getTestFasta2)
+{
+    FastaReader fastaReader;
+    fastaReader.setFilePath(referencepath);
+    fastaReader.setIndexFilePath(referenceindexpath);
+    fastaReader.initialize();
+    std::string seqrefString = fastareader.getSeqbyPosition("chr2",0,10);
+    ASSERT_EQ("GTCCTCGGTG", seqrefString);
 }
