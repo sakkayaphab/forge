@@ -42,5 +42,5 @@ TEST(FilePathTest, getTestFasta4)
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
     std::string seqrefString = fastareader.getSeqbyPosition("chr2",76,76+10);
-    ASSERT_EQ("GCCCCAGCTC", seqrefString);
+    ASSERT_EQ("", seqrefString);
 }
