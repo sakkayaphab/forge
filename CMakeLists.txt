@@ -21,4 +21,11 @@ include_directories(${INCLUDE_LIBRARY_PREFIX})
 
 message("INCLUDE_LIBRARY_PREFIX : " ${INCLUDE_LIBRARY_PREFIX})
 
+enable_testing()
+
 add_subdirectory(src)
+
+option(BUILD_TESTS "Build test" OFF)
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif(BUILD_TESTS)
