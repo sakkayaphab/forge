@@ -13,12 +13,12 @@ jobs:
         run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=/usr/include -DLIBRARY_LINK_PREFIX=/usr/lib/x86_64-linux-gnu -DBUILD_TESTS=ON
       - name: Build
         run: cd build && make
+      - name: Testing
+        run: cd build && make test
       - name: Install
         run: cd build && sudo make install
       - name: Run forge
         run: forge
-      - name: Testing
-        run: cd build && make test
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
