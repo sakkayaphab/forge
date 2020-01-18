@@ -15,6 +15,8 @@ TEST(FilePathTest, getTestFasta1)
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
+    std::cout << fastaReader.getIndexFilePath() << std::endl;
+    std::cout << fastaReader.getFilePath() << std::endl;
     std::cout << fastaReader.hasIndexFilePath() << std::endl;
     std::cout << fastaReader.hasFilePath() << std::endl;
     fastaReader.exitIfNoFilePath();
