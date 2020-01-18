@@ -3,16 +3,28 @@
 #include "fasta/fastareader.h"
 #include <string>
 #include <bits/stdc++.h>
-#include <filesystem>
+#include <dirent.h>
+#include <sys/types.h>
 
+using namespace std;
+void list_dir(const char *path) {
+    struct dirent *entry;
+    DIR *dir = opendir(path);
+
+    if (dir == NULL) {
+        return;
+    }
+    while ((entry = readdir(dir)) != NULL) {
+        cout << entry->d_name << endl;
+    }
+    closedir(dir);
+}
 
 TEST(FilePathTest, getTestFasta1)
 {
     std::string referencepath = "../test/data/reference.fa";
     std::string referenceindexpath = "../test/data/reference.fa.fai";
-    std::string path = "../";
-    for (const auto & entry : fs::directory_iterator(path))
-        std::cout << entry.path() << std::endl;
+    list_dir("../");
 
     FastaReader fastaReader;
     fastaReader.setFilePath(referencepath);
