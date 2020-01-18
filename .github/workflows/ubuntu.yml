@@ -6,7 +6,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Install Library with APT
+      - name: Install library with apt
         run: sudo apt-get install cmake -y
       - uses: actions/checkout@v1
       - name: Configure
