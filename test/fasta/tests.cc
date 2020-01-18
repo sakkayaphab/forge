@@ -15,6 +15,8 @@ TEST(FilePathTest, getTestFasta1)
     fastaReader.setFilePath(referencepath);
     fastaReader.setIndexFilePath(referenceindexpath);
     fastaReader.initialize();
+    std::cout << fastaReader.hasIndexFilePath() << std::endl;
+    std::cout << fastaReader.hasFilePath() << std::endl;
     std::string seqrefString = fastaReader.getSeqbyPosition("chr1",0,10);
     ASSERT_EQ("CGAGCCGAAC", seqrefString);
 }
