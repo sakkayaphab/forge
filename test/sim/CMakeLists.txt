@@ -2,14 +2,12 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 
 add_executable(
     test_caller
-        ../../tests.cc
+        tests.cc
     )
 
 target_link_libraries(
     test_caller
     gtest_main
-    caller
-    bwt
     )
 
 add_test(
