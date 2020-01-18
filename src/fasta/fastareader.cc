@@ -33,9 +33,9 @@ std::string FastaReader::getFilePath()
     return fasta.getFilePath();
 }
 
-std::string FastaReader::getSeqbyPosition(std::string chromosome,uint64_t start,uint64_t  end) {
-    uint64_t offsetstart = faidx.getOffsetStartByPosition(chromosome,start);
-    uint64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,end);
+std::string FastaReader::getSeqbyPosition(std::string chromosome,int64_t start,int64_t  end) {
+    int64_t offsetstart = faidx.getOffsetStartByPosition(chromosome,start);
+    int64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,end);
 
     return fasta.getSeqByOffset(offsetstart,offsetend);
 }
