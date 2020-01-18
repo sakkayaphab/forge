@@ -16,9 +16,9 @@ jobs:
       - name: Install
         run: cd build && sudo make install
       - name: Run test
-        run: bolt
+        run: forge
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: bolt_linux_x86_64bit
-          path: /usr/local/bin/bolt
+          name: forge_linux_x86_64bit
+          path: /usr/local/bin/forge
