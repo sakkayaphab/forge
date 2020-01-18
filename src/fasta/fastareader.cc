@@ -38,7 +38,7 @@ void FastaReader::exitIfNoFilePath() {
 
 void FastaReader::setIndexFilePath(std::string t_indexfilepath)
 {
-    fasta.setFilePath(t_indexfilepath);
+    faidx.setIndexFilePath(t_indexfilepath);
 }
 
 std::string FastaReader::getIndexFilePath()
