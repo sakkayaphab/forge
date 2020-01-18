@@ -9,7 +9,7 @@
 TEST(FilePathTest, getFilePathName)
 {
     FastaReader fastaReader;
-    fastaReader.setFilePath((filepath.getReferencePath()));
-    fastaReader.setIndexFilePath((filepath.getReferencePath()) + ".fai");
+    fastaReader.setFilePath("../../test/data/reference");
+    fastaReader.setIndexFilePath("../../test/data/reference" + ".fai");
     fastaReader.initialize();
 }
