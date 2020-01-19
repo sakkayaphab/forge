@@ -155,9 +155,9 @@ int Cli::vcfSV()
     std::cout << "Hello" << std::endl;
 //    Variant variant;
     Reference reference;
-//    reference.setFastaIndexPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa.fai");
-//    reference.setFastaPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa");
-//    fasta.ext
+    reference.setFastaIndexPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa.fai");
+    reference.setFastaPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa");
+    reference.getAllInfo();
 //    shortread.execute();
 
     return 0;

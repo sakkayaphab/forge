@@ -4,7 +4,7 @@ file(GLOB SOURCES "*.cc")
 add_executable(forge ${SOURCES})
 
 include_directories(variant)
-
+include_directories(${PROJECT_SOURCE_DIR}/src)
 add_subdirectory(variant)
 add_subdirectory(shortread)
 add_subdirectory(fasta)

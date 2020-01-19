@@ -2,6 +2,7 @@
 // Created by Sakkayaphab Piwluang on 19/1/20.
 //
 
+#include <iostream>
 #include "reference.h"
 
 
@@ -25,8 +26,11 @@ void Reference::setFastaIndexPath(std::string fastaindexpath) {
     Reference::fastaindexpath = fastaindexpath;
 }
 
-//void Reference::getAllInfo() {
-//    fastaReader.setFilePath(getFastaPath());
-//    fastaReader.setIndexFilePath(getFastaIndexPath());
-//    fastaReader.initialize();
-//}
+void Reference::getAllInfo() {
+    fastaReader.setFilePath(getFastaPath());
+    fastaReader.setIndexFilePath(getFastaIndexPath());
+    fastaReader.initialize();
+    fastaReader.exitIfNoFilePath();
+    std::string seq = fastaReader.getSeqbyChr("chr1");
+    std::cout << "pass" << seq.length() << std::endl;
+}

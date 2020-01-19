@@ -27,6 +27,7 @@ public:
   bool FileExists(std::string filename);
   void initialize();
   std::string getSeqbyPosition(std::string chromosome, int64_t start, int64_t end);
+  std::string getSeqbyChr(std::string chromosome);
 
   void replaceSeqToUppercase(std::string *str)
   {

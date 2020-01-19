@@ -11,11 +11,9 @@ private:
   std::string filepath;
 
 public:
-  // Reference(std::string t_filepath, std::string t_indexfilepath);
   Fasta();
   void setFilePath(std::string filepath);
   std::string getFilePath();
-  void initialize();
 
   std::string  getSeqByOffset(int64_t start,int64_t end);
 };

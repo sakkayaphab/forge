@@ -12,7 +12,7 @@ class Reference {
 private:
     std::string fastapath;
     std::string fastaindexpath;
-//    FastaReader fastaReader;
+    FastaReader fastaReader;
 
 
 public:
@@ -21,7 +21,7 @@ public:
     void setFastaPath(std::string fastapath);
     std::string getFastaIndexPath();
     void setFastaIndexPath(std::string fastaindexpath);
-//    void getAllInfo();
+    void getAllInfo();
 };
 
 

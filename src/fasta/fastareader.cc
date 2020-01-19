@@ -62,3 +62,19 @@ std::string FastaReader::getSeqbyPosition(std::string chromosome,int64_t start,i
 
     return fasta.getSeqByOffset(offsetstart,offsetend);
 }
+
+std::string FastaReader::getSeqbyChr(std::string chromosome) {
+    if (!faidx.hasChromosomeName(chromosome)) {
+        return "";
+    }
+
+    int64_t length = faidx.getLengthbyChromosome(chromosome);
+    int64_t offsetend = faidx.getOffsetbyChromosome(chromosome);
+    std::cout << "length :" << length << std::endl;
+    std::cout << "offsetend :" << offsetend << std::endl;
+//
+    int64_t offsetstart = faidx.getOffsetStartByPosition(chromosome,0);
+//    int64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,offsetend);
+
+    return fasta.getSeqByOffset(offsetstart,offsetend);
+}
