@@ -3,16 +3,18 @@ file(GLOB SOURCES "*.cc")
 
 add_executable(forge ${SOURCES})
 
-include_directories(shortread)
+include_directories(variant)
 
+add_subdirectory(variant)
 add_subdirectory(shortread)
 add_subdirectory(fasta)
 add_subdirectory(vcf)
 
 target_link_libraries(forge
-        shortread
-        fasta
-        vcf
+#        shortread
+        ##        fasta
+        ##        vcf
+        variant
   )
 
 if (NOT ${INSTALL_BIN_PREFIX} STREQUAL "")

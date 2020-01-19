@@ -10,6 +10,7 @@ private:
 public:
     Shortread();
     ~Shortread();
+    void execute();
 };
 
 #endif

@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     
     Cli cli(argc, argv);
 
-    if (cli.getCommand()=="call")
+    if (cli.getCommand()=="sim")
     {
         return cli.vcfSV();
     }

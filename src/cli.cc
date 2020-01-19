@@ -3,7 +3,7 @@
 #include <string>
 #include <thread>
 #include <cstdlib>
-#include <shortread.h>
+#include "variant/reference.h"
 
 Cli::Cli(int m_argc, char **m_argv)
 {
@@ -58,102 +58,107 @@ std::string Cli::getCommand()
 int Cli::vcfSV()
 {
 
-    if (args_lists.size() < 2)
-    {
-        showHelpCallSV();
-        return 1;
-    }
-
-    if (args_lists.at(1) == "-h" || args_lists.at(1) == "-help")
-    {
-        showHelpCallSV();
-        return 0;
-    }
-
-
-    // Find Reference
-    bool foundRef = false;
-    std::string refPath;
-    for (auto n : args_lists)
-    {
-        if (foundRef)
-        {
-            refPath = n;
-            break;
-        }
-
-        if (n == "-r")
-        {
-            foundRef = true;
-        }
-    }
-
-    if (refPath == "")
-    {
-        std::cout << "not found reference file path" << std::endl;
-        return 1;
-    }
-
-    // Find output
-    bool foundOut = false;
-    std::string outPath;
-    for (auto n : args_lists)
-    {
-        if (foundOut)
-        {
-            outPath = n;
-            break;
-        }
-
-        if (n == "-o")
-        {
-            foundOut = true;
-        }
-    }
-
-    if (outPath == "")
-    {
-        std::cout << "not found output file path" << std::endl;
-        return 1;
-    }
-
-    // Find threads
-    bool foundThread = false;
-    std::string outThread;
-    for (auto n : args_lists)
-    {
-        if (foundThread)
-        {
-            outThread = n;
-            break;
-        }
-
-        if (n == "-t")
-        {
-            outThread = true;
-        }
-    }
-
-    unsigned int threads = std::thread::hardware_concurrency();
-    if (outThread != "")
-    {
-        try
-        {
-            threads = std::stoi(outThread);
-        }
-        catch (std::invalid_argument const &e)
-        {
-            std::cout << "Bad input: std::invalid_argument thrown" << '\n';
-            return 1;
-        }
-        catch (std::out_of_range const &e)
-        {
-            std::cout << "Integer overflow: std::out_of_range thrown" << '\n';
-            return 1;
-        }
-    }
-
-    Shortread shortread();
+//    if (args_lists.size() < 2)
+//    {
+//        showHelpCallSV();
+//        return 1;
+//    }
+//
+//    if (args_lists.at(1) == "-h" || args_lists.at(1) == "-help")
+//    {
+//        showHelpCallSV();
+//        return 0;
+//    }
+//
+//
+//    // Find Reference
+//    bool foundRef = false;
+//    std::string refPath;
+//    for (auto n : args_lists)
+//    {
+//        if (foundRef)
+//        {
+//            refPath = n;
+//            break;
+//        }
+//
+//        if (n == "-r")
+//        {
+//            foundRef = true;
+//        }
+//    }
+//
+//    if (refPath == "")
+//    {
+//        std::cout << "not found reference file path" << std::endl;
+//        return 1;
+//    }
+//
+//    // Find output
+//    bool foundOut = false;
+//    std::string outPath;
+//    for (auto n : args_lists)
+//    {
+//        if (foundOut)
+//        {
+//            outPath = n;
+//            break;
+//        }
+//
+//        if (n == "-o")
+//        {
+//            foundOut = true;
+//        }
+//    }
+//
+//    if (outPath == "")
+//    {
+//        std::cout << "not found output file path" << std::endl;
+//        return 1;
+//    }
+//
+//    // Find threads
+//    bool foundThread = false;
+//    std::string outThread;
+//    for (auto n : args_lists)
+//    {
+//        if (foundThread)
+//        {
+//            outThread = n;
+//            break;
+//        }
+//
+//        if (n == "-t")
+//        {
+//            outThread = true;
+//        }
+//    }
+//
+//    unsigned int threads = std::thread::hardware_concurrency();
+//    if (outThread != "")
+//    {
+//        try
+//        {
+//            threads = std::stoi(outThread);
+//        }
+//        catch (std::invalid_argument const &e)
+//        {
+//            std::cout << "Bad input: std::invalid_argument thrown" << '\n';
+//            return 1;
+//        }
+//        catch (std::out_of_range const &e)
+//        {
+//            std::cout << "Integer overflow: std::out_of_range thrown" << '\n';
+//            return 1;
+//        }
+//    }
+    std::cout << "Hello" << std::endl;
+//    Variant variant;
+    Reference reference;
+//    reference.setFastaIndexPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa.fai");
+//    reference.setFastaPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa");
+//    fasta.ext
+//    shortread.execute();
 
     return 0;
 }

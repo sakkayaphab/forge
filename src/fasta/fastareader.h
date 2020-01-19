@@ -15,7 +15,7 @@ private:
   Fasta fasta;
 
 public:
-  // Fasta(std::string t_filepath, std::string t_indexfilepath);
+  // Reference(std::string t_filepath, std::string t_indexfilepath);
   FastaReader();
   void setFilePath(std::string filepath);
   std::string getFilePath();
