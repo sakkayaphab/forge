@@ -15,7 +15,6 @@ private:
   Fasta fasta;
 
 public:
-  // Reference(std::string t_filepath, std::string t_indexfilepath);
   FastaReader();
   void setFilePath(std::string filepath);
   std::string getFilePath();
@@ -28,11 +27,30 @@ public:
   void initialize();
   std::string getSeqbyPosition(std::string chromosome, int64_t start, int64_t end);
   std::string getSeqbyChr(std::string chromosome);
+  Faidx getFastaIndex();
 
   void replaceSeqToUppercase(std::string *str)
   {
     std::transform((*str).begin(), (*str).end(), (*str).begin(), ::toupper);
   }
+
+  struct RegionRange {
+        int64_t pos = 0;
+        int64_t end = 0;
+  };
+
+    struct ChromosomeRegion
+    {
+        int64_t LENGTH= 0;
+        int64_t OFFSET= 0;
+        int64_t LINEBASES= 0;
+        int64_t LINEWIDTH= 0;
+        int64_t QUALOFFSET= 0;
+    };
+
+    FastaReader::ChromosomeRegion  getChromosomeRegionWithoutGap();
+    std::vector<FastaReader::ChromosomeRegion>  getChromosomeRegionsWithoutGap();
+
 };
 
 #endif

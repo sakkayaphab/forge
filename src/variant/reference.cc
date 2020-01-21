@@ -31,6 +31,15 @@ void Reference::getAllInfo() {
     fastaReader.setIndexFilePath(getFastaIndexPath());
     fastaReader.initialize();
     fastaReader.exitIfNoFilePath();
-    std::string seq = fastaReader.getSeqbyChr("chr1");
-    std::cout << "pass" << seq.length() << std::endl;
+    Faidx faidx = fastaReader.getFastaIndex();
+    std::vector<Faidx::FileFormat> faidxRecords = faidx.getRecords();
+    for (Faidx::FileFormat record : faidxRecords) {
+        std::cout << record.NAME << std::endl;
+    }
+
+//    std::string seq = fastaReader.getSeqbyChr("chr1");
+//    std::string seq = fastaReader.getSeqbyPosition("chr1",0,10);
+//    std::string str2 = seq.substr (seq.length()-100000,seq.length()-1);
+//    std::cout << "pass2" << str2.length() << str2 << std::endl;
+//    std::cout << "pass" << seq.length() << seq[seq.length()-1] << std::endl;
 }

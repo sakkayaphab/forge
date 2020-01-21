@@ -7,22 +7,23 @@
 
 class Faidx
 {
+public:
+    struct FileFormat
+    {
+        std::string NAME;
+        int64_t LENGTH = 0;
+        int64_t OFFSET= 0;
+        int64_t LINEBASES= 0;
+        int64_t LINEWIDTH= 0;
+        int64_t QUALOFFSET= 0;
+    };
+
 private:
   std::string indexfilepath;
 
-  struct FileFormat
-  {
-    std::string NAME;
-    int64_t LENGTH;
-    int64_t OFFSET;
-    int64_t LINEBASES;
-    int64_t LINEWIDTH;
-    int64_t QUALOFFSET;
-  };
-
   struct OffsetFile {
-    int64_t start;
-    int64_t end;
+    int64_t start= 0;
+    int64_t end= 0;
   };
 
   std::vector<FileFormat> faidxlist;
@@ -47,6 +48,9 @@ public:
 
   int64_t getOffsetEndByPosition(std::string chromosome, int64_t end);
   int64_t getOffsetStartByPosition(std::string chromosome, int64_t start);
+
+
+    std::vector<Faidx::FileFormat>  getRecords();
 };
 
 #endif

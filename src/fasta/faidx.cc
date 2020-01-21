@@ -188,3 +188,7 @@ int64_t Faidx::getOffsetStartByPosition(std::string chromosome, int64_t start)
 
     return startoffset + getApproximateOffsetStart(chromosome, start);
 }
+
+std::vector<Faidx::FileFormat> Faidx::getRecords() {
+    return faidxlist;
+}

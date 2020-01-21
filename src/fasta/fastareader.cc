@@ -69,12 +69,21 @@ std::string FastaReader::getSeqbyChr(std::string chromosome) {
     }
 
     int64_t length = faidx.getLengthbyChromosome(chromosome);
-    int64_t offsetend = faidx.getOffsetbyChromosome(chromosome);
-    std::cout << "length :" << length << std::endl;
-    std::cout << "offsetend :" << offsetend << std::endl;
-//
-    int64_t offsetstart = faidx.getOffsetStartByPosition(chromosome,0);
-//    int64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,offsetend);
+    int64_t offset = faidx.getOffsetbyChromosome(chromosome);
+    int64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,length);
 
-    return fasta.getSeqByOffset(offsetstart,offsetend);
+    return fasta.getSeqByOffset(offset,offsetend);
+}
+
+Faidx FastaReader::getFastaIndex() {
+    return faidx;
+}
+
+
+std::vector<FastaReader::ChromosomeRegion>  FastaReader::getChromosomeRegionsWithoutGap() {
+
+}
+
+FastaReader::ChromosomeRegion  FastaReader::getChromosomeRegionWithoutGap() {
+
 }
