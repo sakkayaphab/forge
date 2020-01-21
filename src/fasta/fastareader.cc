@@ -124,3 +124,16 @@ FastaReader::ChromosomeRegion  FastaReader::getRegionChromosomeWithoutGap(std::s
 
     return chrRegion;
 }
+
+void FastaReader::showChromosomeRegion(FastaReader::ChromosomeRegion cr) {
+    int64_t regionlength=0;
+    for (RegionRange x:cr.RegionRange) {
+        regionlength += x.end-x.pos;
+        std::cout << "pos : " << x.pos <<
+        " end : " << x.end <<
+        " | range : " << x.end-x.pos <<
+        std::endl;
+    }
+
+    std::cout << "region length w/o masked : " << regionlength << std::endl;
+}

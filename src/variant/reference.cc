@@ -32,7 +32,8 @@ void Reference::getAllInfo() {
     fastaReader.initialize();
     fastaReader.exitIfNoFilePath();
     Faidx faidx = fastaReader.getFastaIndex();
-    fastaReader.getRegionChromosomeWithoutGap("chr1");
+    FastaReader::ChromosomeRegion cr = fastaReader.getRegionChromosomeWithoutGap("chr1");
+    fastaReader.showChromosomeRegion(cr);
 
 //    std::string seq = fastaReader.getSeqbyChr("chr1");
 //    std::string seq = fastaReader.getSeqbyPosition("chr1",0,10);

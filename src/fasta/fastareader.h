@@ -46,6 +46,7 @@ public:
     }
 
     struct RegionRange {
+        std::string chrname = 0;
         int64_t pos = 0;
         int64_t end = 0;
     };
@@ -56,6 +57,7 @@ public:
 
     FastaReader::ChromosomeRegion getRegionChromosomeWithoutGap(std::string chrname);
     std::vector<FastaReader::ChromosomeRegion> getAllRegionChromosomeWithoutGap();
+    void showChromosomeRegion(FastaReader::ChromosomeRegion cr);
 };
 
 #endif
