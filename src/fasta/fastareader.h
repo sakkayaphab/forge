@@ -50,7 +50,6 @@ public:
 
     FastaReader::ChromosomeRegion  getChromosomeRegionWithoutGap();
     std::vector<FastaReader::ChromosomeRegion>  getChromosomeRegionsWithoutGap();
-
 };
 
 #endif
