@@ -157,6 +157,9 @@ int Cli::vcfSV()
     Reference reference;
     reference.setFastaIndexPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa.fai");
     reference.setFastaPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa");
+
+//    reference.setFastaIndexPath("/data/users/duangdao/kan/reference/hs37d5.fa.fai");
+//    reference.setFastaPath("/data/users/duangdao/kan/reference/hs37d5.fa");
     reference.getAllInfo();
 //    shortread.execute();
 

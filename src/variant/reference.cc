@@ -32,10 +32,7 @@ void Reference::getAllInfo() {
     fastaReader.initialize();
     fastaReader.exitIfNoFilePath();
     Faidx faidx = fastaReader.getFastaIndex();
-    std::vector<Faidx::FileFormat> faidxRecords = faidx.getRecords();
-    for (Faidx::FileFormat record : faidxRecords) {
-        std::cout << record.NAME << std::endl;
-    }
+    fastaReader.getRegionChromosomeWithoutGap("chr1");
 
 //    std::string seq = fastaReader.getSeqbyChr("chr1");
 //    std::string seq = fastaReader.getSeqbyPosition("chr1",0,10);
