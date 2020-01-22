@@ -6,6 +6,9 @@ WORKDIR /project
 COPY . .
 
 RUN apt-get -y update
+RUN apt-get -y install build-essential
+RUN apt-get -y install manpages-dev
+RUN apt-get -y install cmake
 RUN apt-get -y install wget
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
 RUN bash miniconda.sh -b -p $HOME/miniconda
