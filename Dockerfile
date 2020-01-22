@@ -5,16 +5,15 @@ LABEL maintainer="Sakkayaphab Piwluang <sakkayaphab@gmail.com>"
 WORKDIR /project
 COPY . .
 
-RUN apt-get -y update
-RUN apt-get -y install build-essential
-RUN apt-get -y install manpages-dev
-RUN gcc --version
-RUN apt-get -y install cmake
-RUN cd / && ls -al
-RUN cd /project/ && ls -al
-RUN cd /usr/lib/x86_64-linux-gnu && ls -al
-RUN cd /usr/local && ls -al
-RUN mkdir build && cd build && cmake .. -DINSTALL_BIN_PREFIX=${PWD} -DINCLUDE_LIBRARY_PREFIX=/usr/include -DLIBRARY_LINK_PREFIX=/usr/lib/x86_64-linux-gnu
+
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+RUN bash miniconda.sh -b -p $HOME/miniconda
+RUN export PATH="$HOME/miniconda/bin:$PATH"
+RUN hash -r
+RUN conda config --set always_yes yes
+RUN conda update -q conda
+RUN conda install -y -c bioconda seqan3
+RUN mkdir build && cd build && cmake .. -DINSTALL_BIN_PREFIX=${PWD} -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/
 RUN cd build && make
 RUN cd build && make install
 
