@@ -22,6 +22,8 @@ jobs:
           conda install -y -c bioconda seqan3
           conda install -y -c anaconda cmake
           conda install -y -c anaconda gcc
+          export CC=$HOME/miniconda/bin/gcc
+          export CXX=$HOME/miniconda/bin/g++
           mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
       - name: Build
         run: cd build && make
