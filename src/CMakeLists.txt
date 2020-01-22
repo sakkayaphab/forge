@@ -13,7 +13,7 @@ add_subdirectory(vcf)
 target_link_libraries(forge
 #        shortread
         ##        fasta
-        ##        vcf
+        #        vcf
         variant
   )
 

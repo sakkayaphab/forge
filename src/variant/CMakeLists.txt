@@ -5,17 +5,18 @@ add_library(variant
         ${SOURCES}
 )
 
-include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
 message( ${PROJECT_SOURCE_DIR}/src)
 if(APPLE)
     target_link_libraries(
             variant
             fasta
+            vcf
     )
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(
             variant
             fasta
+            vcf
     )
 endif()

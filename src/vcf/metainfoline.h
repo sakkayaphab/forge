@@ -10,7 +10,6 @@ private:
   std::string fileDate;
   std::string source;
   std::string reference;
-
   std::vector<std::string> extra;
 
 public:

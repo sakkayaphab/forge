@@ -46,7 +46,7 @@ public:
     }
 
     struct RegionRange {
-        std::string chrname = 0;
+        std::string chrname;
         int64_t pos = 0;
         int64_t end = 0;
     };

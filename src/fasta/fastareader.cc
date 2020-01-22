@@ -105,6 +105,7 @@ FastaReader::ChromosomeRegion  FastaReader::getRegionChromosomeWithoutGap(std::s
         } else {
             if (sumPosition>0) {
                 RegionRange rr;
+                rr.chrname = chrname;
                 rr.pos = currentPosition-sumPosition;
                 rr.end = currentPosition;
                 chrRegion.RegionRange.push_back(rr);
@@ -117,6 +118,7 @@ FastaReader::ChromosomeRegion  FastaReader::getRegionChromosomeWithoutGap(std::s
 
     if (sumPosition>0) {
         RegionRange rr;
+        rr.chrname = chrname;
         rr.pos = currentPosition-sumPosition;
         rr.end = currentPosition;
         chrRegion.RegionRange.push_back(rr);
@@ -129,9 +131,10 @@ void FastaReader::showChromosomeRegion(FastaReader::ChromosomeRegion cr) {
     int64_t regionlength=0;
     for (RegionRange x:cr.RegionRange) {
         regionlength += x.end-x.pos;
-        std::cout << "pos : " << x.pos <<
-        " end : " << x.end <<
-        " | range : " << x.end-x.pos <<
+        std::cout << x.chrname <<
+        ", " << x.pos <<
+        ", " << x.end <<
+        " | " << x.end-x.pos <<
         std::endl;
     }
 
