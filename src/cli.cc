@@ -4,9 +4,10 @@
 #include <thread>
 #include <cstdlib>
 #include "variant/reference.h"
-#include "vcf/writer.h"
-#include "vcf/dataline.h"
-#include "vcf/metainfoline.h"
+//#include "vcf/writer.h"
+//#include "vcf/dataline.h"
+//#include "vcf/metainfoline.h"
+#include <seqan3/core/debug_stream.hpp>
 
 Cli::Cli(int m_argc, char **m_argv)
 {
@@ -161,7 +162,7 @@ int Cli::vcfSV()
 //    reference.setFastaIndexPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa.fai");
 //    reference.setFastaPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa");
 
-
+    seqan3::debug_stream << "Hello world\n";
 
 
     return 0;

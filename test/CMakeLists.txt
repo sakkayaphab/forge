@@ -33,4 +33,3 @@ endif()
 # add test
 add_subdirectory(sim)
 add_subdirectory(fasta)
-add_subdirectory(vcf)

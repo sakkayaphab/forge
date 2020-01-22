@@ -11,12 +11,10 @@ if(APPLE)
     target_link_libraries(
             variant
             fasta
-            vcf
     )
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(
             variant
             fasta
-            vcf
     )
 endif()
