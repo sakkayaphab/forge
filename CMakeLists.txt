@@ -10,10 +10,12 @@ set(CMAKE_INSTALL_RPATH ${LIBRARY_LINK_PREFIX})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # using Clang
+    message( "Forge -> Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Xclang -fconcepts-ts")
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     # using GCC
     set(CMAKE_CXX_FLAGS "-O3 -fconcepts")
+    message( "Forge -> GNU")
 endif()
 
 include(GNUInstallDirs)
