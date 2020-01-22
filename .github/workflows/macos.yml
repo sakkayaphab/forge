@@ -6,6 +6,7 @@ jobs:
     name: Build
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Install miniconda
         run: |
           if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
@@ -21,9 +22,7 @@ jobs:
           conda install -y -c bioconda seqan3
           conda install -y -c anaconda cmake
           conda install -y -c anaconda gcc
-      - uses: actions/checkout@v1
-      - name: Configure
-        run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
+          mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
       - name: Build
         run: cd build && make
       - name: Testing
