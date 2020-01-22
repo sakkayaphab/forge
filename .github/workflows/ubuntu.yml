@@ -21,6 +21,7 @@ jobs:
           conda install -c bioconda seqan3
           conda install -c anaconda gcc
           conda install -c anaconda cmake
+          conda install -c anaconda libstdcxx-ng
       - uses: actions/checkout@v1
       - name: Configure
         run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
