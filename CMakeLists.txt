@@ -11,11 +11,12 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # using Clang
     message( "Forge -> Clang")
+    set(CMAKE_CXX_STANDARD 20)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Xclang -fconcepts-ts")
 elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     # using GCC
     set(CMAKE_CXX_FLAGS "-O3 -fconcepts")
-    set(CMAKE_CXX_STANDARD 20)
+
     message( "Forge -> GNU")
 endif()
 
