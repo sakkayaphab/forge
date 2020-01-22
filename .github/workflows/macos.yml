@@ -11,6 +11,8 @@ jobs:
         run: |
           /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
           brew install gcc
+          export CC=/usr/local/bin/gcc-9
+          export CXX=/usr/local/bin/g++-9
           if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
               wget https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -O miniconda.sh;
           else
