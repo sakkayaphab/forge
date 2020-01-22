@@ -6,11 +6,21 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Install library with apt
-        run: sudo apt-get install cmake -y
+      - name: Install miniconda
+        run: |
+          if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+              wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+          else
+              wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+          fi
+          bash miniconda.sh -b -p $HOME/miniconda
+          export PATH="$HOME/miniconda/bin:$PATH"
+          hash -r
+          conda config --set always_yes yes
+          conda update -q conda
       - uses: actions/checkout@v1
       - name: Configure
-        run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=/usr/include -DLIBRARY_LINK_PREFIX=/usr/lib/x86_64-linux-gnu -DBUILD_TESTS=ON
+        run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
       - name: Build
         run: cd build && make
       - name: Testing
