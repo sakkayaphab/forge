@@ -175,10 +175,10 @@ int Cli::vcfSV()
     dataline.setTextALT(".");
     dataline.setTextQUAL("0");
     dataline.setTextFILTER("q10;s50");
-    dataline.setTextINFO("END=0");
+    dataline.setTextInfoKeyValue("END","13131232");
     vcfwriter.setMetaInfoLines(metainfoline);
     vcfwriter.addDataline(dataline);
-    vcfwriter.setOutputPath("ll");
+    vcfwriter.setOutputPath("1");
     vcfwriter.writeHeader();
     vcfwriter.writeBufferAndClear();
 

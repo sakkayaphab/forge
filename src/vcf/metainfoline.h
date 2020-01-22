@@ -26,7 +26,7 @@ public:
   void setheader_fileDate(std::string value);
   void setheader_source(std::string value);
   void setheader_reference(std::string value);
-  
+
 };
 
 #endif
