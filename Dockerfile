@@ -9,7 +9,7 @@ RUN apt-get -y update
 RUN apt-get -y install wget
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
 RUN bash miniconda.sh -b -p $HOME/miniconda
-ENV PATH "$PATH:$HOME/miniconda/bin"
+RUN export PATH="$HOME/miniconda/bin:$PATH"
 RUN hash -r
 RUN conda config --set always_yes yes
 RUN conda update -q conda
