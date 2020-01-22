@@ -8,11 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_INSTALL_RPATH ${LIBRARY_LINK_PREFIX})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # using Clang
     message( "Forge -> Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Xclang -fconcepts-ts")
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     # using GCC
     set(CMAKE_CXX_FLAGS "-O3 -fconcepts")
     message( "Forge -> GNU")
