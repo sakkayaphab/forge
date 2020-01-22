@@ -9,7 +9,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install miniconda
         run: |
-          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
           if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
               wget https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh -O miniconda.sh;
           else
