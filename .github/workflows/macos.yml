@@ -1,0 +1,37 @@
+name: MacOS
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Install miniconda
+        run: |
+          if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+              wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+          else
+              wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+          fi
+          bash miniconda.sh -b -p $HOME/miniconda
+          export PATH="$HOME/miniconda/bin:$PATH"
+          hash -r
+          conda config --set always_yes yes
+          conda update -q conda
+          conda install -y -c bioconda seqan3
+      - uses: actions/checkout@v1
+      - name: Configure
+        run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
+      - name: Build
+        run: cd build && make
+      - name: Testing
+        run: cd build && ctest --verbose
+      - name: Install
+        run: cd build && sudo make install
+      - name: Run forge
+        run: forge
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: forge_linux_x86_64bit
+          path: /usr/local/bin/forge
