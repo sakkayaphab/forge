@@ -6,6 +6,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Install miniconda
         run: |
           if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
@@ -18,8 +19,7 @@ jobs:
           hash -r
           conda config --set always_yes yes
           conda update -q conda
-          conda install -y -c bioconda seqan3
-      - uses: actions/checkout@v1
+          conda install -y -c bioconda seqan
       - name: Configure
         run: mkdir build && cd build && cmake .. -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/ -DBUILD_TESTS=ON
       - name: Build

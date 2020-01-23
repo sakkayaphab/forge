@@ -7,7 +7,10 @@
 //#include "vcf/writer.h"
 //#include "vcf/dataline.h"
 //#include "vcf/metainfoline.h"
-#include <seqan3/core/debug_stream.hpp>
+//#include <seqan3/core/debug_stream.hpp>
+#include <seqan/sequence.h>
+#include <seqan/seq_io.h>
+#include <seqan/stream.h>
 
 Cli::Cli(int m_argc, char **m_argv)
 {
@@ -162,7 +165,50 @@ int Cli::vcfSV()
 //    reference.setFastaIndexPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa.fai");
 //    reference.setFastaPath("/data/users/duangdao/kan/reference/ucsc_hg19.fa");
 
-    seqan3::debug_stream << "Hello world\n";
+//    seqan3::debug_stream << "Hello world\n";
+//    seqan::CharString pathToFile = seqan::getAbsolutePath("/data/users/duangdao/kan/reference/hs37d5.fa");
+//    seqan::FaiIndex faiIndex;
+//
+//    if (!build(faiIndex, toCString(pathToFile)))
+//        std::cout << "ERROR: Could not build the index!\n";
+
+    std::string reference = "/data/users/duangdao/kan/reference/hs37d5.fa";
+    seqan::FaiIndex faiIndex;
+    if (!seqan::open(faiIndex, reference.c_str()))
+    {
+        if (!seqan::build(faiIndex, reference.c_str()))
+        {
+            std::cerr << "ERROR: Index could not be loaded or built.\n";
+            return 0;
+        }
+        if (!seqan::save(faiIndex))    // Name is stored from when reading.
+        {
+            std::cerr << "ERROR: Index could not be written do disk.\n";
+            return 0;
+        }
+    }
+
+    std::string namechar = "1";
+    unsigned idx = 0;
+    if (!seqan::getIdByName(idx, faiIndex, namechar.c_str()))
+    {
+        std::cerr << "ERROR: Index does not know about sequence " << namechar.c_str() << "\n";
+        return 0;
+    }
+
+    unsigned beginPos = 0, endPos = 10000;
+
+    if (beginPos > seqan::sequenceLength(faiIndex, idx))
+        beginPos = seqan::sequenceLength(faiIndex, idx);
+    if (endPos > seqan::sequenceLength(faiIndex, idx))
+        endPos = seqan::sequenceLength(faiIndex, idx);
+    if (beginPos > endPos)
+        endPos = beginPos;
+
+    // Finally, get infix of sequence.
+    seqan::Dna5String sequenceInfix;
+    seqan::readRegion(sequenceInfix, faiIndex, idx, beginPos, endPos);
+    std::cout << sequenceInfix << "\n";
 
 
     return 0;
