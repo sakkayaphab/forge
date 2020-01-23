@@ -35,3 +35,50 @@ uint64_t BlockReference::getNumberOfRef() {
 
     return iDsNumber;
 }
+
+BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
+    BlockContainer bc;
+
+    seqan::Dna5String sequenceInfix;
+    seqan::readSequence(sequenceInfix, faiIndex, id);
+    seqan::CharString name = seqan::sequenceName(faiIndex,id);
+    std::string chrname = seqan::toCString(name);
+    std::vector<Block> blocks = convertSeqToBlock(chrname,&sequenceInfix);
+    bc.setBlocks(blocks);
+
+    return bc;
+}
+
+std::vector<Block> BlockReference::convertSeqToBlock(std::string chrname,seqan::Dna5String *seq) {
+    std::vector<Block> blocks;
+
+    int64_t currentPosition = 0;
+    int64_t sumPosition = 0;
+    for (char n:*seq) {
+        // X for hard masked, N for soft masked
+        if (n=='N'||n=='n'||n=='X'||n=='x') {
+            sumPosition++;
+        } else {
+            if (sumPosition>0) {
+                Block rr;
+                rr.setChrPos(chrname);
+                rr.setPos(currentPosition-sumPosition);
+                rr.setEnd(currentPosition);
+                blocks.push_back(rr);
+            }
+            sumPosition = 0;
+        }
+
+        currentPosition++;
+    }
+
+    if (sumPosition>0) {
+        Block rr;
+        rr.setChrPos(chrname);
+        rr.setPos(currentPosition-sumPosition);
+        rr.setEnd(currentPosition);
+        blocks.push_back(rr);
+    }
+
+    return blocks;
+}

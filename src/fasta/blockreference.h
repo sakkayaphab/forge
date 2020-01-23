@@ -10,6 +10,8 @@
 #include <seqan/sequence.h>
 #include <seqan/seq_io.h>
 #include <seqan/stream.h>
+#include "block.h"
+#include "blockcontainer.h"
 
 class BlockReference {
 private:
@@ -21,9 +23,8 @@ public:
     std::string getFastaPath();
     void setFastaPath(const std::string fastaPath);
     uint64_t getNumberOfRef();
-    std::string *getSequence(std::string chrname,uint64_t pos,uint64_t end);
-    std::string getSequenceName(uint64_t rID);
-
+    BlockContainer getBlockContainerByID(uint64_t id);
+    std::vector<Block> convertSeqToBlock(std::string chrname,seqan::Dna5String *seq);
 };
 
 

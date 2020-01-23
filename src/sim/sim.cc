@@ -17,5 +17,5 @@ void Sim::readFasta() {
     BlockReference blockref(Sim::fastaPath);
     uint64_t numberIDs = blockref.getNumberOfRef();
     std::cout << numberIDs << std::endl;
-
+    blockref.getBlockContainerByID(0);
 }

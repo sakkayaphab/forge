@@ -29,14 +29,6 @@ std::string Block::getChrPos() {
     return Block::chrpos;
 }
 
-std::string Block::getChrEnd() {
-    return Block::chrend;
-}
-
 void Block::setChrPos(std::string chrpos) {
     Block::chrpos = chrpos;
-}
-
-void Block::setChrEnd(std::string chrend) {
-    Block::chrend = chrend;
 }
