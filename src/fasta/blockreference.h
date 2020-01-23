@@ -13,14 +13,16 @@
 
 class BlockReference {
 private:
-        std::string fastaPath;
+    std::string fastaPath;
+    seqan::FaiIndex faiIndex;
+
 public:
     BlockReference(std::string fastaPath);
     std::string getFastaPath();
     void setFastaPath(const std::string fastaPath);
     uint64_t getNumberOfRef();
-
-
+    std::string *getSequence(std::string chrname,uint64_t pos,uint64_t end);
+    std::string getSequenceName(uint64_t rID);
 
 };
 

@@ -8,9 +8,14 @@ Sim::Sim() {
 
 }
 
+void Sim::setFastaPath(std::string path) {
+    Sim::fastaPath = path;
+}
 
-void Sim::ReadFasta() {
-    std::string reference = "/data/users/duangdao/kan/reference/hs37d5.fa";
-    BlockReference blockref(reference);
+
+void Sim::readFasta() {
+    BlockReference blockref(Sim::fastaPath);
+    uint64_t numberIDs = blockref.getNumberOfRef();
+    std::cout << numberIDs << std::endl;
 
 }

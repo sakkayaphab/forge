@@ -193,7 +193,8 @@ int Cli::vcfSV()
 //    seqan::readRegion(sequenceInfix, faiIndex, idx, beginPos, endPos);
 //    std::cout << sequenceInfix << "\n";
     Sim sim;
-    sim.ReadFasta();
+    sim.setFastaPath("/data/users/duangdao/kan/reference/hs37d5.fa");
+    sim.readFasta();
 
     return 0;
 }

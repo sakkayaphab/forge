@@ -10,9 +10,11 @@ message( ${PROJECT_SOURCE_DIR}/src)
 if(APPLE)
     target_link_libraries(
             sim
+            fasta
     )
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(
             sim
+            fasta
     )
 endif()

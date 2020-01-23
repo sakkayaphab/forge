@@ -5,14 +5,16 @@
 #ifndef FORGE_SIM_H
 #define FORGE_SIM_H
 
-#include "blockreference.h"
-
+#include "fasta/blockreference.h"
+#include <iostream>
 
 class Sim {
     private:
+        std::string fastaPath;
     public:
         Sim();
-        void ReadFasta();
+        void setFastaPath(std::string path);
+        void readFasta();
 };
 
 

@@ -18,7 +18,7 @@ void BlockReference::setFastaPath(std::string fastaPath) {
 }
 
 uint64_t BlockReference::getNumberOfRef() {
-    seqan::FaiIndex faiIndex;
+
     if (!seqan::open(faiIndex, fastaPath.c_str()))
     {
         if (!seqan::build(faiIndex, fastaPath.c_str()))
