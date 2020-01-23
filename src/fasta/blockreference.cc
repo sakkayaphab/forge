@@ -36,6 +36,18 @@ uint64_t BlockReference::getNumberOfRef() {
     return iDsNumber;
 }
 
+std::vector<BlockContainer> BlockReference::getAllChrBlockContainer() {
+    uint64_t iDsNumber = getNumberOfRef();
+    uint64_t i = 0;
+    std::vector<BlockContainer> bcs;
+    for (i=0;i<iDsNumber;i++) {
+        BlockContainer bc = getBlockContainerByID(i);
+        bcs.push_back(bc);
+    }
+
+    return bcs;
+}
+
 BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
     BlockContainer bc;
 
@@ -45,7 +57,7 @@ BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
     std::string chrname = seqan::toCString(name);
     std::vector<Block> blocks = convertSeqToBlock(chrname,&sequenceInfix);
     bc.setBlocks(blocks);
-
+    bc.setChr(chrname);
     return bc;
 }
 
@@ -54,6 +66,7 @@ std::vector<Block> BlockReference::convertSeqToBlock(std::string chrname,seqan::
 
     int64_t currentPosition = 0;
     int64_t sumPosition = 0;
+
     for (char n:*seq) {
         // X for hard masked, N for soft masked
         if (n=='N'||n=='n'||n=='X'||n=='x') {

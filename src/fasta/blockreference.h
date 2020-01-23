@@ -24,6 +24,7 @@ public:
     void setFastaPath(const std::string fastaPath);
     uint64_t getNumberOfRef();
     BlockContainer getBlockContainerByID(uint64_t id);
+    std::vector<BlockContainer> getAllChrBlockContainer();
     std::vector<Block> convertSeqToBlock(std::string chrname,seqan::Dna5String *seq);
 };
 
