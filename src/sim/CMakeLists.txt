@@ -1,20 +1,18 @@
 file(GLOB SOURCES "*.cc")
 
-add_library(variant
+add_library(sim
         STATIC
         ${SOURCES}
-)
+        )
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 message( ${PROJECT_SOURCE_DIR}/src)
 if(APPLE)
     target_link_libraries(
-            variant
-            fasta
+            sim
     )
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(
-            variant
-            fasta
+            sim
     )
 endif()
