@@ -61,7 +61,48 @@ BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
     return bc;
 }
 
-std::vector<Block> BlockReference::convertSeqToBlock(std::string chrname,seqan::Dna5String *seq) {
+std::vector<Block> BlockReference::convertSeqToBlockWithoutMasked(std::string chrname,seqan::Dna5String *seq) {
+    std::vector<Block> blocks;
+
+    int64_t currentPosition = 0;
+    int64_t sumPosition = 0;
+    int64_t countMasked = 0;
+    for (char n:*seq) {
+        // X for hard masked, N for soft masked
+        if (n=='N'||n=='n'||n=='X'||n=='x') {
+            if (sumPosition>0) {
+                Block rr;
+                rr.setChrPos(chrname);
+                rr.setPos(currentPosition-sumPosition);
+                rr.setEnd(currentPosition);
+                blocks.push_back(rr);
+                std::cout << currentPosition-sumPosition << " - " << currentPosition << " = " << currentPosition-(currentPosition-sumPosition) <<  std::endl;
+
+            }
+            sumPosition = 0;
+        } else {
+            sumPosition++;
+            countMasked++;
+        }
+
+        currentPosition++;
+    }
+
+    if (sumPosition>0) {
+        Block rr;
+        rr.setChrPos(chrname);
+        rr.setPos(currentPosition-sumPosition);
+        rr.setEnd(currentPosition);
+        blocks.push_back(rr);
+        std::cout << currentPosition-sumPosition << " - " << currentPosition <<  std::endl;
+    }
+
+    std::cout << "countMasked : " << countMasked <<  std::endl;
+
+    return blocks;
+}
+
+std::vector<Block> BlockReference::convertSeqToBlockWithMasked(std::string chrname,seqan::Dna5String *seq) {
     std::vector<Block> blocks;
 
     int64_t currentPosition = 0;

@@ -7,7 +7,7 @@
 
 #include "fasta/blockreference.h"
 #include <iostream>
-
+#include "fasta/blockcontainer.h"
 class Sim {
     private:
         std::string fastaPath;

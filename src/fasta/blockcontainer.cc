@@ -22,3 +22,11 @@ void BlockContainer::setChr(std::string chrname) {
 std::string BlockContainer::getChr() {
     return BlockContainer::chrname;
 }
+
+uint64_t BlockContainer::getSumLength() {
+    uint64_t sumLength = 0;
+    for (Block b:blocks) {
+        sumLength += b.getEnd()-b.getPos();
+    }
+    return sumLength;
+}

@@ -16,6 +16,7 @@ public:
     void setBlocks(std::vector<Block> blocks);
     void setChr(std::string chrname);
     std::string getChr();
+    uint64_t getSumLength();
 };
 
 

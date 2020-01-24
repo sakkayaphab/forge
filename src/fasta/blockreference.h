@@ -25,7 +25,9 @@ public:
     uint64_t getNumberOfRef();
     BlockContainer getBlockContainerByID(uint64_t id);
     std::vector<BlockContainer> getAllChrBlockContainer();
-    std::vector<Block> convertSeqToBlock(std::string chrname,seqan::Dna5String *seq);
+    std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname,seqan::Dna5String *seq);
+    std::vector<Block> convertSeqToBlockWithMasked(std::string chrname,seqan::Dna5String *seq);
+
 };
 
 
