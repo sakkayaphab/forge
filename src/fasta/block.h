@@ -6,22 +6,27 @@
 #define FORGE_BLOCK_H
 
 
-#include <cstdint>
 #include <string>
+#include <sstream>
+
 
 class Block {
 private:
-    std::string chrpos;
-    int64_t pos=0;
-    int64_t end=0;
+    std::string chr;
+    unsigned pos=0;
+    unsigned end=0;
 public:
     Block();
     int64_t getPos();
     int64_t getEnd();
-    void setPos(int64_t pos);
-    void setEnd(int64_t end);
-    std::string getChrPos();
+    void setPos(unsigned pos);
+    void setEnd(unsigned end);
+    std::string getChr();
     void setChrPos(std::string chrpos);
+    std::string getTextPos();
+    std::string getTextEnd();
+    void setTextPos(std::string textpos);
+    void setTextEnd(std::string textend);
 };
 
 

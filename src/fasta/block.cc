@@ -17,18 +17,34 @@ int64_t Block::getEnd() {
     return Block::end;
 }
 
-void Block::setPos(int64_t pos) {
+void Block::setPos(unsigned pos) {
     Block::pos = pos;
 }
 
-void Block::setEnd(int64_t end) {
+void Block::setEnd(unsigned end) {
     Block::end = end;
 }
 
-std::string Block::getChrPos() {
-    return Block::chrpos;
+std::string Block::getChr() {
+    return Block::chr;
 }
 
 void Block::setChrPos(std::string chrpos) {
-    Block::chrpos = chrpos;
+    Block::chr = chrpos;
+}
+
+std::string Block::getTextPos() {
+    return std::to_string(pos);
+}
+
+std::string Block::getTextEnd() {
+    return std::to_string(end);
+}
+
+void Block::setTextPos(std::string textpos) {
+    pos = stoul(textpos, 0, 10);
+}
+
+void Block::setTextEnd(std::string textend) {
+    end = stoul(textend, 0, 10);
 }

@@ -17,7 +17,7 @@ void BlockReference::setFastaPath(std::string fastaPath) {
     BlockReference::fastaPath = fastaPath;
 }
 
-uint64_t BlockReference::getNumberOfRef() {
+unsigned long long BlockReference::getNumberOfRef() {
 
     if (!seqan::open(faiIndex, fastaPath.c_str()))
     {
@@ -31,14 +31,14 @@ uint64_t BlockReference::getNumberOfRef() {
         }
     }
 
-    uint64_t iDsNumber = seqan::numSeqs(faiIndex);
+    unsigned long long  iDsNumber = seqan::numSeqs(faiIndex);
 
     return iDsNumber;
 }
 
 std::vector<BlockContainer> BlockReference::getAllChrBlockContainer() {
-    uint64_t iDsNumber = getNumberOfRef();
-    uint64_t i = 0;
+    unsigned long long iDsNumber = getNumberOfRef();
+    unsigned long long i = 0;
     std::vector<BlockContainer> bcs;
     for (i=0;i<iDsNumber;i++) {
         BlockContainer bc = getBlockContainerByID(i);
@@ -48,7 +48,7 @@ std::vector<BlockContainer> BlockReference::getAllChrBlockContainer() {
     return bcs;
 }
 
-BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
+BlockContainer BlockReference::getBlockContainerByID(unsigned long long id) {
     BlockContainer bc;
 
     seqan::Dna5String sequenceInfix;
@@ -64,8 +64,8 @@ BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
 std::vector<Block> BlockReference::convertSeqToBlockWithoutMasked(std::string chrname,seqan::Dna5String *seq) {
     std::vector<Block> blocks;
 
-    int64_t currentPosition = 0;
-    int64_t sumPosition = 0;
+    unsigned currentPosition = 0;
+    unsigned sumPosition = 0;
     for (char n:*seq) {
         // X for hard masked, N for soft masked
         if (n=='N'||n=='n'||n=='X'||n=='x') {
@@ -101,8 +101,8 @@ std::vector<Block> BlockReference::convertSeqToBlockWithoutMasked(std::string ch
 std::vector<Block> BlockReference::convertSeqToBlockWithMasked(std::string chrname,seqan::Dna5String *seq) {
     std::vector<Block> blocks;
 
-    int64_t currentPosition = 0;
-    int64_t sumPosition = 0;
+    unsigned currentPosition = 0;
+    unsigned sumPosition = 0;
 
     for (char n:*seq) {
         // X for hard masked, N for soft masked

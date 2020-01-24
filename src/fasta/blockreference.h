@@ -22,8 +22,8 @@ public:
     BlockReference(std::string fastaPath);
     std::string getFastaPath();
     void setFastaPath(const std::string fastaPath);
-    uint64_t getNumberOfRef();
-    BlockContainer getBlockContainerByID(uint64_t id);
+    unsigned long long getNumberOfRef();
+    BlockContainer getBlockContainerByID(unsigned long long id);
     std::vector<BlockContainer> getAllChrBlockContainer();
     std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname,seqan::Dna5String *seq);
     std::vector<Block> convertSeqToBlockWithMasked(std::string chrname,seqan::Dna5String *seq);
