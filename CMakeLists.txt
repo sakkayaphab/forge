@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.4 FATAL_ERROR)
+
+project (forge CXX)
+
+set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
+set(CMAKE_INSTALL_RPATH ${LIBRARY_LINK_PREFIX})
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    # using Clang
+    message( "Forge -> Clang")
+    #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fconcepts")
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    # using GCC
+    message( "Forge -> GNU")
+    #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fconcepts")
+endif()
+
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+
+#find_package (SeqAn3 REQUIRED)
+
+#find_library(SEQAN3_LIBRARIES seqan3 HINTS ${LIBRARY_LINK_PREFIX})
+#find_library(HTSLIB_LIBRARIES hts HINTS ${LIBRARY_LINK_PREFIX})
+#find_library(TBB_IMPORTED_TARGETS tbb HINTS ${LIBRARY_LINK_PREFIX})
+#find_library(ZLIB_LIBRARIES z HINTS ${LIBRARY_LINK_PREFIX})
+
+message("LIBRARY_LINK_PREFIX : " ${LIBRARY_LINK_PREFIX})
+include_directories(${INCLUDE_LIBRARY_PREFIX})
+include_directories(${INCLUDE_LIBRARY_PREFIX}/seqan3/submodules/range-v3/include)
+include_directories(${INCLUDE_LIBRARY_PREFIX}/seqan3/submodules/sdsl/include)
+message("INCLUDE_LIBRARY_PREFIX : " ${INCLUDE_LIBRARY_PREFIX})
+
+enable_testing()
+add_subdirectory(src)
+
+option(BUILD_TESTS "Build test" OFF)
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif(BUILD_TESTS)
