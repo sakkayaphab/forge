@@ -8,6 +8,7 @@
 #include "block.h"
 #include <vector>
 
+
 class BlockContainer {
     std::vector<Block> blocks;
     std::string chrname;
@@ -17,6 +18,7 @@ public:
     void setChr(std::string chrname);
     std::string getChr();
     uint64_t getSumLength();
+
 };
 
 

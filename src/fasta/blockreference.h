@@ -12,6 +12,7 @@
 #include <seqan/stream.h>
 #include "block.h"
 #include "blockcontainer.h"
+#include "containermanager.h"
 
 class BlockReference {
 private:
@@ -24,7 +25,7 @@ public:
     void setFastaPath(const std::string fastaPath);
     unsigned long long getNumberOfRef();
     BlockContainer getBlockContainerByID(unsigned long long id);
-    std::vector<BlockContainer> getAllChrBlockContainer();
+    ContainerManager getAllChrBlockContainer();
     std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname,seqan::Dna5String *seq);
     std::vector<Block> convertSeqToBlockWithMasked(std::string chrname,seqan::Dna5String *seq);
 

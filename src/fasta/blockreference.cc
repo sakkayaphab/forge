@@ -36,16 +36,19 @@ unsigned long long BlockReference::getNumberOfRef() {
     return iDsNumber;
 }
 
-std::vector<BlockContainer> BlockReference::getAllChrBlockContainer() {
+ContainerManager BlockReference::getAllChrBlockContainer() {
     unsigned long long iDsNumber = getNumberOfRef();
     unsigned long long i = 0;
+    ContainerManager cm;
     std::vector<BlockContainer> bcs;
     for (i=0;i<iDsNumber;i++) {
         BlockContainer bc = getBlockContainerByID(i);
         bcs.push_back(bc);
     }
 
-    return bcs;
+    cm.setBlockContainers(bcs);
+
+    return cm;
 }
 
 BlockContainer BlockReference::getBlockContainerByID(unsigned long long id) {
