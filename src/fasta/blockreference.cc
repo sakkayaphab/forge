@@ -66,7 +66,6 @@ std::vector<Block> BlockReference::convertSeqToBlockWithoutMasked(std::string ch
 
     int64_t currentPosition = 0;
     int64_t sumPosition = 0;
-    int64_t countMasked = 0;
     for (char n:*seq) {
         // X for hard masked, N for soft masked
         if (n=='N'||n=='n'||n=='X'||n=='x') {
@@ -82,7 +81,6 @@ std::vector<Block> BlockReference::convertSeqToBlockWithoutMasked(std::string ch
             sumPosition = 0;
         } else {
             sumPosition++;
-            countMasked++;
         }
 
         currentPosition++;
@@ -96,8 +94,6 @@ std::vector<Block> BlockReference::convertSeqToBlockWithoutMasked(std::string ch
         blocks.push_back(rr);
         std::cout << currentPosition-sumPosition << " - " << currentPosition <<  std::endl;
     }
-
-    std::cout << "countMasked : " << countMasked <<  std::endl;
 
     return blocks;
 }

@@ -18,6 +18,7 @@ void Sim::readFasta() {
     uint64_t numberIDs = blockref.getNumberOfRef();
 //    std::cout << numberIDs << std::endl;
 //    blockref.getAllChrBlockContainer();
+
     BlockContainer bc = blockref.getBlockContainerByID(0);
     std::cout << bc.getSumLength() << std::endl;
 
