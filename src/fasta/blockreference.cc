@@ -55,7 +55,7 @@ BlockContainer BlockReference::getBlockContainerByID(uint64_t id) {
     seqan::readSequence(sequenceInfix, faiIndex, id);
     seqan::CharString name = seqan::sequenceName(faiIndex,id);
     std::string chrname = seqan::toCString(name);
-    std::vector<Block> blocks = convertSeqToBlock(chrname,&sequenceInfix);
+    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(chrname,&sequenceInfix);
     bc.setBlocks(blocks);
     bc.setChr(chrname);
     return bc;
