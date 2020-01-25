@@ -48,9 +48,10 @@ public:
 
   int64_t getOffsetEndByPosition(std::string chromosome, int64_t end);
   int64_t getOffsetStartByPosition(std::string chromosome, int64_t start);
-
+    int getSize();
 
     std::vector<Faidx::FileFormat>  getRecords();
+    std::string getChrByNumberID(int numberid);
 };
 
 #endif

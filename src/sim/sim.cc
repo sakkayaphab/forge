@@ -18,7 +18,7 @@ void Sim::readFasta() {
     fastareader.setIndexFilePath(fastaPath+".fai");
     fastareader.initialize();
     fastareader.exitIfNoFilePath();
-    std::vector<FastaReader::ChromosomeRegion> cr = fastareader.getAllRegionChromosomeWithoutGap();
-
+    ContainerManager cm  = fastareader.getAllChrBlockContainer();
+    cm.showBlockContainers();
 
 }

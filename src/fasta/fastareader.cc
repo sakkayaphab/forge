@@ -82,33 +82,90 @@ Faidx FastaReader::getFastaIndex() {
     return faidx;
 }
 
-std::vector<FastaReader::ChromosomeRegion>  FastaReader::getAllRegionChromosomeWithoutGap() {
-    std::vector<FastaReader::ChromosomeRegion> crlist;
-    std::vector<Faidx::FileFormat> faidxRecords = faidx.getRecords();
-    for (Faidx::FileFormat record : faidxRecords) {
-        ChromosomeRegion cr = getRegionChromosomeWithoutGap(record.NAME);
-        crlist.push_back(cr);
-    }
-    return crlist;
+
+ContainerManager FastaReader::getAllChrBlockContainer() {
+
+    tbb::task_arena limited(4);
+    ContainerManager cm;
+    std::vector<BlockContainer> bcs;
+    std::mutex mxBCS;
+    tbb::parallel_for(0, faidx.getSize(), [&](int i) {
+        mxBCS.lock();
+        i++;
+        mxBCS.unlock();
+        BlockContainer bc = getBlockContainerByChr(faidx.getChrByNumberID(i-1));
+
+        mxBCS.lock();
+        bcs.push_back(bc);
+        mxBCS.unlock();
+    });
+
+
+    cm.setBlockContainers(bcs);
+
+    return cm;
 }
 
-FastaReader::ChromosomeRegion  FastaReader::getRegionChromosomeWithoutGap(std::string chrname) {
+BlockContainer FastaReader::getBlockContainerByChr(std::string chrname) {
+    BlockContainer bc;
     std::string seq = getSeqbyChr(chrname);
+    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(chrname,&seq);
+    bc.setBlocks(blocks);
+    bc.setChr(chrname);
+    return bc;
+}
 
-    FastaReader::ChromosomeRegion chrRegion;
-    int64_t currentPosition = 0;
-    int64_t sumPosition = 0;
-    for (char n:seq) {
+std::vector<Block> FastaReader::convertSeqToBlockWithoutMasked(std::string chrname,std::string *seq) {
+    std::vector<Block> blocks;
+
+    unsigned currentPosition = 0;
+    unsigned sumPosition = 0;
+    for (char n:*seq) {
+        // X for hard masked, N for soft masked
+        if (n=='N'||n=='n'||n=='X'||n=='x') {
+            if (sumPosition>0) {
+                Block rr;
+                rr.setChr(chrname);
+                rr.setPos(currentPosition-sumPosition);
+                rr.setEnd(currentPosition);
+                blocks.push_back(rr);
+            }
+            sumPosition = 0;
+        } else {
+            sumPosition++;
+        }
+
+        currentPosition++;
+    }
+
+    if (sumPosition>0) {
+        Block rr;
+        rr.setChr(chrname);
+        rr.setPos(currentPosition-sumPosition);
+        rr.setEnd(currentPosition);
+        blocks.push_back(rr);
+    }
+
+    return blocks;
+}
+
+std::vector<Block> FastaReader::convertSeqToBlockWithMasked(std::string chrname,std::string *seq) {
+    std::vector<Block> blocks;
+
+    unsigned currentPosition = 0;
+    unsigned sumPosition = 0;
+
+    for (char n:*seq) {
         // X for hard masked, N for soft masked
         if (n=='N'||n=='n'||n=='X'||n=='x') {
             sumPosition++;
         } else {
             if (sumPosition>0) {
-                RegionRange rr;
-                rr.chrname = chrname;
-                rr.pos = currentPosition-sumPosition;
-                rr.end = currentPosition;
-                chrRegion.RegionRange.push_back(rr);
+                Block rr;
+                rr.setChr(chrname);
+                rr.setPos(currentPosition-sumPosition);
+                rr.setEnd(currentPosition);
+                blocks.push_back(rr);
             }
             sumPosition = 0;
         }
@@ -117,14 +174,14 @@ FastaReader::ChromosomeRegion  FastaReader::getRegionChromosomeWithoutGap(std::s
     }
 
     if (sumPosition>0) {
-        RegionRange rr;
-        rr.chrname = chrname;
-        rr.pos = currentPosition-sumPosition;
-        rr.end = currentPosition;
-        chrRegion.RegionRange.push_back(rr);
+        Block rr;
+        rr.setChr(chrname);
+        rr.setPos(currentPosition-sumPosition);
+        rr.setEnd(currentPosition);
+        blocks.push_back(rr);
     }
 
-    return chrRegion;
+    return blocks;
 }
 
 void FastaReader::showChromosomeRegion(FastaReader::ChromosomeRegion cr) {

@@ -192,3 +192,11 @@ int64_t Faidx::getOffsetStartByPosition(std::string chromosome, int64_t start)
 std::vector<Faidx::FileFormat> Faidx::getRecords() {
     return faidxlist;
 }
+
+int Faidx::getSize() {
+    return faidxlist.size();
+}
+
+std::string Faidx::getChrByNumberID(int numberid) {
+    return faidxlist.at(numberid).NAME;
+}
