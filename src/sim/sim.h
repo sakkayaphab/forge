@@ -5,9 +5,11 @@
 #ifndef FORGE_SIM_H
 #define FORGE_SIM_H
 
-#include "fasta/blockreference.h"
 #include <iostream>
-#include "fasta/blockcontainer.h"
+#include <fstream>
+#include <string>
+#include <fasta/fastareader.h>
+
 class Sim {
     private:
         std::string fastaPath;

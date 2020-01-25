@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.4 FATAL_ERROR)
 
-project (forge CXX)
-
+project (forge)
 set(CMAKE_MACOSX_RPATH 1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -11,11 +10,11 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # using Clang
     message( "Forge -> Clang")
-    #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fconcepts")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 elseif (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     # using GCC
     message( "Forge -> GNU")
-    #    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fconcepts")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 endif()
 
 include(GNUInstallDirs)
