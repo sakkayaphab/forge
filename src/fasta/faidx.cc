@@ -5,47 +5,32 @@
 #include <sstream>
 #include <math.h>
 
-Faidx::Faidx()
-{
+Faidx::Faidx() {
 }
 
-void Faidx::initialize()
-{
+void Faidx::initialize() {
     std::ifstream file(indexfilepath);
     std::string line;
 
-    while (std::getline(file, line))
-    {
+    while (std::getline(file, line)) {
         std::istringstream iss(line);
         std::string token;
 
-        FileFormat fftoken;
+        IndexFormat fftoken;
         int i = 0;
-        while (std::getline(iss, token, '\t'))
-        {
-            if (i == 0)
-            {
-                fftoken.NAME = token;
-            }
-            else if (i == 1)
-            {
-                fftoken.LENGTH = strtoll(token.c_str(), NULL, 10);
-            }
-            else if (i == 2)
-            {
-                fftoken.OFFSET = strtoll(token.c_str(), NULL, 10);
-            }
-            else if (i == 3)
-            {
-                fftoken.LINEBASES = strtoll(token.c_str(), NULL, 10);
-            }
-            else if (i == 4)
-            {
-                fftoken.LINEWIDTH = strtoll(token.c_str(), NULL, 10);
+        while (std::getline(iss, token, '\t')) {
+            if (i == 0) {
+                fftoken.setName(token);
+            } else if (i == 1) {
+                fftoken.setLength(strtoll(token.c_str(), NULL, 10));
+            } else if (i == 2) {
+                fftoken.setOffset(strtoll(token.c_str(), NULL, 10));
+            } else if (i == 3) {
+                fftoken.setLineBases(strtoll(token.c_str(), NULL, 10));
+            } else if (i == 4) {
+                fftoken.setLineWidth(strtoll(token.c_str(), NULL, 10));
                 faidxlist.push_back(fftoken);
-            }
-            else
-            {
+            } else {
                 std::cerr << "fasta index error because it has tab more than normal" << std::endl;
                 exit(1);
             }
@@ -54,12 +39,9 @@ void Faidx::initialize()
     }
 }
 
-bool Faidx::hasChromosomeName(std::string chr)
-{
-    for (int i = 0; i < faidxlist.size(); i++)
-    {
-        if (faidxlist.at(i).NAME == chr)
-        {
+bool Faidx::hasChromosomeName(std::string chr) {
+    for (int i = 0; i < faidxlist.size(); i++) {
+        if (faidxlist.at(i).getName() == chr) {
             return true;
         }
     }
@@ -67,88 +49,59 @@ bool Faidx::hasChromosomeName(std::string chr)
     return false;
 }
 
-int64_t Faidx::getLengthbyChromosome(std::string chr)
-{
-    for (int i = 0; i < faidxlist.size(); i++)
-    {
-        if (faidxlist.at(i).NAME == chr)
-        {
-            return faidxlist.at(i).LENGTH;
+int64_t Faidx::getLengthbyChromosome(std::string chr) {
+    for (int i = 0; i < faidxlist.size(); i++) {
+        if (faidxlist.at(i).getName() == chr) {
+            return faidxlist.at(i).getLength();
         }
     }
     return 0;
 }
 
-int64_t Faidx::getOffsetbyChromosome(std::string chr)
-{
-    for (int i = 0; i < faidxlist.size(); i++)
-    {
-        if (faidxlist.at(i).NAME == chr)
-        {
-            return faidxlist.at(i).OFFSET;
+int64_t Faidx::getOffsetbyChromosome(std::string chr) {
+    for (int i = 0; i < faidxlist.size(); i++) {
+        if (faidxlist.at(i).getName() == chr) {
+            return faidxlist.at(i).getOffset();
         }
     }
     return 0;
 }
 
-int64_t Faidx::getLinebasesbyChromosome(std::string chr)
-{
-    for (int i = 0; i < faidxlist.size(); i++)
-    {
-        if (faidxlist.at(i).NAME == chr)
-        {
-            return faidxlist.at(i).LINEBASES;
+int64_t Faidx::getLinebasesbyChromosome(std::string chr) {
+    for (int i = 0; i < faidxlist.size(); i++) {
+        if (faidxlist.at(i).getName() == chr) {
+            return faidxlist.at(i).getLineBases();
         }
     }
     return 0;
 }
 
-int64_t Faidx::getLinewidthbyChromosome(std::string chr)
-{
-    for (int i = 0; i < faidxlist.size(); i++)
-    {
-        if (faidxlist.at(i).NAME == chr)
-        {
-            return faidxlist.at(i).LINEWIDTH;
+int64_t Faidx::getLinewidthbyChromosome(std::string chr) {
+    for (int i = 0; i < faidxlist.size(); i++) {
+        if (faidxlist.at(i).getName() == chr) {
+            return faidxlist.at(i).getLineWidth();
         }
     }
     return 0;
 }
 
-int64_t Faidx::getQualoffsetbyChromosome(std::string chr)
-{
-    for (int i = 0; i < faidxlist.size(); i++)
-    {
-        if (faidxlist.at(i).NAME == chr)
-        {
-            return faidxlist.at(i).QUALOFFSET;
-        }
-    }
-    return 0;
-}
-
-void Faidx::setIndexFilePath(std::string t_indexfilepath)
-{
+void Faidx::setIndexFilePath(std::string t_indexfilepath) {
     indexfilepath = t_indexfilepath;
 }
 
-std::string Faidx::getIndexFilePath()
-{
+std::string Faidx::getIndexFilePath() {
     return indexfilepath;
 }
 
-int64_t Faidx::getApproximateLineStart(std::string chromosome, int64_t start)
-{
+int64_t Faidx::getApproximateLineStart(std::string chromosome, int64_t start) {
     return floor(start / getLinebasesbyChromosome(chromosome));
 }
 
-int64_t Faidx::getApproximateLineEnd(std::string chromosome, int64_t end)
-{
+int64_t Faidx::getApproximateLineEnd(std::string chromosome, int64_t end) {
     return ceil(end / getLinebasesbyChromosome(chromosome)) + 1;
 }
 
-int64_t Faidx::getApproximateOffsetStart(std::string chromosome, int64_t start)
-{
+int64_t Faidx::getApproximateOffsetStart(std::string chromosome, int64_t start) {
 
     int64_t apppointstart = getApproximateLineStart(chromosome, start);
     int64_t diff = start - apppointstart * getLinebasesbyChromosome(chromosome);
@@ -156,8 +109,7 @@ int64_t Faidx::getApproximateOffsetStart(std::string chromosome, int64_t start)
     return apppointstart * getLinewidthbyChromosome(chromosome) + diff;
 }
 
-int64_t Faidx::getApproximateOffsetEnd(std::string chromosome, int64_t end)
-{
+int64_t Faidx::getApproximateOffsetEnd(std::string chromosome, int64_t end) {
 
     int64_t apppointend = getApproximateLineEnd(chromosome, end);
     int64_t diff = apppointend * getLinebasesbyChromosome(chromosome) - end;
@@ -165,10 +117,8 @@ int64_t Faidx::getApproximateOffsetEnd(std::string chromosome, int64_t end)
     return (apppointend * getLinewidthbyChromosome(chromosome) - 1) - diff;
 }
 
-int64_t Faidx::getOffsetEndByPosition(std::string chromosome, int64_t end)
-{
-    if (!hasChromosomeName(chromosome))
-    {
+int64_t Faidx::getOffsetEndByPosition(std::string chromosome, int64_t end) {
+    if (!hasChromosomeName(chromosome)) {
         std::cout << "not found this chromosome : " << chromosome << std::endl;
     }
 
@@ -177,10 +127,8 @@ int64_t Faidx::getOffsetEndByPosition(std::string chromosome, int64_t end)
     return startoffset + getApproximateOffsetEnd(chromosome, end);
 }
 
-int64_t Faidx::getOffsetStartByPosition(std::string chromosome, int64_t start)
-{
-    if (!hasChromosomeName(chromosome))
-    {
+int64_t Faidx::getOffsetStartByPosition(std::string chromosome, int64_t start) {
+    if (!hasChromosomeName(chromosome)) {
         std::cout << "not found this chromosome : " << chromosome << std::endl;
     }
 
@@ -189,7 +137,7 @@ int64_t Faidx::getOffsetStartByPosition(std::string chromosome, int64_t start)
     return startoffset + getApproximateOffsetStart(chromosome, start);
 }
 
-std::vector<Faidx::FileFormat> Faidx::getRecords() {
+std::vector<IndexFormat> Faidx::getRecords() {
     return faidxlist;
 }
 
@@ -198,5 +146,78 @@ int Faidx::getSize() {
 }
 
 std::string Faidx::getChrByNumberID(int numberid) {
-    return faidxlist.at(numberid).NAME;
+    return faidxlist.at(numberid).getName();
+}
+
+void Faidx::genarateIndexFile(std::string fastapath, std::string outputindexpath) {
+    std::vector<IndexFormat> indexrecords =  getIndexRecord(fastapath);
+    writeIndexFile(indexrecords,outputindexpath);
+}
+
+std::vector<IndexFormat> Faidx::getIndexRecord(std::string fastapath) {
+    std::ifstream file(fastapath);
+    std::vector<IndexFormat> indexList;
+
+
+    std::string tempNAME;
+    int64_t tempLENGTH = 0;
+    int64_t tempOFFSET = 0;
+    int64_t tempLINEBASES = 0;
+    int64_t tempLINEWIDTH = 0;
+    int64_t sumOffset = 0;
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.at(0) == '>') {
+            if (tempLENGTH != 0) {
+                IndexFormat tidf;
+                tidf.setName(tempNAME);
+                tidf.setLength(tempLENGTH);
+                tidf.setOffset(tempOFFSET);
+                tidf.setLineBases(tempLINEBASES);
+                tidf.setLineWidth(tempLINEWIDTH);
+                indexList.push_back(tidf);
+                tempNAME = "";
+                tempLENGTH = 0;
+                tempOFFSET = 0;
+                tempLINEBASES = 0;
+                tempLINEWIDTH = 0;
+            }
+            std::string delimiter = " ";
+            std::string token = line.substr(0, line.find(delimiter));
+            tempNAME = token.substr(1);
+            tempOFFSET = sumOffset + line.size() + 1;
+            sumOffset += line.size() + 1;
+        } else {
+            tempLENGTH += line.size();
+            if (tempLINEBASES == 0) {
+                tempLINEBASES = line.size();
+            }
+            if (tempLINEWIDTH == 0) {
+                tempLINEWIDTH = line.size() + 1;
+            }
+
+            sumOffset += line.size() + 1;
+        }
+    }
+
+    IndexFormat tidf;
+    tidf.setName(tempNAME);
+    tidf.setLength(tempLENGTH);
+    tidf.setOffset(tempOFFSET);
+    tidf.setLineBases(tempLINEBASES);
+    tidf.setLineWidth(tempLINEWIDTH);
+    indexList.push_back(tidf);
+
+    return indexList;
+}
+
+void Faidx::writeIndexFile(std::vector<IndexFormat> idxlist,std::string outputindexpath) {
+    std::ofstream myfile;
+    myfile.open (outputindexpath);
+    for (IndexFormat x:idxlist) {
+//        std::cout << x.getTextRecord() << std::endl;
+        myfile << x.getTextRecord() << std::endl;
+    }
+
+    myfile.close();
 }

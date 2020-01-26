@@ -13,7 +13,12 @@ FastaReader::FastaReader()
 
 void FastaReader::initialize()
 {
-    faidx.initialize();
+    if (hasIndexFilePath()) {
+        faidx.initialize();
+    } else {
+        faidx.genarateIndexFile(getFilePath(),getIndexFilePath());
+        faidx.initialize();
+    }
 }
 
 bool FastaReader::FileExists(std::string filename) {
@@ -85,7 +90,7 @@ Faidx FastaReader::getFastaIndex() {
 
 ContainerManager FastaReader::getAllChrBlockContainer() {
 
-    tbb::task_arena limited(4);
+    tbb::global_control c(tbb::global_control::max_allowed_parallelism, 10);
     ContainerManager cm;
     std::vector<BlockContainer> bcs;
     std::mutex mxBCS;
