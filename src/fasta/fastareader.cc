@@ -85,7 +85,7 @@ Faidx FastaReader::getFastaIndex() {
 
 ContainerManager FastaReader::getAllChrBlockContainer() {
 
-    tbb::task_arena limited(4);
+    tbb::global_control c(tbb::global_control::max_allowed_parallelism, 10);
     ContainerManager cm;
     std::vector<BlockContainer> bcs;
     std::mutex mxBCS;

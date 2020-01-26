@@ -13,6 +13,7 @@
 #include "containermanager.h"
 #include <tbb/parallel_for.h>
 #include <tbb/task_arena.h>
+#include <tbb/global_control.h>
 #include <mutex>
 
 class FastaReader {
