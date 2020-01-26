@@ -25,23 +25,15 @@ files:
 variations:
   DEL:
     range:
-      - 10-100
-      - 101-1000
+      - 100-100000
     number:
-      - 50
-      - 100
-  INS:
-    range:
-      - 10-100
-      - 101-1000
-    number:
-      - 50
-      - 100
-  INV:
-    range:
-      - 100-1000
-      - 1001-10000
-    number:
-      - 20
-      - 40
+      - 400
 ```
+
+
+## License
+Forge is distributed under the [GPLv3][GPLv3]. However, Forge includes several third-party open-source libraries, please see [Third Party Software Notices][LICENSETHIRDPARTY] for details.
+
+
+[GPLv3]:LICENSE
+[LICENSETHIRDPARTY]:THIRD-PARTY-LICENSE
