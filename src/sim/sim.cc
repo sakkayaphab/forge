@@ -18,7 +18,7 @@ void Sim::readFasta() {
     fastareader.setIndexFilePath(fastaPath+".fai");
     fastareader.initialize();
     fastareader.exitIfNoFilePath();
-    ContainerManager cm  = fastareader.getAllChrBlockContainer();
+    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
     cm.showBlockContainers();
 
 }

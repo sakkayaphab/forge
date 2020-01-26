@@ -88,9 +88,9 @@ Faidx FastaReader::getFastaIndex() {
 }
 
 
-ContainerManager FastaReader::getAllChrBlockContainer() {
+ContainerManager FastaReader::getAllChrBlockContainerWithThreads(int threads) {
 
-    tbb::global_control c(tbb::global_control::max_allowed_parallelism, 10);
+    tbb::global_control c(tbb::global_control::max_allowed_parallelism, threads);
     ContainerManager cm;
     std::vector<BlockContainer> bcs;
     std::mutex mxBCS;
@@ -105,6 +105,52 @@ ContainerManager FastaReader::getAllChrBlockContainer() {
         mxBCS.unlock();
     });
 
+    cm.setBlockContainers(bcs);
+
+    return cm;
+}
+
+ContainerManager FastaReader::getAllChrBlockContainerWithSingleThread() {
+    ContainerManager cm;
+    std::vector<BlockContainer> bcs;
+
+    std::ifstream file(FastaReader::getFilePath());
+    std::vector<IndexFormat> indexList;
+
+    std::string tempNAME;
+    int64_t tempLENGTH = 0;
+    std::string tempSEQ;
+    int64_t sumOffset = 0;
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.at(0) == '>') {
+            if (tempLENGTH != 0) {
+                BlockContainer bc;
+                std::vector<Block> blocks = convertSeqToBlockWithoutMasked(tempNAME,&tempSEQ);
+                bc.setBlocks(blocks);
+                bc.setChr(tempNAME);
+                bcs.push_back(bc);
+                tempNAME = "";
+                tempLENGTH = 0;
+                tempSEQ = "";
+            }
+            std::string delimiter = " ";
+            std::string token = line.substr(0, line.find(delimiter));
+            tempNAME = token.substr(1);
+            sumOffset += line.size() + 1;
+        } else {
+            tempLENGTH += line.size();
+            tempSEQ += line;
+            sumOffset += line.size() + 1;
+        }
+    }
+
+    BlockContainer bc;
+    std::string seq = getSeqbyChr(tempNAME);
+    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(tempNAME,&seq);
+    bc.setBlocks(blocks);
+    bc.setChr(tempNAME);
+    bcs.push_back(bc);
 
     cm.setBlockContainers(bcs);
 
