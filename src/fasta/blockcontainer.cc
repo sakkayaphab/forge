@@ -30,3 +30,16 @@ uint64_t BlockContainer::getSumLength() {
     }
     return sumLength;
 }
+
+std::vector<std::string> BlockContainer::getBlockTextList() {
+    std::vector<std::string> blocktextlist;
+    for (Block b:blocks) {
+        std::string temp;
+        temp += b.getTextPos();
+        temp += "\t";
+        temp += b.getTextEnd();
+        blocktextlist.push_back(temp);
+    }
+
+    return blocktextlist;
+}

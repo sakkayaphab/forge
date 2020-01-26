@@ -6,6 +6,10 @@
 #define FORGE_CONTAINERMANAGER_H
 
 #include "blockcontainer.h"
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
 
 class ContainerManager {
     private:
@@ -15,6 +19,10 @@ class ContainerManager {
         ContainerManager();
         std::vector<BlockContainer> getBlockContainers();
         void setBlockContainers(std::vector<BlockContainer> bc);
+        void writeBlockContainerTextFile(std::string outpath);
+        void loadBlockContainersFromFile(std::string filepath);
+        std::vector<std::string> split(const std::string &s, char delimiter);
+        void showBlockContainers();
 };
 
 

@@ -8,7 +8,7 @@
 
 #include <string>
 #include <sstream>
-
+#include <iostream>
 
 class Block {
 private:
@@ -22,7 +22,7 @@ public:
     void setPos(unsigned pos);
     void setEnd(unsigned end);
     std::string getChr();
-    void setChrPos(std::string chrpos);
+    void setChr(std::string chrpos);
     std::string getTextPos();
     std::string getTextEnd();
     void setTextPos(std::string textpos);

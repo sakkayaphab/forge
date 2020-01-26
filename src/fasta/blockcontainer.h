@@ -18,6 +18,7 @@ public:
     void setChr(std::string chrname);
     std::string getChr();
     uint64_t getSumLength();
+    std::vector<std::string> getBlockTextList();
 
 };
 

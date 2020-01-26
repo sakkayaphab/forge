@@ -3,10 +3,6 @@
 #include <string>
 #include <thread>
 #include <cstdlib>
-//#include "vcf/writer.h"
-//#include "vcf/dataline.h"
-//#include "vcf/metainfoline.h"
-//#include <seqan3/core/debug_stream.hpp>
 #include "sim/sim.h"
 
 Cli::Cli(int m_argc, char **m_argv)

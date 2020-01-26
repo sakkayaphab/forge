@@ -28,8 +28,8 @@ std::string Block::getChr() {
     return Block::chr;
 }
 
-void Block::setChrPos(std::string chrpos) {
-    Block::chr = chrpos;
+void Block::setChr(std::string chr) {
+    Block::chr = chr;
 }
 
 std::string Block::getTextPos() {
