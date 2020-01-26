@@ -15,6 +15,7 @@ RUN $HOME/miniconda/bin/conda config --set always_yes yes
 RUN $HOME/miniconda/bin/conda update -q conda
 RUN $HOME/miniconda/bin/conda install -y -c bioconda seqan
 RUN $HOME/miniconda/bin/conda install -y -c intel tbb-devel
+RUN $HOME/miniconda/bin/conda install -y -c conda-forge yaml-cpp
 RUN mkdir build && cd build && cmake .. -DINSTALL_BIN_PREFIX=${PWD} -DINCLUDE_LIBRARY_PREFIX=$HOME/miniconda/include -DLIBRARY_LINK_PREFIX=$HOME/miniconda/lib/
 RUN cd build && make
 RUN cd build && make install

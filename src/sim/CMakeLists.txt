@@ -13,6 +13,7 @@ if(APPLE)
             fasta
             vcf
             ${TBB_IMPORTED_TARGETS}
+            ${YAML_CPP_LIBRARIES}
     )
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(
@@ -20,5 +21,6 @@ elseif(UNIX AND NOT APPLE)
             fasta
             vcf
             ${TBB_IMPORTED_TARGETS}
+            ${YAML_CPP_LIBRARIES}
     )
 endif()
