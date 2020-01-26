@@ -28,9 +28,6 @@ int64_t IndexFormat::getLineWidth() {
     return IndexFormat::LINEWIDTH;
 }
 
-int64_t IndexFormat::getQualOffset() {
-    return IndexFormat::QUALOFFSET;
-}
 
 void IndexFormat::setName(std::string NAME) {
     IndexFormat::NAME = NAME;
@@ -52,6 +49,23 @@ void IndexFormat::setLineWidth(int64_t LINEWIDTH) {
     IndexFormat::LINEWIDTH = LINEWIDTH;
 }
 
-void IndexFormat::setQualOffset(int64_t QUALOFFSET) {
-    IndexFormat::QUALOFFSET = QUALOFFSET;
+
+std::string IndexFormat::getTextLength() {
+    return std::to_string(IndexFormat::getLength());
+}
+
+std::string IndexFormat::getTextOffset() {
+    return std::to_string(IndexFormat::getOffset());
+}
+
+std::string IndexFormat::getTextLineBases() {
+    return std::to_string(IndexFormat::getLineBases());
+}
+
+std::string IndexFormat::getTextLineWidth() {
+    return std::to_string(IndexFormat::getLineWidth());
+}
+
+std::string IndexFormat::getTextRecord() {
+    return getName()+"\t"+getTextLength()+"\t"+getTextOffset()+"\t"+getTextLineBases()+"\t"+getTextLineWidth();
 }

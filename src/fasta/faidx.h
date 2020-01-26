@@ -35,7 +35,6 @@ public:
   int64_t getOffsetbyChromosome(std::string chr);
   int64_t getLinebasesbyChromosome(std::string chr);
   int64_t getLinewidthbyChromosome(std::string chr);
-  int64_t getQualoffsetbyChromosome(std::string chr);
 
   int64_t getOffsetEndByPosition(std::string chromosome, int64_t end);
   int64_t getOffsetStartByPosition(std::string chromosome, int64_t start);
@@ -43,7 +42,9 @@ public:
 
   std::vector<IndexFormat>  getRecords();
   std::string getChrByNumberID(int numberid);
-  void genarateIndexFile(std::string fastapath,std::string outputindexpath);
+  void genarateIndexFile(std::string fastapath, std::string outputindexpath);
+  std::vector<IndexFormat> getIndexRecord(std::string fastapath);
+  void writeIndexFile(std::vector<IndexFormat> idxlist,std::string outputindexpath);
 };
 
 #endif

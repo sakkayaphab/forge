@@ -15,7 +15,6 @@ private:
     int64_t OFFSET= 0;
     int64_t LINEBASES= 0;
     int64_t LINEWIDTH= 0;
-    int64_t QUALOFFSET= 0;
 
 public:
     IndexFormat();
@@ -24,13 +23,16 @@ public:
     int64_t getOffset();
     int64_t getLineBases();
     int64_t getLineWidth();
-    int64_t getQualOffset();
     void setName(std::string NAME);
     void setLength(int64_t LENGTH);
     void setOffset(int64_t OFFSET);
     void setLineBases(int64_t LINEBASES);
     void setLineWidth(int64_t LINEWIDTH);
-    void setQualOffset(int64_t QUALOFFSET);
+    std::string getTextLength();
+    std::string getTextOffset();
+    std::string getTextLineBases();
+    std::string getTextLineWidth();
+    std::string getTextRecord();
 };
 
 

@@ -85,15 +85,6 @@ int64_t Faidx::getLinewidthbyChromosome(std::string chr) {
     return 0;
 }
 
-int64_t Faidx::getQualoffsetbyChromosome(std::string chr) {
-    for (int i = 0; i < faidxlist.size(); i++) {
-        if (faidxlist.at(i).getName() == chr) {
-            return faidxlist.at(i).getQualOffset();
-        }
-    }
-    return 0;
-}
-
 void Faidx::setIndexFilePath(std::string t_indexfilepath) {
     indexfilepath = t_indexfilepath;
 }
@@ -159,34 +150,41 @@ std::string Faidx::getChrByNumberID(int numberid) {
 }
 
 void Faidx::genarateIndexFile(std::string fastapath, std::string outputindexpath) {
+    std::vector<IndexFormat> indexrecords =  getIndexRecord(fastapath);
+    writeIndexFile(indexrecords,outputindexpath);
+}
+
+std::vector<IndexFormat> Faidx::getIndexRecord(std::string fastapath) {
     std::ifstream file(fastapath);
-    std::string line;
+    std::vector<IndexFormat> indexList;
+
 
     std::string tempNAME;
     int64_t tempLENGTH = 0;
     int64_t tempOFFSET = 0;
     int64_t tempLINEBASES = 0;
     int64_t tempLINEWIDTH = 0;
-    int64_t tempQUALOFFSET = 0;
     int64_t sumOffset = 0;
+    std::string line;
     while (std::getline(file, line)) {
         if (line.at(0) == '>') {
             if (tempLENGTH != 0) {
-                std::cout << tempNAME << "\t"
-                          << tempLENGTH << "\t"
-                          << tempOFFSET << "\t"
-                          << tempLINEBASES << "\t"
-                          << tempLINEWIDTH << std::endl;
+                IndexFormat tidf;
+                tidf.setName(tempNAME);
+                tidf.setLength(tempLENGTH);
+                tidf.setOffset(tempOFFSET);
+                tidf.setLineBases(tempLINEBASES);
+                tidf.setLineWidth(tempLINEWIDTH);
+                indexList.push_back(tidf);
+                tempNAME = "";
                 tempLENGTH = 0;
                 tempOFFSET = 0;
                 tempLINEBASES = 0;
                 tempLINEWIDTH = 0;
-                tempQUALOFFSET = 0;
             }
             std::string delimiter = " ";
             std::string token = line.substr(0, line.find(delimiter));
             tempNAME = token.substr(1);
-//            std::cout << token.substr(1) << std::endl;
             tempOFFSET = sumOffset + line.size() + 1;
             sumOffset += line.size() + 1;
         } else {
@@ -202,11 +200,24 @@ void Faidx::genarateIndexFile(std::string fastapath, std::string outputindexpath
         }
     }
 
+    IndexFormat tidf;
+    tidf.setName(tempNAME);
+    tidf.setLength(tempLENGTH);
+    tidf.setOffset(tempOFFSET);
+    tidf.setLineBases(tempLINEBASES);
+    tidf.setLineWidth(tempLINEWIDTH);
+    indexList.push_back(tidf);
 
-    std::cout << tempNAME << "\t"
-              << tempLENGTH << "\t"
-              << tempOFFSET << "\t"
-              << tempLINEBASES << "\t"
-              << tempLINEWIDTH << std::endl;
+    return indexList;
+}
 
+void Faidx::writeIndexFile(std::vector<IndexFormat> idxlist,std::string outputindexpath) {
+    std::ofstream myfile;
+    myfile.open (outputindexpath);
+    for (IndexFormat x:idxlist) {
+//        std::cout << x.getTextRecord() << std::endl;
+        myfile << x.getTextRecord() << std::endl;
+    }
+
+    myfile.close();
 }
