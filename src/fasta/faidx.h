@@ -43,7 +43,7 @@ public:
 
   std::vector<IndexFormat>  getRecords();
   std::string getChrByNumberID(int numberid);
-  void genarateIndexFile(std::string indexfilepath);
+  void genarateIndexFile(std::string fastapath,std::string outputindexpath);
 };
 
 #endif

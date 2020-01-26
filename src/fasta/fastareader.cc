@@ -13,11 +13,12 @@ FastaReader::FastaReader()
 
 void FastaReader::initialize()
 {
-    if (hasIndexFilePath()) {
-        faidx.initialize();
-    } else {
-
-    }
+    faidx.genarateIndexFile(getFilePath(),getIndexFilePath());
+//    if (hasIndexFilePath()) {
+//        faidx.initialize();
+//    } else {
+//
+//    }
 }
 
 bool FastaReader::FileExists(std::string filename) {
