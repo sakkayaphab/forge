@@ -4,19 +4,10 @@
 #include <vector>
 #include <map>
 #include <stdint.h>
-
+#include "indexformat.h"
 class Faidx
 {
 public:
-    struct FileFormat
-    {
-        std::string NAME;
-        int64_t LENGTH = 0;
-        int64_t OFFSET= 0;
-        int64_t LINEBASES= 0;
-        int64_t LINEWIDTH= 0;
-        int64_t QUALOFFSET= 0;
-    };
 
 private:
   std::string indexfilepath;
@@ -26,7 +17,7 @@ private:
     int64_t end= 0;
   };
 
-  std::vector<FileFormat> faidxlist;
+  std::vector<IndexFormat> faidxlist;
 
   int64_t getApproximateLineStart(std::string chromosome,int64_t start);
   int64_t getApproximateLineEnd(std::string chromosome,int64_t end);
@@ -48,10 +39,11 @@ public:
 
   int64_t getOffsetEndByPosition(std::string chromosome, int64_t end);
   int64_t getOffsetStartByPosition(std::string chromosome, int64_t start);
-    int getSize();
+  int getSize();
 
-    std::vector<Faidx::FileFormat>  getRecords();
-    std::string getChrByNumberID(int numberid);
+  std::vector<IndexFormat>  getRecords();
+  std::string getChrByNumberID(int numberid);
+  void genarateIndexFile(std::string indexfilepath);
 };
 
 #endif

@@ -19,29 +19,29 @@ void Faidx::initialize()
         std::istringstream iss(line);
         std::string token;
 
-        FileFormat fftoken;
+        IndexFormat fftoken;
         int i = 0;
         while (std::getline(iss, token, '\t'))
         {
             if (i == 0)
             {
-                fftoken.NAME = token;
+                fftoken.setName(token);
             }
             else if (i == 1)
             {
-                fftoken.LENGTH = strtoll(token.c_str(), NULL, 10);
+                fftoken.setLength(strtoll(token.c_str(), NULL, 10));
             }
             else if (i == 2)
             {
-                fftoken.OFFSET = strtoll(token.c_str(), NULL, 10);
+                fftoken.setOffset(strtoll(token.c_str(), NULL, 10));
             }
             else if (i == 3)
             {
-                fftoken.LINEBASES = strtoll(token.c_str(), NULL, 10);
+                fftoken.setLineBases(strtoll(token.c_str(), NULL, 10));
             }
             else if (i == 4)
             {
-                fftoken.LINEWIDTH = strtoll(token.c_str(), NULL, 10);
+                fftoken.setLineWidth(strtoll(token.c_str(), NULL, 10));
                 faidxlist.push_back(fftoken);
             }
             else
@@ -58,7 +58,7 @@ bool Faidx::hasChromosomeName(std::string chr)
 {
     for (int i = 0; i < faidxlist.size(); i++)
     {
-        if (faidxlist.at(i).NAME == chr)
+        if (faidxlist.at(i).getName() == chr)
         {
             return true;
         }
@@ -71,9 +71,9 @@ int64_t Faidx::getLengthbyChromosome(std::string chr)
 {
     for (int i = 0; i < faidxlist.size(); i++)
     {
-        if (faidxlist.at(i).NAME == chr)
+        if (faidxlist.at(i).getName() == chr)
         {
-            return faidxlist.at(i).LENGTH;
+            return faidxlist.at(i).getLength();
         }
     }
     return 0;
@@ -83,9 +83,9 @@ int64_t Faidx::getOffsetbyChromosome(std::string chr)
 {
     for (int i = 0; i < faidxlist.size(); i++)
     {
-        if (faidxlist.at(i).NAME == chr)
+        if (faidxlist.at(i).getName() == chr)
         {
-            return faidxlist.at(i).OFFSET;
+            return faidxlist.at(i).getOffset();
         }
     }
     return 0;
@@ -95,9 +95,9 @@ int64_t Faidx::getLinebasesbyChromosome(std::string chr)
 {
     for (int i = 0; i < faidxlist.size(); i++)
     {
-        if (faidxlist.at(i).NAME == chr)
+        if (faidxlist.at(i).getName() == chr)
         {
-            return faidxlist.at(i).LINEBASES;
+            return faidxlist.at(i).getLineBases();
         }
     }
     return 0;
@@ -107,9 +107,9 @@ int64_t Faidx::getLinewidthbyChromosome(std::string chr)
 {
     for (int i = 0; i < faidxlist.size(); i++)
     {
-        if (faidxlist.at(i).NAME == chr)
+        if (faidxlist.at(i).getName() == chr)
         {
-            return faidxlist.at(i).LINEWIDTH;
+            return faidxlist.at(i).getLineWidth();
         }
     }
     return 0;
@@ -119,9 +119,9 @@ int64_t Faidx::getQualoffsetbyChromosome(std::string chr)
 {
     for (int i = 0; i < faidxlist.size(); i++)
     {
-        if (faidxlist.at(i).NAME == chr)
+        if (faidxlist.at(i).getName() == chr)
         {
-            return faidxlist.at(i).QUALOFFSET;
+            return faidxlist.at(i).getQualOffset();
         }
     }
     return 0;
@@ -189,7 +189,7 @@ int64_t Faidx::getOffsetStartByPosition(std::string chromosome, int64_t start)
     return startoffset + getApproximateOffsetStart(chromosome, start);
 }
 
-std::vector<Faidx::FileFormat> Faidx::getRecords() {
+std::vector<IndexFormat> Faidx::getRecords() {
     return faidxlist;
 }
 
@@ -198,5 +198,9 @@ int Faidx::getSize() {
 }
 
 std::string Faidx::getChrByNumberID(int numberid) {
-    return faidxlist.at(numberid).NAME;
+    return faidxlist.at(numberid).getName();
+}
+
+void genarateIndexFile(std::string indexfilepath) {
+
 }
