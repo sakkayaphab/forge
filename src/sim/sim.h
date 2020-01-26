@@ -9,7 +9,8 @@
 #include <fstream>
 #include <string>
 #include <fasta/fastareader.h>
-
+#include <vcf/vcfwriter.h>
+#include <vcf/dataline.h>
 class Sim {
     private:
         std::string fastaPath;

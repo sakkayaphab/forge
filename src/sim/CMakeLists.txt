@@ -11,12 +11,14 @@ if(APPLE)
     target_link_libraries(
             sim
             fasta
+            vcf
             ${TBB_IMPORTED_TARGETS}
     )
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(
             sim
             fasta
+            vcf
             ${TBB_IMPORTED_TARGETS}
     )
 endif()
