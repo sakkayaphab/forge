@@ -10,7 +10,7 @@ Forge is a tool to simulate genomic structural variation
 
 * template.yaml
 ```yaml
-file:
+files:
   input:
     reference: ~/reference/ucsc_hg19.fa
   output:
@@ -22,8 +22,9 @@ file:
     baseerrorrate: 0.2
     coverage: 30
     
-variant:
-    - type: DEL
+variants:
+    - variant    
+      type: DEL
       spec:
         - range: 50-100
           number: 50
