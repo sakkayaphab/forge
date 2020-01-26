@@ -13,7 +13,7 @@ void Sim::setFastaPath(std::string path) {
 }
 
 void Sim::readFasta() {
-    YAML::Node config = YAML::LoadFile("../templates/config.yaml");
+    YAML::Node config = YAML::LoadFile("../templates/custom.yaml");
     if (config["files"]["input"]["reference"]) {
         std::string reference = config["files"]["input"]["reference"].as<std::string>();
         std::cout << reference << std::endl;
@@ -27,10 +27,10 @@ void Sim::readFasta() {
         std::cout << sequencing << std::endl;
     }
 
-    YAML::Node variantsNode = config["variants"];
-    for(YAML::const_iterator variant=variantsNode.begin();variant!=variantsNode.end();++variant) {
-        const std::string keyvariants=variant->first.as<std::string>();
-        YAML::Node svtypesNode = variantsNode[keyvariants];
+    YAML::Node variationsNode = config["variants"];
+    for(YAML::const_iterator variant=variationsNode.begin();variant!=variationsNode.end();++variant) {
+        const std::string keyvariations=variant->first.as<std::string>();
+        YAML::Node svtypesNode = variationsNode[keyvariations];
         for(YAML::const_iterator svtype=svtypesNode.begin();svtype!=svtypesNode.end();++svtype) {
             const std::string keyrange=svtype->first.as<std::string>();
             std::cout << keyrange << std::endl;

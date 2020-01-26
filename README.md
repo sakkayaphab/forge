@@ -22,33 +22,26 @@ files:
     baseerrorrate: 0.2
     coverage: 30
 
-variants:
+variations:
   DEL:
     range:
-      - 10-20
-      - 20-30
+      - 10-100
+      - 101-1000
     number:
-      - 20
-      - 30
+      - 50
+      - 100
   INS:
     range:
-      - 10-20
-      - 20-30
+      - 10-100
+      - 101-1000
     number:
-      - 20
-      - 30
+      - 50
+      - 100
   INV:
     range:
-      - 10-20
-      - 20-30
+      - 100-1000
+      - 1001-10000
     number:
       - 20
-      - 30
-  DUP:
-    range:
-      - 10-20
-      - 20-30
-    number:
-      - 20
-      - 30
+      - 40
 ```
