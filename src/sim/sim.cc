@@ -14,9 +14,21 @@ void Sim::setFastaPath(std::string path) {
 
 
 void Sim::readFasta() {
-    Config config;
-    config.setConfigFilePath("../templates/custom.yaml");
-    config.readConfigFile();
+//    Config config;
+//    config.setConfigFilePath("../templates/custom.yaml");
+//    config.readConfigFile();
+//
+
+    SeqMod seqmod;
+    seqmod.setSeq("GGGCAGTGGGAGGGAACTGAGACTGGGGAGGGACAAAGGCTGCTCTGTCCTGGTGCTCCCACAAAGGAGAAGGGCTGATCACTCAAAGTTGCGAACACCAA");
+    std::cout << seqmod.getSeq()<< std::endl;
+    std::string seq1 = seqmod.copy(0, 10);
+    std::cout << seq1 << std::endl;
+    std::string seqrev = seqmod.reverseComplement(seq1);
+    std::cout << seqrev << std::endl;
+    seqmod.erase(0, 10);
+    std::cout << seqmod.getSeq() << std::endl;
+
 
 
 //    const std::string username = config["username"].as<std::string>();

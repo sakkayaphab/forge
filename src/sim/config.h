@@ -27,10 +27,15 @@ private:
 
 public:
     Config();
+
     void readConfigFile();
+
     void setConfigFilePath(std::string configfilepath);
+
     std::string getConfigFilePath();
+
     void setReferencePath(std::string referencepath);
+
     bool FileExists(std::string filename);
 
     void setReferenceIndexPath(std::string referenceindexpath);
@@ -84,7 +89,9 @@ public:
     int64_t getCoverage();
 
     int64_t convertStringToInt64(std::string text);
+
     int convertStringToInt(std::string text);
+
     float convertStringToFloat(std::string text);
 
 

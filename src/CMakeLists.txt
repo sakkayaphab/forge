@@ -7,6 +7,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 add_subdirectory(vcf)
 add_subdirectory(sim)
 add_subdirectory(fasta)
+add_subdirectory(fastq)
 target_link_libraries(forge
         sim
   )

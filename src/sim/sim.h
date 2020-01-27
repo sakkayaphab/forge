@@ -13,7 +13,7 @@
 #include <vcf/dataline.h>
 #include <vector>
 #include "config.h"
-
+#include "seqmod.h"
 class Sim {
     private:
         std::string fastaPath;
