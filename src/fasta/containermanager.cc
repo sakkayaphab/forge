@@ -78,3 +78,15 @@ void ContainerManager::showBlockContainers() {
         std::cout << bc.getChr() << " " << bc.getSumLength() << std::endl;
     }
 }
+
+void ContainerManager::removeAllBlocksSmallerThan(int64_t bases) {
+    std::vector<BlockContainer> bcs;
+    for (BlockContainer bc:blockcontainers) {
+        bc.removeBlockSmallThan(bases);
+        if (bc.getSumLength()==0) {
+            continue;
+        }
+        bcs.push_back(bc);
+    }
+    ContainerManager::setBlockContainers(bcs);
+}

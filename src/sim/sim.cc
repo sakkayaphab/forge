@@ -30,16 +30,19 @@ void Sim::readFasta() {
     config.readConfigFile();
 
 
-
-//    const std::string username = config["username"].as<std::string>();
-//    std::cout << username << std::endl;
-//    FastaReader fastareader;
-//    fastareader.setFilePath(fastaPath);
-//    fastareader.setIndexFilePath(fastaPath+".fai");
-//    fastareader.initialize();
-//    fastareader.exitIfNoFilePath();
-//    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
+//    ContainerManager cm;
+//    cm.loadBlockContainersFromFile("ll");
 //    cm.showBlockContainers();
+
+    FastaReader fastareader;
+    fastareader.setFilePath(getFastaPath());
+    fastareader.setIndexFilePath(getFastaIndexPath());
+    fastareader.initialize();
+    fastareader.exitIfNoFilePath();
+    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
+    cm.removeAllBlocksSmallerThan((101*2)+400+50);
+    cm.showBlockContainers();
+//    cm.writeBlockContainerTextFile("ll");
 
 
     // VCF

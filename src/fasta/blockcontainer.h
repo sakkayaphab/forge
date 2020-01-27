@@ -19,6 +19,7 @@ public:
     std::string getChr();
     uint64_t getSumLength();
     std::vector<std::string> getBlockTextList();
+    void removeBlockSmallThan(int64_t bases);
 
 };
 
