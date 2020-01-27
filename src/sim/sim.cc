@@ -19,15 +19,8 @@ void Sim::readFasta() {
 //    config.readConfigFile();
 //
 
-    SeqMod seqmod;
-    seqmod.setSeq("GGGCAGTGGGAGGGAACTGAGACTGGGGAGGGACAAAGGCTGCTCTGTCCTGGTGCTCCCACAAAGGAGAAGGGCTGATCACTCAAAGTTGCGAACACCAA");
-    std::cout << seqmod.getSeq()<< std::endl;
-    std::string seq1 = seqmod.copy(0, 10);
-    std::cout << seq1 << std::endl;
-    std::string seqrev = seqmod.reverseComplement(seq1);
-    std::cout << seqrev << std::endl;
-    seqmod.erase(0, 10);
-    std::cout << seqmod.getSeq() << std::endl;
+
+
 
 
 

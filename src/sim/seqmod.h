@@ -22,7 +22,6 @@ public:
     void erase(int64_t pos, int64_t end);
     void insert(int64_t pos, std::string seq);
     std::string reverseComplement(std::string seq);
-
 };
 
 
