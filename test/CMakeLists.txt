@@ -31,5 +31,5 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # add test
-#add_subdirectory(sim)
+add_subdirectory(sim)
 add_subdirectory(fasta)

@@ -3,6 +3,7 @@
 #include "sim/variantrange.h"
 #include <string>
 #include "sim/seqmod.h"
+
 TEST(FilePathTest, getFilePathName)
 {
     std::cout << "Hello world" << std::endl;
