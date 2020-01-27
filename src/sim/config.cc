@@ -236,5 +236,13 @@ std::string Config::getConfigFilePath() {
 }
 
 void Config::addVariantionConfig(VariantionConfig vc) {
-    variantionconfigs.push_back(vc);
+    Config::variantionconfigs.push_back(vc);
+}
+
+void Config::setVariantionConfig(std::vector<VariantionConfig> vcs) {
+    Config::variantionconfigs = vcs;
+}
+
+std::vector<VariantionConfig> Config::getVariantionConfig() {
+    return Config::variantionconfigs;
 }
