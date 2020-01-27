@@ -63,7 +63,8 @@ public:
         std::vector<FastaReader::RegionRange> RegionRange;
     };
 
-    ContainerManager getAllChrBlockContainer();
+    ContainerManager getAllChrBlockContainerWithThreads(int threads);
+    ContainerManager getAllChrBlockContainerWithSingleThread();
     BlockContainer getBlockContainerByChr(std::string chrname);
     std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname,std::string *seq);
     std::vector<Block> convertSeqToBlockWithMasked(std::string chrname,std::string *seq);

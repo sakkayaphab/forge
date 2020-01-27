@@ -9,10 +9,16 @@
 #include <fstream>
 #include <string>
 #include <fasta/fastareader.h>
+#include <vcf/vcfwriter.h>
+#include <vcf/dataline.h>
+#include <vector>
+#include "config.h"
 
 class Sim {
     private:
         std::string fastaPath;
+        Config config;
+
     public:
         Sim();
         void setFastaPath(std::string path);
