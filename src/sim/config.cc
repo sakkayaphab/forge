@@ -91,7 +91,7 @@ void Config::readConfigFile() {
         }
 
         if (textRangeList.size()!=textNumberList.size()) {
-            std::cout << "range and number are uncorrect" << std::endl;
+            std::cerr << "range and number are uncorrect" << std::endl;
         }
 
         std::vector<VariantionRange> vrlist;
