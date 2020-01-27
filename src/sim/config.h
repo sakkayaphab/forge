@@ -7,9 +7,12 @@
 
 #include <string>
 #include <cstdint>
+#include <yaml-cpp/yaml.h>
+#include <iostream>
 
 class Config {
 private:
+    std::string configfilepath;
     std::string referencepath;
     std::string referenceindexpath;
     std::string outputdirectorypath;
@@ -23,7 +26,9 @@ private:
 
 public:
     Config();
-
+    void readConfigFile();
+    void setConfigFilePath(std::string configfilepath);
+    std::string getConfigFilePath();
     void setReferencePath(std::string referencepath);
 
     void setReferenceIndexPath(std::string referenceindexpath);
@@ -46,7 +51,7 @@ public:
 
     std::string getSequencing();
 
-    void setReadlength(int readlength);
+    void setReadlength(int64_t readlength);
 
     void setTextReadlength(std::string readlength);
 
@@ -66,7 +71,7 @@ public:
 
     void setTextCoverage(std::string coverage);
 
-    int getReadLength();
+    int64_t getReadLength();
 
     int64_t getAverageInsertSize();
 

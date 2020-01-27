@@ -11,9 +11,7 @@
 #include <fasta/fastareader.h>
 #include <vcf/vcfwriter.h>
 #include <vcf/dataline.h>
-#include <yaml-cpp/yaml.h>
 #include <vector>
-#include <ctime>
 #include "config.h"
 
 class Sim {
