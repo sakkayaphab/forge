@@ -8,6 +8,7 @@
 
 Fasta::Fasta()
 {
+
 }
 
 void Fasta::setFilePath(std::string t_filepath)

@@ -16,8 +16,13 @@ private:
     std::string ycoordinate;
     std::string indexnumber;
     std::string memberofpair;
+
+    std::string fastqoutputpath;
 public:
     FastqWriter();
+    void setFastqOutputPath(std::string fastqoutputpath);
+    std::string getFastqOutputPath();
+    void writeFastq();
 };
 
 

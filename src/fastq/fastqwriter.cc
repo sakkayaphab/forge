@@ -3,3 +3,19 @@
 //
 
 #include "fastqwriter.h"
+
+FastqWriter::FastqWriter() {
+
+}
+
+void FastqWriter::setFastqOutputPath(std::string fastqoutputpath) {
+    FastqWriter::fastqoutputpath = fastqoutputpath;
+}
+
+std::string FastqWriter::getFastqOutputPath() {
+    return FastqWriter::fastqoutputpath;
+}
+
+void FastqWriter::writeFastq() {
+
+}
