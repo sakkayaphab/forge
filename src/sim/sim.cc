@@ -30,18 +30,24 @@ void Sim::readFasta() {
     config.readConfigFile();
 
 
-//    ContainerManager cm;
-//    cm.loadBlockContainersFromFile("ll");
+    ContainerManager cm;
+    cm.loadBlockContainersFromFile("ll");
 //    cm.showBlockContainers();
 
-    FastaReader fastareader;
-    fastareader.setFilePath(getFastaPath());
-    fastareader.setIndexFilePath(getFastaIndexPath());
-    fastareader.initialize();
-    fastareader.exitIfNoFilePath();
-    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
-    cm.removeAllBlocksSmallerThan((101*2)+400+50);
-    cm.showBlockContainers();
+    ApproxVariation apxv;
+    apxv.setConfig(&config);
+    apxv.setContainerManager(&cm);
+    apxv.execute();
+
+
+//    FastaReader fastareader;
+//    fastareader.setFilePath(getFastaPath());
+//    fastareader.setIndexFilePath(getFastaIndexPath());
+//    fastareader.initialize();
+//    fastareader.exitIfNoFilePath();
+//    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
+//    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
+//    cm.showBlockContainers();
 //    cm.writeBlockContainerTextFile("ll");
 
 
