@@ -9,22 +9,36 @@ Config::Config() {
 }
 
 
-void Config::readConfigFile() {
+bool Config::FileExists(std::string filename) {
+    std::ifstream ifile(filename.c_str());
+    return (bool)ifile;
+}
 
-    YAML::Node configNode = YAML::LoadFile("../templates/custom.yaml");
+void Config::setSeed(unsigned seed) {
+    Config::seed = seed;
+}
+
+unsigned Config::getSeed() {
+    return Config::seed;
+}
+
+void Config::readConfigFile() {
+    if (!FileExists(getConfigFilePath())) {
+        std::cout << "not found file : " << getConfigFilePath() << std::endl;
+        return;
+    }
+
+    YAML::Node configNode = YAML::LoadFile(getConfigFilePath());
     if (configNode["files"]["input"]["reference"]) {
         std::string reference = configNode["files"]["input"]["reference"].as<std::string>();
-        std::cout << reference << std::endl;
         Config::setReferencePath(reference);
     }
     if (configNode["files"]["output"]["output_directory"]) {
         std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
-        std::cout << outputdirectory << std::endl;
         Config::setOutputDirectoryPath(outputdirectory);
     }
     if (configNode["files"]["output"]["sequencing"]) {
         std::string sequencing = configNode["files"]["output"]["sequencing"].as<std::string>();
-        std::cout << sequencing << std::endl;
         Config::setSequencing(sequencing);
     }
     if (configNode["files"]["output"]["read_length"]) {
@@ -33,45 +47,63 @@ void Config::readConfigFile() {
     }
     if (configNode["files"]["output"]["average_insert_size"]) {
         std::string averageinsertsize = configNode["files"]["output"]["average_insert_size"].as<std::string>();
-        std::cout << averageinsertsize << std::endl;
         Config::setTextAverageInsertSize(averageinsertsize);
     }
     if (configNode["files"]["output"]["sd"]) {
         std::string sd = configNode["files"]["output"]["sd"].as<std::string>();
-        std::cout << sd << std::endl;
         Config::setTextSD(sd);
     }
     if (configNode["files"]["output"]["base_error_rate"]) {
         std::string baseerrorrate = configNode["files"]["output"]["base_error_rate"].as<std::string>();
-        std::cout << baseerrorrate << std::endl;
         Config::setTextBaseErrorRate(baseerrorrate);
     }
     if (configNode["files"]["output"]["coverage"]) {
         std::string coverage = configNode["files"]["output"]["coverage"].as<std::string>();
-        std::cout << coverage << std::endl;
         Config::setTextCoverage(coverage);
     }
 
-    YAML::Node variationsNode = configNode["variants"];
+
+    YAML::Node variationsNode = configNode["variations"];
     for(YAML::const_iterator variant=variationsNode.begin();variant!=variationsNode.end();++variant) {
         const std::string keyvariations=variant->first.as<std::string>();
+        VariantionConfig vc;
+        vc.setSvType(keyvariations);
         YAML::Node svtypesNode = variationsNode[keyvariations];
+
+        std::vector<std::string> textRangeList;
+        std::vector<std::string> textNumberList;
+
         for(YAML::const_iterator svtype=svtypesNode.begin();svtype!=svtypesNode.end();++svtype) {
             const std::string keyrange=svtype->first.as<std::string>();
-            std::cout << keyrange << std::endl;
             if (keyrange=="range") {
+                int tcount =0;
                 YAML::Node range = svtypesNode[keyrange];
                 for (std::size_t j=0;j<range.size();j++) {
-                    std::cout << range[j].as<std::string>() << "\n";
+                    textRangeList.push_back(range[j].as<std::string>());
                 }
             }
             if (keyrange=="number") {
                 YAML::Node range = svtypesNode[keyrange];
                 for (std::size_t j=0;j<range.size();j++) {
-                    std::cout << range[j].as<std::string>() << "\n";
+                    textNumberList.push_back(range[j].as<std::string>());
                 }
             }
         }
+
+        if (textRangeList.size()!=textNumberList.size()) {
+            std::cerr << "range and number are uncorrect" << std::endl;
+        }
+
+        std::vector<VariantionRange> vrlist;
+        for (int i=0;i<textRangeList.size();i++) {
+            VariantionRange tempVR;
+            tempVR.setTextRange(textRangeList[i]);
+            tempVR.setTextNumber(textNumberList[i]);
+            vrlist.push_back(tempVR);
+        }
+        vc.setVariantRangeList(vrlist);
+        Config::addVariantionConfig(vc);
+
     }
 }
 
@@ -201,4 +233,16 @@ void Config::setConfigFilePath(std::string configfilepath) {
 
 std::string Config::getConfigFilePath() {
     return Config::configfilepath;
+}
+
+void Config::addVariantionConfig(VariantionConfig vc) {
+    Config::variantionconfigs.push_back(vc);
+}
+
+void Config::setVariantionConfig(std::vector<VariantionConfig> vcs) {
+    Config::variantionconfigs = vcs;
+}
+
+std::vector<VariantionConfig> Config::getVariantionConfig() {
+    return Config::variantionconfigs;
 }

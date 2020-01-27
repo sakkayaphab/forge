@@ -5,6 +5,7 @@
 #include <map>
 #include <stdint.h>
 #include "indexformat.h"
+
 class Faidx
 {
 public:

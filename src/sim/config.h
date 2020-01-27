@@ -9,7 +9,10 @@
 #include <cstdint>
 #include <yaml-cpp/yaml.h>
 #include <iostream>
-
+#include <fstream>
+#include <vector>
+#include "variantionconfig.h"
+#include "variantionrange.h"
 class Config {
 private:
     std::string configfilepath;
@@ -23,13 +26,27 @@ private:
     int64_t sd = 0;
     float baseerrorrate = 0;
     int64_t coverage = 0;
+    unsigned seed = 0;
+
+    std::vector<VariantionConfig> variantionconfigs;
+
 
 public:
     Config();
+
+    void setSeed(unsigned seed);
+
+    unsigned getSeed();
+
     void readConfigFile();
+
     void setConfigFilePath(std::string configfilepath);
+
     std::string getConfigFilePath();
+
     void setReferencePath(std::string referencepath);
+
+    bool FileExists(std::string filename);
 
     void setReferenceIndexPath(std::string referenceindexpath);
 
@@ -82,9 +99,14 @@ public:
     int64_t getCoverage();
 
     int64_t convertStringToInt64(std::string text);
+
     int convertStringToInt(std::string text);
+
     float convertStringToFloat(std::string text);
 
+    void addVariantionConfig(VariantionConfig vc);
+    std::vector<VariantionConfig> getVariantionConfig();
+    void setVariantionConfig(std::vector<VariantionConfig> vcs);
 
 };
 

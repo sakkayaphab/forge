@@ -12,11 +12,23 @@ void Sim::setFastaPath(std::string path) {
     Sim::fastaPath = path;
 }
 
+std::string Sim::getFastaPath() {
+    return Sim::fastaPath;
+}
+
+std::string Sim::getFastaIndexPath() {
+    return Sim::fastaPath+".fai";
+}
 
 void Sim::readFasta() {
+
     Config config;
+    config.setReferencePath(Sim::getFastaPath());
+    config.setReferenceIndexPath(Sim::getFastaIndexPath());
+
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
+
 
 
 //    const std::string username = config["username"].as<std::string>();

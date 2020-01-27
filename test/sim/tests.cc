@@ -1,11 +1,40 @@
 #include <gtest/gtest.h>
 #include <iostream>
-//#include "caller/readdepthanalysis.h"
-//#include "bwt/bwt.h"
-//#include "caller/stringsearch.h"
-//#include "caller/stringsearchalignment.h"
+#include "sim/variantionrange.h"
+#include <string>
+#include "sim/seqmod.h"
 
-TEST(FilePathTest, getFilePathName)
+TEST(HelloTest, getHello)
 {
     std::cout << "Hello world" << std::endl;
 }
+
+TEST(VariantRangeTest, variantrange1)
+{
+    VariantionRange vr;
+    vr.setTextRange("100-1000");
+    ASSERT_EQ(100, vr.getMinLength());
+    ASSERT_EQ(1000, vr.getMaxLength());
+}
+
+TEST(VariantRangeTest, variantrange2)
+{
+    VariantionRange vr;
+    vr.setTextRange(" 100 - 1000 ");
+    ASSERT_EQ(100, vr.getMinLength());
+    ASSERT_EQ(1000, vr.getMaxLength());
+}
+
+TEST(SeqModTest, seqmod1)
+{
+    std::string source = "GGGCAGTGGGAGGGAACTGAGACTGGGGAGGGACAAAGGCTGCTCTGTCCTGGTGCTCCCACAAAGGAGAAGGGCTGATCACTCAAAGTTGCGAACACCAA";
+    SeqMod seqmod;
+    seqmod.setSeq(source);
+    ASSERT_EQ(source,seqmod.getSeq());
+    std::string seq1 = seqmod.copy(0, 10);
+    ASSERT_EQ("GGGCAGTGGG",seq1);
+    std::string seqrev = seqmod.reverseComplement(seq1);
+    ASSERT_EQ("CCCACTGCCC",seqrev);
+}
+
+

@@ -13,6 +13,8 @@
 #include <vcf/dataline.h>
 #include <vector>
 #include "config.h"
+#include "seqmod.h"
+#include <stdlib.h>
 
 class Sim {
     private:
@@ -22,6 +24,8 @@ class Sim {
     public:
         Sim();
         void setFastaPath(std::string path);
+        std::string getFastaPath();
+        std::string getFastaIndexPath();
         void readFasta();
 };
 

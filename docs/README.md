@@ -1,0 +1,5 @@
+# Documentations
+
+
+## Development
+### Genarate FASTQ

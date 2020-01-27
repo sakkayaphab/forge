@@ -57,7 +57,6 @@ std::string Cli::getCommand()
 
 int Cli::vcfSV()
 {
-
 //    if (args_lists.size() < 2)
 //    {
 //        showHelpCallSV();
