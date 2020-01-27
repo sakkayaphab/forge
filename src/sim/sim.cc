@@ -14,41 +14,47 @@ void Sim::setFastaPath(std::string path) {
 
 
 void Sim::readFasta() {
-    YAML::Node config = YAML::LoadFile("../templates/custom.yaml");
-    if (config["files"]["input"]["reference"]) {
-        std::string reference = config["files"]["input"]["reference"].as<std::string>();
+
+
+    YAML::Node configNode = YAML::LoadFile("../templates/custom.yaml");
+    if (configNode["files"]["input"]["reference"]) {
+        std::string reference = configNode["files"]["input"]["reference"].as<std::string>();
         std::cout << reference << std::endl;
+        config.setReferencePath(reference);
     }
-    if (config["files"]["output"]["output_directory"]) {
-        std::string outputdirectory = config["files"]["output"]["output_directory"].as<std::string>();
+    if (configNode["files"]["output"]["output_directory"]) {
+        std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
         std::cout << outputdirectory << std::endl;
+        config.setOutputDirectoryPath(outputdirectory);
     }
-    if (config["files"]["output"]["sequencing"]) {
-        std::string sequencing = config["files"]["output"]["sequencing"].as<std::string>();
+    if (configNode["files"]["output"]["sequencing"]) {
+        std::string sequencing = configNode["files"]["output"]["sequencing"].as<std::string>();
         std::cout << sequencing << std::endl;
+        config.setSequencing(sequencing);
     }
-    if (config["files"]["output"]["read_length"]) {
-        std::string readlength = config["files"]["output"]["read_length"].as<std::string>();
+    if (configNode["files"]["output"]["read_length"]) {
+        std::string readlength = configNode["files"]["output"]["read_length"].as<std::string>();
         std::cout << readlength << std::endl;
+
     }
-    if (config["files"]["output"]["average_insert_size"]) {
-        std::string averageinsertsize = config["files"]["output"]["average_insert_size"].as<std::string>();
+    if (configNode["files"]["output"]["average_insert_size"]) {
+        std::string averageinsertsize = configNode["files"]["output"]["average_insert_size"].as<std::string>();
         std::cout << averageinsertsize << std::endl;
     }
-    if (config["files"]["output"]["sd"]) {
-        std::string averageinsertsize = config["files"]["output"]["sd"].as<std::string>();
+    if (configNode["files"]["output"]["sd"]) {
+        std::string averageinsertsize = configNode["files"]["output"]["sd"].as<std::string>();
         std::cout << averageinsertsize << std::endl;
     }
-    if (config["files"]["output"]["base_error_rate"]) {
-        std::string baseerrorrate = config["files"]["output"]["base_error_rate"].as<std::string>();
+    if (configNode["files"]["output"]["base_error_rate"]) {
+        std::string baseerrorrate = configNode["files"]["output"]["base_error_rate"].as<std::string>();
         std::cout << baseerrorrate << std::endl;
     }
-    if (config["files"]["output"]["coverage"]) {
-        std::string coverage = config["files"]["output"]["coverage"].as<std::string>();
+    if (configNode["files"]["output"]["coverage"]) {
+        std::string coverage = configNode["files"]["output"]["coverage"].as<std::string>();
         std::cout << coverage << std::endl;
     }
 
-    YAML::Node variationsNode = config["variants"];
+    YAML::Node variationsNode = configNode["variants"];
     for(YAML::const_iterator variant=variationsNode.begin();variant!=variationsNode.end();++variant) {
         const std::string keyvariations=variant->first.as<std::string>();
         YAML::Node svtypesNode = variationsNode[keyvariations];

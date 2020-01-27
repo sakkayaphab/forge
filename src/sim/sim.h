@@ -14,9 +14,13 @@
 #include <yaml-cpp/yaml.h>
 #include <vector>
 #include <ctime>
+#include "config.h"
+
 class Sim {
     private:
         std::string fastaPath;
+        Config config;
+
     public:
         Sim();
         void setFastaPath(std::string path);
