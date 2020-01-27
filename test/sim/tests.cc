@@ -11,7 +11,7 @@ TEST(HelloTest, getHello)
 
 TEST(VariantRangeTest, variantrange1)
 {
-    VariantRange vr;
+    VariantionRange vr;
     vr.setTextRange("100-1000");
     ASSERT_EQ(100, vr.getMinLength());
     ASSERT_EQ(1000, vr.getMaxLength());
@@ -19,7 +19,7 @@ TEST(VariantRangeTest, variantrange1)
 
 TEST(VariantRangeTest, variantrange2)
 {
-    VariantRange vr;
+    VariantionRange vr;
     vr.setTextRange(" 100 - 1000 ");
     ASSERT_EQ(100, vr.getMinLength());
     ASSERT_EQ(1000, vr.getMaxLength());
