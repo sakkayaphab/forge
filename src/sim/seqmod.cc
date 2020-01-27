@@ -29,8 +29,7 @@ void SeqMod::insert(int64_t pos, std::string seq) {
     source.insert(pos, seq);
 }
 
-inline char complement(char n)
-{
+inline char complement(char n) {
     switch(n)
     {
         case 'A':

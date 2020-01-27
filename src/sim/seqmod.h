@@ -14,6 +14,7 @@ class SeqMod {
 
 private:
     std::string source;
+
 public:
     SeqMod();
     void setSeq(std::string seq);
@@ -22,6 +23,7 @@ public:
     void erase(int64_t pos, int64_t end);
     void insert(int64_t pos, std::string seq);
     std::string reverseComplement(std::string seq);
+
 };
 
 

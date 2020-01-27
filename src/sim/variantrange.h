@@ -13,9 +13,11 @@
 #include <iostream>
 
 class VariantRange {
+private:
     int64_t maxlength;
     int64_t minlength;
     int number;
+
 public:
     VariantRange();
 

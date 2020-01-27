@@ -10,6 +10,7 @@
 #include "variantrange.h"
 
 class VariantConfig {
+    private:
         std::string svtype;
         std::vector<VariantRange> variantrangelist;
 

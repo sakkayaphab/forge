@@ -24,9 +24,15 @@ private:
     int64_t sd = 0;
     float baseerrorrate = 0;
     int64_t coverage = 0;
+    unsigned seed = 0;
+
 
 public:
     Config();
+
+    void setSeed(unsigned seed);
+
+    unsigned getSeed();
 
     void readConfigFile();
 
@@ -93,8 +99,6 @@ public:
     int convertStringToInt(std::string text);
 
     float convertStringToFloat(std::string text);
-
-
 };
 
 

@@ -14,6 +14,14 @@ bool Config::FileExists(std::string filename) {
     return (bool)ifile;
 }
 
+void Config::setSeed(unsigned seed) {
+    Config::seed = seed;
+}
+
+unsigned Config::getSeed() {
+    return Config::seed;
+}
+
 void Config::readConfigFile() {
     if (!FileExists(getConfigFilePath())) {
         std::cout << "not found file : " << getConfigFilePath() << std::endl;
