@@ -5,12 +5,23 @@
 #ifndef FORGE_VARIANTCONFIG_H
 #define FORGE_VARIANTCONFIG_H
 
+#include <string>
+#include <vector>
+#include "variantrange.h"
 
 class VariantConfig {
-
+        std::string svtype;
+        std::vector<VariantRange> variantrangelist;
 
     public:
         VariantConfig();
+        void setSvType(std::string svtype);
+        void setVariantRangeList(std::vector<VariantRange> variantrangelist);
+        std::string getSvType();
+        std::vector<VariantRange> getVariantRangeList();
+        void addVariantRangeToList(VariantRange variantrange);
+        int getNumberOfVariant();
+
 };
 
 
