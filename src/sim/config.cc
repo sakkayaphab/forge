@@ -9,9 +9,18 @@ Config::Config() {
 }
 
 
-void Config::readConfigFile() {
+bool Config::FileExists(std::string filename) {
+    std::ifstream ifile(filename.c_str());
+    return (bool)ifile;
+}
 
-    YAML::Node configNode = YAML::LoadFile("../templates/custom.yaml");
+void Config::readConfigFile() {
+    if (!FileExists(getConfigFilePath())) {
+        std::cout << "not found file : " << getConfigFilePath() << std::endl;
+        return;
+    }
+
+    YAML::Node configNode = YAML::LoadFile(getConfigFilePath());
     if (configNode["files"]["input"]["reference"]) {
         std::string reference = configNode["files"]["input"]["reference"].as<std::string>();
         std::cout << reference << std::endl;

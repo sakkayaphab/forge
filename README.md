@@ -14,7 +14,7 @@ files:
   input:
     reference: ~/reference/ucsc_hg19.fa
   output:
-    output_directory : ~/mysim
+    output_directory: ~/mysim
     sequencing: paired-end
     read_length: 101
     average_insert_size: 400

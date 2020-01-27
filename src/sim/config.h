@@ -9,6 +9,7 @@
 #include <cstdint>
 #include <yaml-cpp/yaml.h>
 #include <iostream>
+#include <fstream>
 
 class Config {
 private:
@@ -30,6 +31,7 @@ public:
     void setConfigFilePath(std::string configfilepath);
     std::string getConfigFilePath();
     void setReferencePath(std::string referencepath);
+    bool FileExists(std::string filename);
 
     void setReferenceIndexPath(std::string referenceindexpath);
 
