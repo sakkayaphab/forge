@@ -10,6 +10,8 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include "variantionconfig.h"
 
 class Config {
 private:
@@ -25,6 +27,8 @@ private:
     float baseerrorrate = 0;
     int64_t coverage = 0;
     unsigned seed = 0;
+
+    std::vector<VariantionConfig> variantionconfigs;
 
 
 public:
@@ -99,6 +103,9 @@ public:
     int convertStringToInt(std::string text);
 
     float convertStringToFloat(std::string text);
+
+    void addVariantionConfig(VariantionConfig vc);
+
 };
 
 

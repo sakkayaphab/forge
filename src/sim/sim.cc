@@ -26,12 +26,10 @@ void Sim::readFasta() {
     config.setReferencePath(Sim::getFastaPath());
     config.setReferenceIndexPath(Sim::getFastaIndexPath());
 
-        srand (2);
-//    printf ("Again the first number: %d\n", rand()%100);
+    config.setConfigFilePath("../templates/custom.yaml");
+    config.readConfigFile();
 
-//    config.setConfigFilePath("../templates/custom.yaml");
-//    config.readConfigFile();
-//
+
 
 //    const std::string username = config["username"].as<std::string>();
 //    std::cout << username << std::endl;

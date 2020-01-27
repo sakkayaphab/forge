@@ -2,8 +2,8 @@
 // Created by Sakkayaphab Piwluang on 27/1/20.
 //
 
-#ifndef FORGE_VARIANTRANGE_H
-#define FORGE_VARIANTRANGE_H
+#ifndef FORGE_VARIANTIONRANGE_H
+#define FORGE_VARIANTIONRANGE_H
 
 
 #include <cstdint>
@@ -12,14 +12,14 @@
 #include <sstream>
 #include <iostream>
 
-class VariantRange {
+class VariantionRange {
 private:
     int64_t maxlength;
     int64_t minlength;
     int number;
 
 public:
-    VariantRange();
+    VariantionRange();
 
     template<typename T, typename P>
     T remove_if(T beg, T end, P pred)
@@ -38,10 +38,12 @@ public:
     int64_t getMinLength();
     int getNumber();
     void setTextRange(std::string textrange);
+    void setTextNumber(std::string number);
     std::vector<std::string> split(const std::string &s, char delimiter);
     int64_t convertStringToInt64(std::string text);
+    int convertStringToInt(std::string text);
 
 };
 
 
-#endif //FORGE_VARIANTRANGE_H
+#endif //FORGE_VARIANTIONRANGE_H

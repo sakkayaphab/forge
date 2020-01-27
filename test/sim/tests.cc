@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <iostream>
-#include "sim/variantrange.h"
+#include "sim/variantionrange.h"
 #include <string>
 #include "sim/seqmod.h"
 
