@@ -12,19 +12,40 @@ void Sim::setFastaPath(std::string path) {
     Sim::fastaPath = path;
 }
 
+
 void Sim::readFasta() {
     YAML::Node config = YAML::LoadFile("../templates/custom.yaml");
     if (config["files"]["input"]["reference"]) {
         std::string reference = config["files"]["input"]["reference"].as<std::string>();
         std::cout << reference << std::endl;
     }
-    if (config["files"]["output"]["outputdirectory"]) {
-        std::string outputdirectory = config["files"]["output"]["outputdirectory"].as<std::string>();
+    if (config["files"]["output"]["output_directory"]) {
+        std::string outputdirectory = config["files"]["output"]["output_directory"].as<std::string>();
         std::cout << outputdirectory << std::endl;
     }
     if (config["files"]["output"]["sequencing"]) {
         std::string sequencing = config["files"]["output"]["sequencing"].as<std::string>();
         std::cout << sequencing << std::endl;
+    }
+    if (config["files"]["output"]["read_length"]) {
+        std::string readlength = config["files"]["output"]["read_length"].as<std::string>();
+        std::cout << readlength << std::endl;
+    }
+    if (config["files"]["output"]["average_insert_size"]) {
+        std::string averageinsertsize = config["files"]["output"]["average_insert_size"].as<std::string>();
+        std::cout << averageinsertsize << std::endl;
+    }
+    if (config["files"]["output"]["sd"]) {
+        std::string averageinsertsize = config["files"]["output"]["sd"].as<std::string>();
+        std::cout << averageinsertsize << std::endl;
+    }
+    if (config["files"]["output"]["base_error_rate"]) {
+        std::string baseerrorrate = config["files"]["output"]["base_error_rate"].as<std::string>();
+        std::cout << baseerrorrate << std::endl;
+    }
+    if (config["files"]["output"]["coverage"]) {
+        std::string coverage = config["files"]["output"]["coverage"].as<std::string>();
+        std::cout << coverage << std::endl;
     }
 
     YAML::Node variationsNode = config["variants"];
