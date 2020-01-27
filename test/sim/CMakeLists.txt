@@ -8,6 +8,7 @@ add_executable(
 target_link_libraries(
     test_sim
     gtest_main
+        sim
     )
 
 add_test(

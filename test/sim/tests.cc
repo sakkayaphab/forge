@@ -4,28 +4,28 @@
 #include <string>
 #include "sim/seqmod.h"
 
-TEST(FilePathTest, getFilePathName)
+TEST(HelloTest, getHello)
 {
     std::cout << "Hello world" << std::endl;
 }
 
-//TEST(FilePathTest, variantrange1)
-//{
-//    VariantRange vr;
-//    vr.setTextRange("100-1000");
-//    ASSERT_EQ(100, vr.getMinLength());
-//    ASSERT_EQ(1000, vr.getMaxLength());
-//}
-//
-//TEST(FilePathTest, variantrange2)
-//{
-//    VariantRange vr;
-//    vr.setTextRange(" 100 - 1000 ");
-//    ASSERT_EQ(100, vr.getMinLength());
-//    ASSERT_EQ(1000, vr.getMaxLength());
-//}
+TEST(VariantRangeTest, variantrange1)
+{
+    VariantRange vr;
+    vr.setTextRange("100-1000");
+    ASSERT_EQ(100, vr.getMinLength());
+    ASSERT_EQ(1000, vr.getMaxLength());
+}
 
-TEST(FilePathTest, seqmod1)
+TEST(VariantRangeTest, variantrange2)
+{
+    VariantRange vr;
+    vr.setTextRange(" 100 - 1000 ");
+    ASSERT_EQ(100, vr.getMinLength());
+    ASSERT_EQ(1000, vr.getMaxLength());
+}
+
+TEST(SeqModTest, seqmod1)
 {
     std::string source = "GGGCAGTGGGAGGGAACTGAGACTGGGGAGGGACAAAGGCTGCTCTGTCCTGGTGCTCCCACAAAGGAGAAGGGCTGATCACTCAAAGTTGCGAACACCAA";
     SeqMod seqmod;
