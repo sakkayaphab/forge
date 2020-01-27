@@ -12,7 +12,7 @@
 #include <fstream>
 #include <vector>
 #include "variantionconfig.h"
-
+#include "variantionrange.h"
 class Config {
 private:
     std::string configfilepath;
