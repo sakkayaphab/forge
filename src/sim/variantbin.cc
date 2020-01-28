@@ -8,7 +8,7 @@ VariantBin::VariantBin() {
 
 }
 
-void VariantBin::addVariant(Variant variant) {
+void VariantBin::addVariant(VariantBlock variant) {
     VariantBin::variantlist.push_back(variant);
 }
 
@@ -26,12 +26,12 @@ void VariantBin::shuffleBin() {
     std::shuffle(std::begin(VariantBin::variantlist), std::end(VariantBin::variantlist), rnge);
 }
 
-std::vector<Variant> VariantBin::getVariantList() {
+std::vector<VariantBlock> VariantBin::getVariantList() {
     return VariantBin::variantlist;
 }
 
 void VariantBin::addVariantByParameter(std::string svtype, int64_t length) {
-    Variant tempVariant;
+    VariantBlock tempVariant;
     tempVariant.setSpace(VariantBin::space);
     tempVariant.setSvType(svtype);
     if (svtype=="INS") {
@@ -60,7 +60,7 @@ void VariantBin::addVariantByRange(std::string svtype, int64_t minlength, int64_
 }
 
 void VariantBin::showVariantList() {
-    for (Variant x:variantlist) {
+    for (VariantBlock x:variantlist) {
         x.show();
     }
 }

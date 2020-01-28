@@ -15,7 +15,6 @@
 #include "config.h"
 #include "seqmod.h"
 #include <stdlib.h>
-#include "approxvariation.h"
 #include "variantbin.h"
 
 class Sim {

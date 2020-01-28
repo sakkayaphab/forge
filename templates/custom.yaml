@@ -13,11 +13,11 @@ files:
 variations:
   DEL:
     range:
-      - 10-100
+      - 100-1000
     number:
       - 2
   INS:
     range:
-      - 10-100
+      - 100-1000
     number:
       - 1
