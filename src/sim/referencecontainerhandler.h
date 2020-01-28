@@ -9,15 +9,23 @@
 #include <string>
 #include "referencecontainer.h"
 #include <fasta/containermanager.h>
+#include <algorithm>
+#include <random>
+
 class ReferenceContainerHandler {
 private:
     std::vector<ReferenceContainer> referencecontainerlist;
     int64_t orderBC=0;
+    unsigned seed=0;
+    std::default_random_engine rnge;
 
 public:
     ReferenceContainerHandler();
     void addContainerManagerToReferenceContainer(ContainerManager cm);
     void showReferenceContainer();
+    void shuffleReferenceContainer();
+    void setSeed(unsigned seed);
+    unsigned getSeed();
 };
 
 

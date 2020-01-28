@@ -9,6 +9,7 @@ files:
     sd: 50
     base_error_rate: 0.2
     coverage: 30
+    seed: 0
 
 variations:
   DEL:

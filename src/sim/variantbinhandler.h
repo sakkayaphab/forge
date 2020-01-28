@@ -27,6 +27,7 @@ public:
     void shuffleBin();
     std::vector<VariantBlock> getVariantList();
     void showVariantList();
+    void sortVariantList();
 };
 
 #endif //FORGE_VARIANTBINHANDLER_H

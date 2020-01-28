@@ -18,11 +18,18 @@ private:
     std::vector<ReferenceContainer> *referencecontainer;
     ReferenceContainerHandler *rch;
 public:
+
     ArrangementContainer();
+
     void setVariantBin(VariantBinHandler *variantbin);
+
     void setReferenceContainerHandler(ReferenceContainerHandler *rch);
+
     VariantBinHandler *getVariantBin();
+
     ReferenceContainerHandler *getReferenceContainerHandler();
+
+    void execute();
 
 };
 

@@ -27,3 +27,7 @@ void ReferenceContainerHandler::showReferenceContainer() {
         std::cout << x.getPos() << " " << x.getEnd() << " > " << x.getVariantBlocks().size() << std::endl;
     }
 }
+
+void ReferenceContainerHandler::shuffleReferenceContainer() {
+    std::shuffle(std::begin(ReferenceContainerHandler::referencecontainerlist), std::end(ReferenceContainerHandler::referencecontainerlist), rnge);
+}

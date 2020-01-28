@@ -40,17 +40,27 @@ void Sim::readFasta() {
             variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
         }
     }
-    variantbin.showVariantList();
+//    variantbin.showVariantList();
+//
+//    std::cout << "++++++++++++++" << std::endl;
+    variantbin.sortVariantList();
+//    variantbin.showVariantList();
+
 
     ContainerManager cm;
     cm.loadBlockContainersFromFile("ll");
     ReferenceContainerHandler rch;
     rch.addContainerManagerToReferenceContainer(cm);
+    rch.showReferenceContainer();
+    std::cout << "++++++++++++++" << std::endl;
+    rch.shuffleReferenceContainer();
+    rch.showReferenceContainer();
+
 
     ArrangementContainer arrangementcontainer;
     arrangementcontainer.setVariantBin(&variantbin);
     arrangementcontainer.setReferenceContainerHandler(&rch);
-
+    arrangementcontainer.execute();
 
 
 //    printf ("Again the first number: %d\n", rand()%100);

@@ -65,4 +65,13 @@ void VariantBinHandler::showVariantList() {
     }
 }
 
+void VariantBinHandler::sortVariantList() {
+    std::sort(VariantBinHandler::variantlist.begin(),
+              VariantBinHandler::variantlist.end(),
+              [](VariantBlock& lhs, VariantBlock& rhs)
+              {
+                  return lhs.getAppxRefLengthWithSpace() > rhs.getAppxRefLengthWithSpace();
+              });
+}
+
 

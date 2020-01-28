@@ -23,3 +23,7 @@ VariantBinHandler *ArrangementContainer::getVariantBin() {
 ReferenceContainerHandler *ArrangementContainer::getReferenceContainerHandler() {
     return ArrangementContainer::rch;
 }
+
+void ArrangementContainer::execute() {
+    
+}
