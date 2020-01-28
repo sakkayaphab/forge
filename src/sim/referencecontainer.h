@@ -11,8 +11,8 @@
 class ReferenceContainer {
 private:
     std::string chr;
-    int64_t pos;
-    int64_t end;
+    int64_t pos=0;
+    int64_t end=0;
     std::vector<VariantBlock> variantblocklist;
 
 public:
@@ -20,6 +20,12 @@ public:
     void setChr(std::string chr);
     void setPos(int64_t pos);
     void setEnd(int64_t end);
+    int64_t getPos();
+    int64_t getEnd();
+    std::string getChr();
+    void setVariantBlocks(std::vector<VariantBlock> variantblocklist);
+    std::vector<VariantBlock> getVariantBlocks();
+    void addVariantBlock(VariantBlock vb);
 };
 
 

@@ -12,7 +12,7 @@
 
 class VariantBin {
     std::vector<VariantBlock> variantlist;
-    unsigned seed;
+    unsigned seed=0;
     std::default_random_engine rnge;
     int64_t  space = 0;
 public:
