@@ -31,3 +31,19 @@ void ReferenceContainerHandler::showReferenceContainer() {
 void ReferenceContainerHandler::shuffleReferenceContainer() {
     std::shuffle(std::begin(ReferenceContainerHandler::referencecontainerlist), std::end(ReferenceContainerHandler::referencecontainerlist), rnge);
 }
+
+int64_t ReferenceContainerHandler::getSize() {
+    return ReferenceContainerHandler::referencecontainerlist.size();
+}
+
+void ReferenceContainerHandler::setSeed(unsigned seed) {
+    ReferenceContainerHandler::seed = seed;
+}
+
+unsigned ReferenceContainerHandler::getSeed() {
+    return ReferenceContainerHandler::seed;
+}
+
+std::vector<ReferenceContainer> *ReferenceContainerHandler::getReferenceContainerList() {
+    return &referencecontainerlist;
+}

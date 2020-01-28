@@ -15,7 +15,6 @@
 class ArrangementContainer {
 private:
     VariantBinHandler *variantbin;
-    std::vector<ReferenceContainer> *referencecontainer;
     ReferenceContainerHandler *rch;
 public:
 
@@ -28,6 +27,7 @@ public:
     VariantBinHandler *getVariantBin();
 
     ReferenceContainerHandler *getReferenceContainerHandler();
+
 
     void execute();
 

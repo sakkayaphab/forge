@@ -20,6 +20,8 @@ public:
     void setChr(std::string chr);
     void setPos(int64_t pos);
     void setEnd(int64_t end);
+    int64_t getCapacity();
+    int64_t getFreeSpace();
     int64_t getPos();
     int64_t getEnd();
     std::string getChr();
@@ -28,6 +30,8 @@ public:
     void addVariantBlock(VariantBlock vb);
     void setOrderNumber(int64_t ordernumber);
     int64_t getOrderNumber();
+    int64_t getAllVariantBlockSize();
+    bool haveSpaceToAdd(VariantBlock vb);
 
 };
 

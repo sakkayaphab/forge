@@ -51,3 +51,26 @@ void ReferenceContainer::setOrderNumber(int64_t ordernumber) {
 int64_t ReferenceContainer::getOrderNumber() {
     return ReferenceContainer::ordernumber;
 }
+
+bool ReferenceContainer::haveSpaceToAdd(VariantBlock vb) {
+    if (getFreeSpace()>=vb.getAppxRefLengthWithSpace()) {
+        return true;
+    }
+    return false;
+}
+
+int64_t ReferenceContainer::getAllVariantBlockSize() {
+    int64_t totalsize = 0;
+    for (VariantBlock n:ReferenceContainer::getVariantBlocks()) {
+        totalsize += n.getAppxRefLengthWithSpace();
+    }
+    return totalsize;
+}
+
+int64_t ReferenceContainer::getCapacity() {
+    return ReferenceContainer::getEnd()-ReferenceContainer::getPos();
+}
+
+int64_t ReferenceContainer::getFreeSpace() {
+    return ReferenceContainer::getCapacity()-(ReferenceContainer::getEnd()-ReferenceContainer::getPos());
+}
