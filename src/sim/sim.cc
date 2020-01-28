@@ -32,7 +32,7 @@ void Sim::readFasta() {
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
 
-    VariantBin variantbin;
+    VariantBinHandler variantbin;
     std::vector<VariantionConfig> vcs = config.getVariantionConfig();
     for (VariantionConfig vc:vcs) {
         for (VariantionRange r:vc.getVariantRangeList()) {
@@ -44,27 +44,13 @@ void Sim::readFasta() {
 
     ContainerManager cm;
     cm.loadBlockContainersFromFile("ll");
-    int orderBC=0;
-    std::vector<ReferenceContainer> rclist;
-    for (BlockContainer j:cm.getBlockContainers()) {
-        for (Block k:j.getBlocks()) {
-            ReferenceContainer tempRC;
-            tempRC.setChr(k.getChr());
-            tempRC.setPos(k.getPos());
-            tempRC.setEnd(k.getEnd());
-            tempRC.setOrderNumber(orderBC);
-            orderBC++;
-            std::cout << orderBC << std::endl;
-        }
-    }
+    ReferenceContainerHandler rch;
+    rch.addContainerManagerToReferenceContainer(cm);
 
-////    cm.showBlockContainers();
-//
-//    ApproxVariation apxv;
-//    apxv.setConfig(&config);
-//    apxv.setContainerManager(&cm);
-//    apxv.execute();
-//    srand (seed);
+    ArrangementContainer arrangementcontainer;
+    arrangementcontainer.setVariantBin(&variantbin);
+    arrangementcontainer.setReferenceContainerHandler(&rch);
+
 
 
 //    printf ("Again the first number: %d\n", rand()%100);

@@ -2,21 +2,21 @@
 // Created by Sakkayaphab Piwluang on 28/1/20.
 //
 
-#ifndef FORGE_VARIANTBIN_H
-#define FORGE_VARIANTBIN_H
+#ifndef FORGE_VARIANTBINHANDLER_H
+#define FORGE_VARIANTBINHANDLER_H
 
 #include <vector>
 #include "variantblock.h"
 #include <algorithm>
 #include <random>
 
-class VariantBin {
+class VariantBinHandler {
     std::vector<VariantBlock> variantlist;
     unsigned seed=0;
     std::default_random_engine rnge;
     int64_t  space = 0;
 public:
-    VariantBin();
+    VariantBinHandler();
     void setSpace(int64_t space);
     int64_t getSpace();
     void addVariant(VariantBlock variant);
@@ -29,4 +29,4 @@ public:
     void showVariantList();
 };
 
-#endif //FORGE_VARIANTBIN_H
+#endif //FORGE_VARIANTBINHANDLER_H

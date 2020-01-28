@@ -28,6 +28,7 @@ public:
     void addVariantBlock(VariantBlock vb);
     void setOrderNumber(int64_t ordernumber);
     int64_t getOrderNumber();
+
 };
 
 
