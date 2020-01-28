@@ -25,8 +25,6 @@ void Sim::readFasta() {
 
     std::default_random_engine rnge(seed);
 
-
-
     Config config;
     config.setReferencePath(Sim::getFastaPath());
     config.setReferenceIndexPath(Sim::getFastaIndexPath());
@@ -44,10 +42,22 @@ void Sim::readFasta() {
     }
     variantbin.showVariantList();
 
-//
-//
-//    ContainerManager cm;
-//    cm.loadBlockContainersFromFile("ll");
+    ContainerManager cm;
+    cm.loadBlockContainersFromFile("ll");
+    int orderBC=0;
+    std::vector<ReferenceContainer> rclist;
+    for (BlockContainer j:cm.getBlockContainers()) {
+        for (Block k:j.getBlocks()) {
+            ReferenceContainer tempRC;
+            tempRC.setChr(k.getChr());
+            tempRC.setPos(k.getPos());
+            tempRC.setEnd(k.getEnd());
+            tempRC.setOrderNumber(orderBC);
+            orderBC++;
+            std::cout << orderBC << std::endl;
+        }
+    }
+
 ////    cm.showBlockContainers();
 //
 //    ApproxVariation apxv;

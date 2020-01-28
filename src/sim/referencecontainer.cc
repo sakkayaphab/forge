@@ -43,3 +43,11 @@ std::vector<VariantBlock> ReferenceContainer::getVariantBlocks() {
 void ReferenceContainer::addVariantBlock(VariantBlock vb) {
     ReferenceContainer::variantblocklist.push_back(vb);
 }
+
+void ReferenceContainer::setOrderNumber(int64_t ordernumber) {
+    ReferenceContainer::ordernumber = ordernumber;
+}
+
+int64_t ReferenceContainer::getOrderNumber() {
+    return ReferenceContainer::ordernumber;
+}

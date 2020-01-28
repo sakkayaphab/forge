@@ -14,7 +14,7 @@ private:
     int64_t pos=0;
     int64_t end=0;
     std::vector<VariantBlock> variantblocklist;
-
+    int64_t ordernumber=0;
 public:
     ReferenceContainer();
     void setChr(std::string chr);
@@ -26,6 +26,8 @@ public:
     void setVariantBlocks(std::vector<VariantBlock> variantblocklist);
     std::vector<VariantBlock> getVariantBlocks();
     void addVariantBlock(VariantBlock vb);
+    void setOrderNumber(int64_t ordernumber);
+    int64_t getOrderNumber();
 };
 
 

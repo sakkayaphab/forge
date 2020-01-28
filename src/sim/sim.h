@@ -16,7 +16,7 @@
 #include "seqmod.h"
 #include <stdlib.h>
 #include "variantbin.h"
-
+#include "referencecontainer.h"
 class Sim {
     private:
         std::string fastaPath;
