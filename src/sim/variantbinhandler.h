@@ -24,7 +24,7 @@ public:
     void addVariantByRange(std::string svtype,int64_t minlength,int64_t maxlength,int number);
     void setSeed(unsigned seed);
     unsigned getSeed();
-    void shuffleBin();
+    void shuffleVariantList();
     std::vector<VariantBlock> getVariantList();
     void showVariantList();
     void sortVariantList();

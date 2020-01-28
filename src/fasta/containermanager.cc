@@ -61,6 +61,15 @@ void ContainerManager::loadBlockContainersFromFile(std::string filepath) {
             blocks.push_back(block);
         }
     }
+
+    if (blocks.size() != 0) {
+        BlockContainer blockcontainer;
+        blockcontainer.setBlocks(blocks);
+        blockcontainer.setChr(chrnow);
+        blocks.clear();
+        ContainerManager::blockcontainers.push_back(blockcontainer);
+    }
+
 }
 
 std::vector<std::string> ContainerManager::split(const std::string &s, char delimiter) {

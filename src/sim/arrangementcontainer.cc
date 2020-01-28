@@ -35,7 +35,6 @@ void ArrangementContainer::runDumpVariantWorstFitDecreasing() {
         bool added = false;
 
         for (int64_t i =0;i< getReferenceContainerHandler()->getSizeReferenceContainer(); i++) {
-            std::cout << i << "/" << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
             if (getReferenceContainerHandler()->getReferenceContainerList()->at(i).haveSpaceToAdd(vb)) {
                 getReferenceContainerHandler()->getReferenceContainerList()->at(i).addVariantBlock(vb);
                 added = true;
@@ -66,7 +65,6 @@ void ArrangementContainer::runDumpVariantRound() {
                 position = 0;
                 passed = true;
             }
-            std::cout << position << "/" << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
             if (getReferenceContainerHandler()->getReferenceContainerList()->at(position).haveSpaceToAdd(vb)) {
                 getReferenceContainerHandler()->getReferenceContainerList()->at(position).addVariantBlock(vb);
                 added = true;

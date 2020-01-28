@@ -22,7 +22,7 @@ unsigned VariantBinHandler::getSeed() {
     return VariantBinHandler::seed;
 }
 
-void VariantBinHandler::shuffleBin() {
+void VariantBinHandler::shuffleVariantList() {
     std::shuffle(std::begin(VariantBinHandler::variantlist), std::end(VariantBinHandler::variantlist), rnge);
 }
 
