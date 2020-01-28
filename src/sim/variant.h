@@ -34,7 +34,7 @@ public:
 
     void setAppxAltLength(int64_t altLength);
     void setAppxRefLength(int64_t refLength);
-
+    int64_t getAppxRefLengthWithSpace();
     int64_t getAppxAltLength();
     int64_t getAppxRefLength();
 

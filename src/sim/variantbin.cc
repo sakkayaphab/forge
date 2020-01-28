@@ -30,9 +30,27 @@ std::vector<Variant> VariantBin::getVariantList() {
     return VariantBin::variantlist;
 }
 
-void VariantBin::addVariantByLength(std::string svtype, int64_t length) {
+void VariantBin::addVariantByParameter(std::string svtype, int64_t length) {
     Variant tempVariant;
-    tempVariant.setAppxAltLength(length);
-    tempVariant.setAppxRefLength(length);
+    tempVariant.setSpace(VariantBin::space);
+    tempVariant.setSvType(svtype);
+    if (svtype=="INS") {
+        tempVariant.setAppxRefLength(1);
+    } else if (svtype=="TRA") {
+        tempVariant.setAppxRefLength(1);
+    } else {
+        tempVariant.setAppxRefLength(length);
+    }
+
     VariantBin::addVariant(tempVariant);
 }
+
+void VariantBin::setSpace(int64_t space) {
+    VariantBin::space = space;
+}
+
+int64_t VariantBin::getSpace() {
+    return VariantBin::space;
+}
+
+

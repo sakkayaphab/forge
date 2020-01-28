@@ -14,10 +14,13 @@ class VariantBin {
     std::vector<Variant> variantlist;
     unsigned seed;
     std::default_random_engine rnge;
+    int64_t  space = 0;
 public:
     VariantBin();
+    void setSpace(int64_t space);
+    int64_t getSpace();
     void addVariant(Variant variant);
-    void addVariantByLength(std::string svtype, int64_t length);
+    void addVariantByParameter(std::string svtype, int64_t length);
     void setSeed(unsigned seed);
     unsigned getSeed();
     void shuffleBin();

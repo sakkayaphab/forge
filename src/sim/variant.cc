@@ -79,3 +79,7 @@ int64_t Variant::getAppxAltLength() {
 int64_t Variant::getAppxRefLength() {
     return Variant::appxRefLength;
 }
+
+int64_t Variant::getAppxRefLengthWithSpace() {
+    return Variant::appxRefLength+(Variant::getSpace()*2);
+}
