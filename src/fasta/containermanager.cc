@@ -61,6 +61,15 @@ void ContainerManager::loadBlockContainersFromFile(std::string filepath) {
             blocks.push_back(block);
         }
     }
+
+    if (blocks.size() != 0) {
+        BlockContainer blockcontainer;
+        blockcontainer.setBlocks(blocks);
+        blockcontainer.setChr(chrnow);
+        blocks.clear();
+        ContainerManager::blockcontainers.push_back(blockcontainer);
+    }
+
 }
 
 std::vector<std::string> ContainerManager::split(const std::string &s, char delimiter) {
@@ -77,4 +86,16 @@ void ContainerManager::showBlockContainers() {
     for (BlockContainer bc:blockcontainers) {
         std::cout << bc.getChr() << " " << bc.getSumLength() << std::endl;
     }
+}
+
+void ContainerManager::removeAllBlocksSmallerThan(int64_t bases) {
+    std::vector<BlockContainer> bcs;
+    for (BlockContainer bc:blockcontainers) {
+        bc.removeBlockSmallThan(bases);
+        if (bc.getSumLength()==0) {
+            continue;
+        }
+        bcs.push_back(bc);
+    }
+    ContainerManager::setBlockContainers(bcs);
 }

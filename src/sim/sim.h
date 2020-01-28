@@ -15,11 +15,15 @@
 #include "config.h"
 #include "seqmod.h"
 #include <stdlib.h>
-
+#include "variantbinhandler.h"
+#include "referencecontainer.h"
+#include "referencecontainerhandler.h"
+#include "arrangementcontainer.h"
 class Sim {
     private:
         std::string fastaPath;
         Config config;
+
 
     public:
         Sim();

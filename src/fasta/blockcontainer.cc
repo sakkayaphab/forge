@@ -43,3 +43,20 @@ std::vector<std::string> BlockContainer::getBlockTextList() {
 
     return blocktextlist;
 }
+
+void BlockContainer::removeBlockSmallThan(int64_t bases) {
+    std::vector<Block> tempBlock;
+    for (Block b:blocks) {
+        if (b.getEnd()-b.getPos()<bases) {
+
+        } else {
+            tempBlock.push_back(b);
+        }
+    }
+
+    BlockContainer::setBlocks(tempBlock);
+}
+
+std::vector<Block> BlockContainer::getBlocks() {
+    return BlockContainer::blocks;
+}

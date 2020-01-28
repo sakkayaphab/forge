@@ -29,17 +29,56 @@ void Sim::readFasta() {
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
 
+    VariantBinHandler variantbin;
+    variantbin.setSpace((101*2)+(400*10));
+    std::vector<VariantionConfig> vcs = config.getVariantionConfig();
+    for (VariantionConfig vc:vcs) {
+        for (VariantionRange r:vc.getVariantRangeList()) {
+            std::cout << vc.getSvType() << " " << r.getMinLength()<< " "  << r.getMaxLength()<< " "  << r.getNumber() << std::endl;
+            variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
+        }
+    }
+//    variantbin.sortVariantList();
+    variantbin.shuffleVariantList();
 
 
-//    const std::string username = config["username"].as<std::string>();
-//    std::cout << username << std::endl;
 //    FastaReader fastareader;
-//    fastareader.setFilePath(fastaPath);
-//    fastareader.setIndexFilePath(fastaPath+".fai");
+//    fastareader.setFilePath(getFastaPath());
+//    fastareader.setIndexFilePath(getFastaIndexPath());
 //    fastareader.initialize();
 //    fastareader.exitIfNoFilePath();
 //    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
-//    cm.showBlockContainers();
+//    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
+//    cm.writeBlockContainerTextFile("ll");
+
+
+    ContainerManager cm;
+    cm.loadBlockContainersFromFile("ll");
+//    std::cout << cm.getBlockContainers().size() << std::endl;
+//    return;
+// ReferenceContainerHandler
+    ReferenceContainerHandler rch;
+    rch.addContainerManagerToReferenceContainer(cm);
+    rch.showReferenceContainer();
+    rch.shuffleReferenceContainer();
+//    rch.showReferenceContainer();
+
+
+// ArrangementContainer
+    ArrangementContainer arrangementcontainer;
+    arrangementcontainer.setVariantBin(&variantbin);
+    arrangementcontainer.setReferenceContainerHandler(&rch);
+    arrangementcontainer.execute();
+    arrangementcontainer.showReferenceContainerContainVaraintOnly();
+    std::cout << arrangementcontainer.getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
+
+
+//    printf ("Again the first number: %d\n", rand()%100);
+//    printf ("Again the first number: %d\n", rand()%100);
+//    printf ("Again the first number: %d\n", rand()%100);
+//
+//    printf ("Again the first number: %d\n", rand()%100);
+
 
 
     // VCF

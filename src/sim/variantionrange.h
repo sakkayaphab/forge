@@ -14,9 +14,9 @@
 
 class VariantionRange {
 private:
-    int64_t maxlength;
-    int64_t minlength;
-    int number;
+    int64_t maxlength=0;
+    int64_t minlength=0;
+    int number=0;
 
 public:
     VariantionRange();
