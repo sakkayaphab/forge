@@ -13,7 +13,8 @@ class Variant {
 private:
     int64_t pos = 0;
     int64_t end = 0;
-    int64_t altLength = 0;
+    int64_t appxAltLength = 0;
+    int64_t appxRefLength = 0;
     std::string svtype;
     std::string alt;
     std::string ref;
@@ -31,9 +32,11 @@ public:
 
     int64_t getEnd();
 
-    void setAltLength(int64_t altLength);
+    void setAppxAltLength(int64_t altLength);
+    void setAppxRefLength(int64_t refLength);
 
-    int64_t getAltLength();
+    int64_t getAppxAltLength();
+    int64_t getAppxRefLength();
 
     void setSvType(std::string svtype);
 

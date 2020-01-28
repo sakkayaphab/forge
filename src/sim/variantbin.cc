@@ -14,6 +14,8 @@ void VariantBin::addVariant(Variant variant) {
 
 void VariantBin::setSeed(unsigned seed) {
     VariantBin::seed = seed;
+    std::default_random_engine tempRnge(seed);
+    rnge = tempRnge;
 }
 
 unsigned VariantBin::getSeed() {
@@ -21,10 +23,16 @@ unsigned VariantBin::getSeed() {
 }
 
 void VariantBin::shuffleBin() {
-    std::default_random_engine rnge(VariantBin::seed);
     std::shuffle(std::begin(VariantBin::variantlist), std::end(VariantBin::variantlist), rnge);
 }
 
 std::vector<Variant> VariantBin::getVariantList() {
     return VariantBin::variantlist;
+}
+
+void VariantBin::addVariantByLength(std::string svtype, int64_t length) {
+    Variant tempVariant;
+    tempVariant.setAppxAltLength(length);
+    tempVariant.setAppxRefLength(length);
+    VariantBin::addVariant(tempVariant);
 }

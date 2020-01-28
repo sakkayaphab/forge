@@ -64,10 +64,18 @@ int64_t Variant::getEndWithSpace() {
     return Variant::getEnd() + Variant::getSpace();
 }
 
-void Variant::setAltLength(int64_t altLength) {
-    Variant::altLength = altLength;
+void Variant::setAppxAltLength(int64_t altLength) {
+    Variant::appxAltLength = altLength;
 }
 
-int64_t Variant::getAltLength() {
-    return Variant::altLength;
+void Variant::setAppxRefLength(int64_t refLength) {
+    Variant::appxRefLength = refLength;
+}
+
+int64_t Variant::getAppxAltLength() {
+    return Variant::appxAltLength;
+}
+
+int64_t Variant::getAppxRefLength() {
+    return Variant::appxRefLength;
 }
