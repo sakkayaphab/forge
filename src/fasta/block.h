@@ -13,8 +13,8 @@
 class Block {
 private:
     std::string chr;
-    unsigned pos=0;
-    unsigned end=0;
+    int64_t pos=0;
+    int64_t end=0;
 public:
     Block();
     int64_t getPos();
@@ -27,6 +27,7 @@ public:
     std::string getTextEnd();
     void setTextPos(std::string textpos);
     void setTextEnd(std::string textend);
+
 };
 
 

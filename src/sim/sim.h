@@ -16,10 +16,13 @@
 #include "seqmod.h"
 #include <stdlib.h>
 #include "approxvariation.h"
+
+
 class Sim {
     private:
         std::string fastaPath;
         Config config;
+
 
     public:
         Sim();

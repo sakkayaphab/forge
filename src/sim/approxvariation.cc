@@ -25,6 +25,14 @@ ContainerManager *ApproxVariation::getContainerManager() {
 }
 
 void ApproxVariation::execute() {
-    std::vector<VariantionConfig> vc = getConfig()->getVariantionConfig();
+    std::vector<BlockContainer> bcs = getContainerManager()->getBlockContainers();
+    std::vector<Block> blocks = bcs.at(0).getBlocks();
+    for (Block bk:blocks) {
+        std::cout << bk.getChr() << " " << bk.getPos() << " " << bk.getEnd() << std::endl;
+    }
 
+//    std::vector<VariantionConfig> vcs = getConfig()->getVariantionConfig();
+//    for (VariantionConfig vc:vcs) {
+//
+//    }
 }

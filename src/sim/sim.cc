@@ -21,24 +21,32 @@ std::string Sim::getFastaIndexPath() {
 }
 
 void Sim::readFasta() {
+    unsigned seed = 0;
 
-    Config config;
-    config.setReferencePath(Sim::getFastaPath());
-    config.setReferenceIndexPath(Sim::getFastaIndexPath());
+//    Config config;
+//    config.setReferencePath(Sim::getFastaPath());
+//    config.setReferenceIndexPath(Sim::getFastaIndexPath());
+//
+//    config.setConfigFilePath("../templates/custom.yaml");
+//    config.readConfigFile();
+//
+//
+//    ContainerManager cm;
+//    cm.loadBlockContainersFromFile("ll");
+////    cm.showBlockContainers();
+//
+//    ApproxVariation apxv;
+//    apxv.setConfig(&config);
+//    apxv.setContainerManager(&cm);
+//    apxv.execute();
+    srand (seed);
 
-    config.setConfigFilePath("../templates/custom.yaml");
-    config.readConfigFile();
 
-
-    ContainerManager cm;
-    cm.loadBlockContainersFromFile("ll");
-//    cm.showBlockContainers();
-
-    ApproxVariation apxv;
-    apxv.setConfig(&config);
-    apxv.setContainerManager(&cm);
-    apxv.execute();
-
+//    printf ("Again the first number: %d\n", rand()%100);
+//    printf ("Again the first number: %d\n", rand()%100);
+//    printf ("Again the first number: %d\n", rand()%100);
+//
+//    printf ("Again the first number: %d\n", rand()%100);
 
 //    FastaReader fastareader;
 //    fastareader.setFilePath(getFastaPath());

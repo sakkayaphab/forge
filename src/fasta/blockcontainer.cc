@@ -56,3 +56,7 @@ void BlockContainer::removeBlockSmallThan(int64_t bases) {
 
     BlockContainer::setBlocks(tempBlock);
 }
+
+std::vector<Block> BlockContainer::getBlocks() {
+    return BlockContainer::blocks;
+}

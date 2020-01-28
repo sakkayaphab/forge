@@ -2,14 +2,14 @@
 // Created by Sakkayaphab Piwluang on 28/1/20.
 //
 
-#ifndef FORGE_VARIATION_H
-#define FORGE_VARIATION_H
+#ifndef FORGE_VARIANT_H
+#define FORGE_VARIANT_H
 
 
 #include <cstdint>
 #include <string>
 
-class Variation {
+class Variant {
 private:
     int64_t pos = 0;
     int64_t end = 0;
@@ -21,7 +21,7 @@ private:
 
 
 public:
-    Variation();
+    Variant();
 
     void setPos(int64_t pos);
 
@@ -57,4 +57,4 @@ public:
 };
 
 
-#endif //FORGE_VARIATION_H
+#endif //FORGE_VARIANT_H
