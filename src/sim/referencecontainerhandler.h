@@ -24,7 +24,7 @@ public:
     void addContainerManagerToReferenceContainer(ContainerManager cm);
     void showReferenceContainer();
     void shuffleReferenceContainer();
-    int64_t getSize();
+    int64_t getSizeReferenceContainer();
     void setSeed(unsigned seed);
     unsigned getSeed();
     std::vector<ReferenceContainer> *getReferenceContainerList();

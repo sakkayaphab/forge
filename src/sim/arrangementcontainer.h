@@ -30,7 +30,10 @@ public:
 
     void execute();
 
-    void runWorstFitDecreasing();
+    void runDumpVariantWorstFitDecreasing();
+    void runDumpVariantRound();
+
+    void showReferenceContainerContainVaraintOnly();
 
 };
 

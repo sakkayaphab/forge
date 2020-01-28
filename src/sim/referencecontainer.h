@@ -32,7 +32,7 @@ public:
     int64_t getOrderNumber();
     int64_t getAllVariantBlockSize();
     bool haveSpaceToAdd(VariantBlock vb);
-
+    void showSummary();
 };
 
 

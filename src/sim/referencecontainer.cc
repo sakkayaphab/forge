@@ -77,3 +77,7 @@ int64_t ReferenceContainer::getCapacity() {
 int64_t ReferenceContainer::getFreeSpace() {
     return ReferenceContainer::getCapacity()-ReferenceContainer::getAllVariantBlockSize();
 }
+
+void ReferenceContainer::showSummary() {
+    std::cout << getChr() << " " << getPos() << "," << getEnd() << " number variant : " << getVariantBlocks().size() << std::endl;
+}

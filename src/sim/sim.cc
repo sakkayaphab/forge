@@ -33,6 +33,7 @@ void Sim::readFasta() {
     config.readConfigFile();
 
     VariantBinHandler variantbin;
+    variantbin.setSpace((101*2)+1000);
     std::vector<VariantionConfig> vcs = config.getVariantionConfig();
     for (VariantionConfig vc:vcs) {
         for (VariantionRange r:vc.getVariantRangeList()) {
@@ -50,11 +51,12 @@ void Sim::readFasta() {
     std::cout << "++++++++++++++" << std::endl;
     rch.shuffleReferenceContainer();
     rch.showReferenceContainer();
-    
+
     ArrangementContainer arrangementcontainer;
     arrangementcontainer.setVariantBin(&variantbin);
     arrangementcontainer.setReferenceContainerHandler(&rch);
     arrangementcontainer.execute();
+    arrangementcontainer.showReferenceContainerContainVaraintOnly();
 
 
 //    printf ("Again the first number: %d\n", rand()%100);

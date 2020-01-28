@@ -15,8 +15,10 @@ variations:
   DEL:
     range:
       - 100-1000
+      - 1001-2000
     number:
       - 2
+      - 2000
   INS:
     range:
       - 100-1000

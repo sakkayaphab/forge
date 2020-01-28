@@ -32,7 +32,7 @@ void ReferenceContainerHandler::shuffleReferenceContainer() {
     std::shuffle(std::begin(ReferenceContainerHandler::referencecontainerlist), std::end(ReferenceContainerHandler::referencecontainerlist), rnge);
 }
 
-int64_t ReferenceContainerHandler::getSize() {
+int64_t ReferenceContainerHandler::getSizeReferenceContainer() {
     return ReferenceContainerHandler::referencecontainerlist.size();
 }
 

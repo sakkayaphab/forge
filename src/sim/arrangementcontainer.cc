@@ -25,26 +25,66 @@ ReferenceContainerHandler *ArrangementContainer::getReferenceContainerHandler() 
 }
 
 void ArrangementContainer::execute() {
-    ArrangementContainer::runWorstFitDecreasing();
+//    ArrangementContainer::runDumpVariantWorstFitDecreasing();
+        ArrangementContainer::runDumpVariantRound();
 }
 
-void ArrangementContainer::runWorstFitDecreasing() {
-    std::cout << getReferenceContainerHandler()->getSize() << std::endl;
+void ArrangementContainer::runDumpVariantWorstFitDecreasing() {
+    std::cout << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
     for (VariantBlock vb:getVariantBin()->getVariantList()) {
         bool added = false;
 
-        for (int64_t i =0;i<getReferenceContainerHandler()->getSize();i++) {
-            std::cout << i << "/" << getReferenceContainerHandler()->getSize() << std::endl;
+        for (int64_t i =0;i< getReferenceContainerHandler()->getSizeReferenceContainer(); i++) {
+            std::cout << i << "/" << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
             if (getReferenceContainerHandler()->getReferenceContainerList()->at(i).haveSpaceToAdd(vb)) {
                 getReferenceContainerHandler()->getReferenceContainerList()->at(i).addVariantBlock(vb);
                 added = true;
                 break;
             }
-            break;
         }
         if (!added) {
-            std::cerr << "cannot add variant because no space to add" << std::endl;
+            std::cerr << "ERR : cannot add variant because no space to add" << std::endl;
             exit(1);
+        }
+    }
+}
+
+void ArrangementContainer::runDumpVariantRound() {
+    std::cout << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
+    int64_t position=0;
+    for (VariantBlock vb:getVariantBin()->getVariantList()) {
+        bool added = false;
+
+        int passed = false;
+        for (;;) {
+            position++;
+            if (position>= getReferenceContainerHandler()->getSizeReferenceContainer()) {
+                if (passed) {
+                    std::cerr << "ERR : cannot add variant because no space to add" << std::endl;
+                    exit(1);
+                }
+                position = 0;
+                passed = true;
+            }
+            std::cout << position << "/" << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
+            if (getReferenceContainerHandler()->getReferenceContainerList()->at(position).haveSpaceToAdd(vb)) {
+                getReferenceContainerHandler()->getReferenceContainerList()->at(position).addVariantBlock(vb);
+                added = true;
+                break;
+            }
+        }
+
+        if (!added) {
+            std::cerr << "ERR : cannot add variant because no space to add" << std::endl;
+            exit(1);
+        }
+    }
+}
+
+void ArrangementContainer::showReferenceContainerContainVaraintOnly() {
+    for (ReferenceContainer n:*getReferenceContainerHandler()->getReferenceContainerList()) {
+        if (n.getVariantBlocks().size()!=0) {
+            n.showSummary();
         }
     }
 }
