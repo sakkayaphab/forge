@@ -25,13 +25,26 @@ ReferenceContainerHandler *ArrangementContainer::getReferenceContainerHandler() 
 }
 
 void ArrangementContainer::execute() {
+    ArrangementContainer::runWorstFitDecreasing();
+}
+
+void ArrangementContainer::runWorstFitDecreasing() {
     std::cout << getReferenceContainerHandler()->getSize() << std::endl;
-    for (int64_t i =0;i<getReferenceContainerHandler()->getSize();i++) {
-        getReferenceContainerHandler()->getReferenceContainerList()->at(i)
+    for (VariantBlock vb:getVariantBin()->getVariantList()) {
+        bool added = false;
+
+        for (int64_t i =0;i<getReferenceContainerHandler()->getSize();i++) {
+            std::cout << i << "/" << getReferenceContainerHandler()->getSize() << std::endl;
+            if (getReferenceContainerHandler()->getReferenceContainerList()->at(i).haveSpaceToAdd(vb)) {
+                getReferenceContainerHandler()->getReferenceContainerList()->at(i).addVariantBlock(vb);
+                added = true;
+                break;
+            }
+            break;
+        }
+        if (!added) {
+            std::cerr << "cannot add variant because no space to add" << std::endl;
+            exit(1);
+        }
     }
 }
-//
-//std::vector<ReferenceContainer> *ArrangementContainer::getReferenceContainer() {
-//    return ArrangementContainer::getReferenceContainerHandler()->getReferenceContainerList();
-//}
-

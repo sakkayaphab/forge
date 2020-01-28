@@ -53,6 +53,9 @@ int64_t ReferenceContainer::getOrderNumber() {
 }
 
 bool ReferenceContainer::haveSpaceToAdd(VariantBlock vb) {
+    std::cout << "vb.getAppxRefLengthWithSpace() : " << vb.getAppxRefLengthWithSpace() << std::endl;
+    std::cout << "getFreeSpace() : " << getFreeSpace() << std::endl;
+
     if (getFreeSpace()>=vb.getAppxRefLengthWithSpace()) {
         return true;
     }
@@ -72,5 +75,5 @@ int64_t ReferenceContainer::getCapacity() {
 }
 
 int64_t ReferenceContainer::getFreeSpace() {
-    return ReferenceContainer::getCapacity()-(ReferenceContainer::getEnd()-ReferenceContainer::getPos());
+    return ReferenceContainer::getCapacity()-ReferenceContainer::getAllVariantBlockSize();
 }

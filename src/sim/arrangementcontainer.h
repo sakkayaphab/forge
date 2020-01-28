@@ -28,8 +28,9 @@ public:
 
     ReferenceContainerHandler *getReferenceContainerHandler();
 
-
     void execute();
+
+    void runWorstFitDecreasing();
 
 };
 

@@ -40,12 +40,7 @@ void Sim::readFasta() {
             variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
         }
     }
-//    variantbin.showVariantList();
-//
-//    std::cout << "++++++++++++++" << std::endl;
     variantbin.sortVariantList();
-//    variantbin.showVariantList();
-
 
     ContainerManager cm;
     cm.loadBlockContainersFromFile("ll");
@@ -55,8 +50,7 @@ void Sim::readFasta() {
     std::cout << "++++++++++++++" << std::endl;
     rch.shuffleReferenceContainer();
     rch.showReferenceContainer();
-
-
+    
     ArrangementContainer arrangementcontainer;
     arrangementcontainer.setVariantBin(&variantbin);
     arrangementcontainer.setReferenceContainerHandler(&rch);
