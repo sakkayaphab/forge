@@ -38,15 +38,12 @@ void Sim::readFasta() {
     std::vector<VariantionConfig> vcs = config.getVariantionConfig();
     for (VariantionConfig vc:vcs) {
         for (VariantionRange r:vc.getVariantRangeList()) {
-            std::uniform_int_distribution<int64_t> dis(r.getMinLength(), r.getMaxLength());
-            for (int i=0;i<r.getNumber();i++) {
-                Variant tempVariant;
-                tempVariant.setAppxRefLength(dis(rnge));
-                tempVariant.setAppxRefLength(dis(rnge));
-            }
-            std::cout << '\n';
+            std::cout << vc.getSvType() << " " << r.getMinLength()<< " "  << r.getMaxLength()<< " "  << r.getNumber() << std::endl;
+            variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
         }
     }
+    variantbin.showVariantList();
+
 //
 //
 //    ContainerManager cm;

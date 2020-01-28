@@ -29,7 +29,7 @@ void Variant::setSvType(std::string svtype) {
 }
 
 std::string Variant::getSvtype() {
-    return std::string();
+    return Variant::svtype;
 }
 
 void Variant::setAlt(std::string alt) {
@@ -82,4 +82,8 @@ int64_t Variant::getAppxRefLength() {
 
 int64_t Variant::getAppxRefLengthWithSpace() {
     return Variant::appxRefLength+(Variant::getSpace()*2);
+}
+
+void Variant::show() {
+    std::cout << "svtype: " << getSvtype()  << " length: " << getAppxRefLengthWithSpace() << " space: " << getSpace() << std::endl;
 }

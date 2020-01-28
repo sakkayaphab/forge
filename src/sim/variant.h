@@ -8,7 +8,7 @@
 
 #include <cstdint>
 #include <string>
-
+#include <iostream>
 class Variant {
 private:
     int64_t pos = 0;
@@ -57,6 +57,7 @@ public:
     int64_t getPosWithSpace();
 
     int64_t getEndWithSpace();
+    void show();
 };
 
 

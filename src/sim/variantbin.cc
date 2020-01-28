@@ -41,7 +41,6 @@ void VariantBin::addVariantByParameter(std::string svtype, int64_t length) {
     } else {
         tempVariant.setAppxRefLength(length);
     }
-
     VariantBin::addVariant(tempVariant);
 }
 
@@ -51,6 +50,19 @@ void VariantBin::setSpace(int64_t space) {
 
 int64_t VariantBin::getSpace() {
     return VariantBin::space;
+}
+
+void VariantBin::addVariantByRange(std::string svtype, int64_t minlength, int64_t maxlength, int number) {
+    std::uniform_int_distribution<int64_t> dis(minlength, maxlength);
+    for (int i=0;i<number;i++) {
+        addVariantByParameter(svtype,dis(rnge));
+    }
+}
+
+void VariantBin::showVariantList() {
+    for (Variant x:variantlist) {
+        x.show();
+    }
 }
 
 

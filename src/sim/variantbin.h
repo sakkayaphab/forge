@@ -21,10 +21,12 @@ public:
     int64_t getSpace();
     void addVariant(Variant variant);
     void addVariantByParameter(std::string svtype, int64_t length);
+    void addVariantByRange(std::string svtype,int64_t minlength,int64_t maxlength,int number);
     void setSeed(unsigned seed);
     unsigned getSeed();
     void shuffleBin();
     std::vector<Variant> getVariantList();
+    void showVariantList();
 };
 
 #endif //FORGE_VARIANTBIN_H
