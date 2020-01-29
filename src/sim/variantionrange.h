@@ -33,6 +33,8 @@ public:
 
     void setMaxLength(int64_t max);
     void setMinLength(int64_t min);
+    void setTextMaxLength(std::string max);
+    void setTextMinLength(std::string min);
     void setNumber(int number);
     int64_t getMaxLength();
     int64_t getMinLength();

@@ -24,7 +24,7 @@ unsigned Config::getSeed() {
 
 void Config::readConfigFile() {
     if (!FileExists(getConfigFilePath())) {
-        std::cout << "not found file : " << getConfigFilePath() << std::endl;
+        std::cerr << "not found file : " << getConfigFilePath() << std::endl;
         return;
     }
 
@@ -90,17 +90,19 @@ void Config::readConfigFile() {
             }
         }
 
-        if (textRangeList.size()!=textNumberList.size()) {
+        std::vector<VariantionRange> vrlist;
+        if (textRangeList.size()!=0) {
+            for (int i=0;i<textRangeList.size();i++) {
+                VariantionRange tempVR;
+                tempVR.setTextRange(textRangeList[i]);
+                tempVR.setTextNumber(textNumberList[i]);
+                vrlist.push_back(tempVR);
+            }
+        } else {
             std::cerr << "range and number are uncorrect" << std::endl;
+            exit(1);
         }
 
-        std::vector<VariantionRange> vrlist;
-        for (int i=0;i<textRangeList.size();i++) {
-            VariantionRange tempVR;
-            tempVR.setTextRange(textRangeList[i]);
-            tempVR.setTextNumber(textNumberList[i]);
-            vrlist.push_back(tempVR);
-        }
         vc.setVariantRangeList(vrlist);
         Config::addVariantionConfig(vc);
 
