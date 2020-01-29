@@ -3,14 +3,15 @@ files:
     reference: ~/reference/ucsc_hg19.fa
   output:
     output_directory : ~/mysim
-  config:
-    sequencing: paired-end
-    read_length: 101
-    insert_size: 400
-    sd: 50
-    base_error_rate: 0.2
-    coverage: 30
-    seed: 0
+config:
+  sequencing: paired-end
+  read_length: 101
+  insert_size: 400
+  sd_insert_size: 50
+  base_error_rate: 0.2
+  coverage: 30
+  seed: 0
+  debug: A;B;C;INV[A,B,C];B
 
 variations:
   DEL:
@@ -60,6 +61,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupINVdup:
     allocate: ABC
     pattern: A;INV[A,B,C];C
@@ -67,6 +69,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupINVdel:
     allocate: ABC
     pattern: A;INV[A,B];C
@@ -74,6 +77,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   delINVdup:
     allocate: ABC
     pattern: DEL[A];INV[B,C];C
@@ -81,6 +85,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   delINVdup:
     allocate: ABC
     pattern: DEL[A];INV[B,C];C
@@ -88,6 +93,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupTRIPdup-INV:
     allocate: ABC
     pattern: A;B;C;INV[A,B,C];B
@@ -95,6 +101,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   IR:
     allocate: AB
     pattern: A;INV[B]

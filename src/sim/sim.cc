@@ -28,7 +28,7 @@ void Sim::readFasta() {
 
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
-    return;
+//    return;
 
     VariantBinHandler variantbin;
     variantbin.setSpace((101*2)+(400*5));
@@ -67,7 +67,7 @@ void Sim::readFasta() {
     ReferenceContainerHandler rch;
     rch.addContainerManagerToReferenceContainer(cm);
 //    rch.showReferenceContainer();
-    rch.shuffleReferenceContainer();
+//    rch.shuffleReferenceContainer();
 //    rch.showReferenceContainer();
 //    return;
 
