@@ -71,7 +71,7 @@ delINVdel:
 
 dupINV:
     pattern:
-      - [DUP(2/3),STA(1/3)] > [STA(1/3),INV(2/3)]
+      - [DUP.A(1/3),DUP.A(1/3),STA(1/3)] > [STA(1/3),INV(2/3)]
 
 INVdup:
     pattern:
@@ -87,7 +87,11 @@ dupINVdup:
 
 dupINVdel:
     pattern:
-      - [DUP(2/4),STA(1/4),DUP(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+      - [DUP(2/4),STA(1/4),DEL(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+
+dupTRIPdup-INV
+    pattern:
+      - []
 
 ```
 
