@@ -28,6 +28,7 @@ void Sim::readFasta() {
 
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
+//    return;
 
     VariantBinHandler variantbin;
     variantbin.setSpace((101*2)+(400*5));
@@ -47,18 +48,18 @@ void Sim::readFasta() {
 
 
 
-//    FastaReader fastareader;
-//    fastareader.setFilePath(getFastaPath());
-//    fastareader.setIndexFilePath(getFastaIndexPath());
-//    fastareader.initialize();
-//    fastareader.exitIfNoFilePath();
-//    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
-//    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
+    FastaReader fastareader;
+    fastareader.setFilePath(getFastaPath());
+    fastareader.setIndexFilePath(getFastaIndexPath());
+    fastareader.initialize();
+    fastareader.exitIfNoFilePath();
+    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
+    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
 //    cm.writeBlockContainerTextFile("ll");
 
 
-    ContainerManager cm;
-    cm.loadBlockContainersFromFile("ll");
+//    ContainerManager cm;
+//    cm.loadBlockContainersFromFile("ll");
 
 //    std::cout << cm.getBlockContainers().size() << std::endl;
 //    return;
