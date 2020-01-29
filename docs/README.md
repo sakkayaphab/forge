@@ -45,7 +45,7 @@ variations:
 
 ## Complex SV syntax
 
-- common SVs
+- common variable
 ```text
 DEL = deletion
 INV = inversion
@@ -60,38 +60,45 @@ STA = Static (No mutation)
 delINV:
     pattern:
       - [DEL(1/2),INV(1/2)]
-
+    allocate_ref:
+      - 2/2
 INVdel:
     pattern:
       - [INV(1/2)DEL(1/2)]
+    allocate_ref:
+      - 2/2
 
 delINVdel:
     pattern:
       - [DEL(1/3),INV(1/3),DEL(1/3)]
+    allocate_ref:
+      - 3/3
 
 dupINV:
     pattern:
       - [DUP.A(1/3),DUP.A(1/3),STA(1/3)] > [STA(1/3),INV(2/3)]
+    allocate_ref:
+      - 2/3
 
 INVdup:
     pattern:
-      - [STA(1/3),DUP(2/3)] > [INV(2/3),STA(1/3)]
-
-INVdup:
-    pattern:
-      - [DUP(1/3),DEL(1/3),STA(1/3)] > [STA(1/3),INV(2/3)]
+      - [STA(1/3),DUP.A(1/3),DUP.A(1/3)] > [INV(2/3),STA(1/3)]
+    allocate_ref:
+      - 2/3
 
 dupINVdup:
     pattern:
-      - [DUP(2/4),DUP(2/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+      - [DUP.A(1/4),DUP.A(1/4),DUP(1/4),DUP(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+    allocate_ref:
+      - 2/4
 
 dupINVdel:
     pattern:
-      - [DUP(2/4),STA(1/4),DEL(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+      - [DUP.A(1/4),DUP.A(1/4),STA(1/4),DEL(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
 
 dupTRIPdup-INV
     pattern:
-      - []
+      - [DUP.A(1/7),DUP.B(1/7),DUP.C(1/7),DUP.A(1/7),DUP.B(1/7),DUP.C(1/7),DUP.B(1/7)] > [STA(3/7),INV(3/7),STA(1/7)]
 
 ```
 
