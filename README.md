@@ -14,20 +14,106 @@ files:
   input:
     reference: ~/reference/ucsc_hg19.fa
   output:
-    output_directory: ~/mysim
+    output_directory : ~/mysim
+  config:
     sequencing: paired-end
     read_length: 101
-    average_insert_size: 400
+    insert_size: 400
     sd: 50
     base_error_rate: 0.2
     coverage: 30
+    seed: 0
 
 variations:
   DEL:
     range:
-      - 100-100000
+      - 100-1000
+      - 1001-10000
     number:
-      - 400
+      - 200
+      - 100
+  INS:
+    range:
+      - 100-20000
+    number:
+      - 100
+  delINV:
+    allocate: AB
+    pattern: DEL[A],INV[B]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  INVdel:
+    allocate: AB
+    pattern: INV[A],DEL[B]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  delINVdel:
+    allocate: ABC
+    pattern: DEL[A],INV[B],DEL[C]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  dupINV:
+    allocate: AB
+    pattern: A,INV[A;B]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  INVdup:
+    allocate: AB
+    pattern: INV[A;B],A
+    range:
+      - 10000-20000
+    number:
+      - 1
+  dupINVdup:
+    allocate: ABC
+    pattern: A;INV[A,B,C];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  dupINVdel:
+    allocate: ABC
+    pattern: A;INV[A,B];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  delINVdup:
+    allocate: ABC
+    pattern: DEL[A];INV[B,C];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  delINVdup:
+    allocate: ABC
+    pattern: DEL[A];INV[B,C];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  dupTRIPdup-INV:
+    allocate: ABC
+    pattern: A;B;C;INV[A,B,C];B
+    range:
+      - 10000-20000
+    number:
+      - 1
+  IR:
+    allocate: AB
+    pattern: A;INV[B]
+    range:
+      - 10000-20000
+    number:
+      - 1
 ```
 
 

@@ -30,7 +30,6 @@ void ArrangementContainer::execute() {
 }
 
 void ArrangementContainer::runDumpVariantWorstFitDecreasing() {
-    std::cout << getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
     for (VariantBlock vb:getVariantBin()->getVariantList()) {
         bool added = false;
 
@@ -53,7 +52,6 @@ void ArrangementContainer::runDumpVariantRound() {
     int64_t position=0;
     for (VariantBlock vb:getVariantBin()->getVariantList()) {
         bool added = false;
-
         int passed = false;
         for (;;) {
             position++;

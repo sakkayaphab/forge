@@ -28,9 +28,10 @@ void Sim::readFasta() {
 
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
+    return;
 
     VariantBinHandler variantbin;
-    variantbin.setSpace((101*2)+(400*10));
+    variantbin.setSpace((101*2)+(400*5));
     std::vector<VariantionConfig> vcs = config.getVariantionConfig();
     for (VariantionConfig vc:vcs) {
         for (VariantionRange r:vc.getVariantRangeList()) {
@@ -38,39 +39,45 @@ void Sim::readFasta() {
             variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
         }
     }
+//        variantbin.showVariantList();
+
 //    variantbin.sortVariantList();
     variantbin.shuffleVariantList();
+//    variantbin.showVariantList();
+//    return;
 
 
-//    FastaReader fastareader;
-//    fastareader.setFilePath(getFastaPath());
-//    fastareader.setIndexFilePath(getFastaIndexPath());
-//    fastareader.initialize();
-//    fastareader.exitIfNoFilePath();
-//    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
-//    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
+
+    FastaReader fastareader;
+    fastareader.setFilePath(getFastaPath());
+    fastareader.setIndexFilePath(getFastaIndexPath());
+    fastareader.initialize();
+    fastareader.exitIfNoFilePath();
+    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
+    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
 //    cm.writeBlockContainerTextFile("ll");
 
 
-    ContainerManager cm;
-    cm.loadBlockContainersFromFile("ll");
+//    ContainerManager cm;
+//    cm.loadBlockContainersFromFile("ll");
+
 //    std::cout << cm.getBlockContainers().size() << std::endl;
 //    return;
 // ReferenceContainerHandler
     ReferenceContainerHandler rch;
     rch.addContainerManagerToReferenceContainer(cm);
-    rch.showReferenceContainer();
+//    rch.showReferenceContainer();
     rch.shuffleReferenceContainer();
 //    rch.showReferenceContainer();
-
+//    return;
 
 // ArrangementContainer
     ArrangementContainer arrangementcontainer;
     arrangementcontainer.setVariantBin(&variantbin);
     arrangementcontainer.setReferenceContainerHandler(&rch);
     arrangementcontainer.execute();
-    arrangementcontainer.showReferenceContainerContainVaraintOnly();
-    std::cout << arrangementcontainer.getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
+//    arrangementcontainer.showReferenceContainerContainVaraintOnly();
+//    std::cout << arrangementcontainer.getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
 
 
 //    printf ("Again the first number: %d\n", rand()%100);

@@ -35,12 +35,22 @@ int VariantionRange::getNumber() {
 void VariantionRange::setTextRange(std::string textrange) {
     textrange.erase(remove_if(textrange.begin(), textrange.end(), isspace), textrange.end());
     std::vector<std::string> splited = VariantionRange::split(textrange, '-');
-    if (splited.size()!=2) {
+    if (splited.size()==2) {
+        if (convertStringToInt64(splited.at(0))<=convertStringToInt64(splited.at(1))) {
+            VariantionRange::setMinLength(convertStringToInt64(splited.at(0)));
+            VariantionRange::setMaxLength(convertStringToInt64(splited.at(1)));
+        } else {
+            std::cerr << "range error : " << textrange << std::endl;
+            exit(1);
+        }
+    } else if  (splited.size()!=2) {
+        VariantionRange::setMinLength(convertStringToInt64(splited.at(0)));
+        VariantionRange::setMaxLength(convertStringToInt64(splited.at(0)));
+    } else {
         std::cerr << "range error : " << textrange << std::endl;
         exit(1);
     }
-    VariantionRange::setMinLength(convertStringToInt64(splited.at(0)));
-    VariantionRange::setMaxLength(convertStringToInt64(splited.at(1)));
+
 }
 
 void VariantionRange::setTextNumber(std::string number) {
@@ -65,4 +75,12 @@ int64_t VariantionRange::convertStringToInt64(std::string text) {
 int VariantionRange::convertStringToInt(std::string text) {
     int64_t value = std::stoi(text.c_str(), NULL, 0);
     return value;
+}
+
+void VariantionRange::setTextMaxLength(std::string max) {
+    VariantionRange::setMaxLength(VariantionRange::convertStringToInt(max));
+}
+
+void VariantionRange::setTextMinLength(std::string min) {
+    VariantionRange::setMinLength(VariantionRange::convertStringToInt(min));
 }

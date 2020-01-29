@@ -8,7 +8,6 @@ Config::Config() {
 
 }
 
-
 bool Config::FileExists(std::string filename) {
     std::ifstream ifile(filename.c_str());
     return (bool)ifile;
@@ -24,7 +23,7 @@ unsigned Config::getSeed() {
 
 void Config::readConfigFile() {
     if (!FileExists(getConfigFilePath())) {
-        std::cout << "not found file : " << getConfigFilePath() << std::endl;
+        std::cerr << "not found file : " << getConfigFilePath() << std::endl;
         return;
     }
 
@@ -37,28 +36,36 @@ void Config::readConfigFile() {
         std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
         Config::setOutputDirectoryPath(outputdirectory);
     }
-    if (configNode["files"]["output"]["sequencing"]) {
-        std::string sequencing = configNode["files"]["output"]["sequencing"].as<std::string>();
+
+    if (configNode["files"]["config"]["sequencing"]) {
+        std::string sequencing = configNode["files"]["config"]["sequencing"].as<std::string>();
         Config::setSequencing(sequencing);
     }
-    if (configNode["files"]["output"]["read_length"]) {
-        std::string readlength = configNode["files"]["output"]["read_length"].as<std::string>();
+    if (configNode["files"]["config"]["read_length"]) {
+        std::string readlength = configNode["files"]["config"]["read_length"].as<std::string>();
         Config::setTextReadlength(readlength);
     }
-    if (configNode["files"]["output"]["average_insert_size"]) {
-        std::string averageinsertsize = configNode["files"]["output"]["average_insert_size"].as<std::string>();
-        Config::setTextAverageInsertSize(averageinsertsize);
+
+    if (configNode["files"]["config"]["insert_size"]) {
+        std::string insertsize = configNode["files"]["config"]["insert_size"].as<std::string>();
+        Config::setTextAverageInsertSize(insertsize);
     }
-    if (configNode["files"]["output"]["sd"]) {
-        std::string sd = configNode["files"]["output"]["sd"].as<std::string>();
+
+    if (configNode["files"]["config"]["pattern"]) {
+        std::string pattern = configNode["files"]["config"]["pattern"].as<std::string>();
+        std::cout << pattern << std::endl;
+    }
+
+    if (configNode["files"]["config"]["sd"]) {
+        std::string sd = configNode["files"]["config"]["sd"].as<std::string>();
         Config::setTextSD(sd);
     }
-    if (configNode["files"]["output"]["base_error_rate"]) {
-        std::string baseerrorrate = configNode["files"]["output"]["base_error_rate"].as<std::string>();
+    if (configNode["files"]["config"]["base_error_rate"]) {
+        std::string baseerrorrate = configNode["files"]["config"]["base_error_rate"].as<std::string>();
         Config::setTextBaseErrorRate(baseerrorrate);
     }
-    if (configNode["files"]["output"]["coverage"]) {
-        std::string coverage = configNode["files"]["output"]["coverage"].as<std::string>();
+    if (configNode["files"]["config"]["coverage"]) {
+        std::string coverage = configNode["files"]["config"]["coverage"].as<std::string>();
         Config::setTextCoverage(coverage);
     }
 
@@ -90,17 +97,19 @@ void Config::readConfigFile() {
             }
         }
 
-        if (textRangeList.size()!=textNumberList.size()) {
+        std::vector<VariantionRange> vrlist;
+        if (textRangeList.size()!=0) {
+            for (int i=0;i<textRangeList.size();i++) {
+                VariantionRange tempVR;
+                tempVR.setTextRange(textRangeList[i]);
+                tempVR.setTextNumber(textNumberList[i]);
+                vrlist.push_back(tempVR);
+            }
+        } else {
             std::cerr << "range and number are uncorrect" << std::endl;
+            exit(1);
         }
 
-        std::vector<VariantionRange> vrlist;
-        for (int i=0;i<textRangeList.size();i++) {
-            VariantionRange tempVR;
-            tempVR.setTextRange(textRangeList[i]);
-            tempVR.setTextNumber(textNumberList[i]);
-            vrlist.push_back(tempVR);
-        }
         vc.setVariantRangeList(vrlist);
         Config::addVariantionConfig(vc);
 

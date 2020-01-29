@@ -1,15 +1,78 @@
 # Documentations
 
-## Input files
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgQVsvRkFTVEEgKyB0ZW1wbGF0ZS9dIC0tPiBCW0ZvcmdlXVxuICBCIC0tPiBDWy9GQVNUUS9dXG4gIEIgLS0-IERbL1ZDRi9dXG5cdFx0IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgQVsvRkFTVEEgKyB0ZW1wbGF0ZS9dIC0tPiBCW0ZvcmdlXVxuICBCIC0tPiBDWy9GQVNUUS9dXG4gIEIgLS0-IERbL1ZDRi9dXG5cdFx0IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+## Input/Output files
+![](https://i.imgur.com/GhWPlnu.png)
 
-## Genarate Variations
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgQVsvdGVtcGxhdGUvXSAtLT4gQltQYXJzZSB0ZW1wbGF0ZSBpbiB2YXJpYXRpb24gc2VjdGlvbl1cbiAgQiAtLT4gQ1tHZW5hcmF0ZSB2YXJpYW50cyBhY2NvcmRpbmcgdG8gdGVtcGxhdGVdXG4gIEMgLS0-IERbL1ZhcmlhbnQgQmxvY2tzL10iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgQVsvdGVtcGxhdGUvXSAtLT4gQltQYXJzZSB0ZW1wbGF0ZSBpbiB2YXJpYXRpb24gc2VjdGlvbl1cbiAgQiAtLT4gQ1tHZW5hcmF0ZSB2YXJpYW50cyBhY2NvcmRpbmcgdG8gdGVtcGxhdGVdXG4gIEMgLS0-IERbL1ZhcmlhbnQgQmxvY2tzL10iLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
+- example of template file
+```yaml
+files:
+  input:
+    reference: ~/reference/ucsc_hg19.fa
+  output:
+    output_directory : ~/mysim
+  config:
+    sequencing: paired-end
+    read_length: 101
+    average_insert_size: 400
+    sd: 50
+    base_error_rate: 0.2
+    coverage: 30
+    seed: 0
+
+variations:
+  DEL:
+    range:
+      - 100-1000
+      - 1001-10000
+    number:
+      - 200
+      - 100
+  INS:
+    range:
+      - 100-20000
+    number:
+      - 100
+    sds:
+      - 2
+  delINV:
+    range:
+      - 400-10000
+    number:
+      - 90
+```
+## Convert reference genome (FASTA) to reference containers (RCs)
+![](https://i.imgur.com/aRoTvkq.png)
 
 
 
+## Complex SV syntax
 
+- common variable
+```text
+DEL = deletion
+INV = inversion
+DUP = tandem duplication
+INS = insertion
+TRA = translocation;
+STA = static (No mutation)
+```
 
+- customize complex SVs
+```text
+# NAME SV
+PATTERN
+```
+
+```text
+#delINV
+DEL[A], INV[B]
+
+#INVdel
+INV[A], DEL(B)
+
+#DUP
+A,B,C, INV[A,B,C],B
+```
 
 
 
