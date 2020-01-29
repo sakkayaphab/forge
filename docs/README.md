@@ -32,7 +32,9 @@ variations:
       - 100-20000
     number:
       - 100
-  INV:
+    sds:
+      - 2
+  delINV:
     range:
       - 400-10000
     number:
@@ -63,29 +65,13 @@ PATTERN
 
 ```text
 #delINV
-[DEL(1/2),INV(1/2)]
+DEL[A], INV[B]
 
 #INVdel
-[INV(1/2)DEL(1/2)]
+INV[A], DEL(B)
 
-#delINVdel
-[DEL(1/3),INV(1/3),DEL(1/3)]
-
-#dupINV
-[DUP.A(1/3),DUP.A(1/3),STA(1/3)] > [STA(1/3),INV(2/3)]
-
-#INVdup
-[STA(1/3),DUP.A(1/3),DUP.A(1/3)] > [INV(2/3),STA(1/3)]
-
-#dupINVdup
-[DUP.A(1/4),DUP.A(1/4),DUP(1/4),DUP(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
-
-#dupINVdel
-[DUP.A(1/4),DUP.A(1/4),STA(1/4),DEL(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
-
-#dupTRIPdup-INV
-[DUP.A(1/7),DUP.B(1/7),DUP.C(1/7),DUP.A(1/7),DUP.B(1/7),DUP.C(1/7),DUP.B(1/7)] > [STA(3/7),INV(3/7),STA(1/7)]
-
+#DUP
+A,B,C, INV[A,B,C],B
 ```
 
 

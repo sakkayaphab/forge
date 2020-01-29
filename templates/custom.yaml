@@ -25,13 +25,80 @@ variations:
       - 100-20000
     number:
       - 100
+  delINV:
+    allocate: AB
+    pattern: DEL[A],INV[B]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  INVdel:
+    allocate: AB
+    pattern: INV[A],DEL[B]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  delINVdel:
+    allocate: ABC
+    pattern: DEL[A],INV[B],DEL[C]
+    range:
+      - 10000-20000
+    number:
+      - 1
+  dupINV:
+    allocate: AB
+    pattern: A,INV[A;B]
+    range:
+      - 10000-20000
+    number:
+      - 1
   INVdup:
+    allocate: AB
+    pattern: INV[A;B],A
     range:
-      - 1000-20000
+      - 10000-20000
     number:
-      - 10000
-  INSdel:
+      - 1
+  dupINVdup:
+    allocate: ABC
+    pattern: A;INV[A,B,C];C
     range:
-      - 1000-20000
+      - 10000-20000
     number:
-      - 10000
+      - 1
+  dupINVdel:
+    allocate: ABC
+    pattern: A;INV[A,B];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  delINVdup:
+    allocate: ABC
+    pattern: DEL[A];INV[B,C];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  delINVdup:
+    allocate: ABC
+    pattern: DEL[A];INV[B,C];C
+    range:
+      - 10000-20000
+    number:
+      - 1
+  dupTRIPdup-INV:
+    allocate: ABC
+    pattern: A;B;C;INV[A,B,C];B
+    range:
+      - 10000-20000
+    number:
+      - 1
+  IR:
+    allocate: AB
+    pattern: A;INV[B]
+    range:
+      - 10000-20000
+    number:
+      - 1

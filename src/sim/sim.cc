@@ -28,7 +28,7 @@ void Sim::readFasta() {
 
     config.setConfigFilePath("../templates/custom.yaml");
     config.readConfigFile();
-//    return;
+    return;
 
     VariantBinHandler variantbin;
     variantbin.setSpace((101*2)+(400*5));

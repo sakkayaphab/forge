@@ -8,7 +8,6 @@ Config::Config() {
 
 }
 
-
 bool Config::FileExists(std::string filename) {
     std::ifstream ifile(filename.c_str());
     return (bool)ifile;
@@ -49,9 +48,14 @@ void Config::readConfigFile() {
 
     if (configNode["files"]["config"]["insert_size"]) {
         std::string insertsize = configNode["files"]["config"]["insert_size"].as<std::string>();
-//        std::cout << insertsize << std::endl;
         Config::setTextAverageInsertSize(insertsize);
     }
+
+    if (configNode["files"]["config"]["pattern"]) {
+        std::string pattern = configNode["files"]["config"]["pattern"].as<std::string>();
+        std::cout << pattern << std::endl;
+    }
+
     if (configNode["files"]["config"]["sd"]) {
         std::string sd = configNode["files"]["config"]["sd"].as<std::string>();
         Config::setTextSD(sd);
