@@ -1,7 +1,7 @@
 # Documentations
 
 ## Input/Output files
-![](https://i.imgur.com/BzJtGiE.png)
+![](https://i.imgur.com/GhWPlnu.png)
 
 - example of template file
 ```yaml
@@ -39,9 +39,7 @@ variations:
       - 90
 ```
 ## Convert reference genome to reference containers
-![](https://i.imgur.com/hs6Y8DG.png)
-
-## 
+![](https://i.imgur.com/aRoTvkq.png)
 
 
 
