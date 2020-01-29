@@ -52,6 +52,7 @@ INV = inversion
 DUP = tandem duplication
 INS = insertion
 TRA = Translocation;
+STA = Static (No mutation)
 ```
 
 - customize complex SVs
@@ -83,6 +84,10 @@ INVdup:
 dupINVdup:
     pattern:
       - [DUP(2/4),DUP(2/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+
+dupINVdel:
+    pattern:
+      - [DUP(2/4),STA(1/4),DUP(1/4)] > [STA(1/4),INV(2/4),STA(1/4)]
 
 ```
 
