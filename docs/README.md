@@ -38,11 +38,53 @@ variations:
     number:
       - 90
 ```
-## Convert reference genome to reference containers
+## Convert reference genome (FASTA) to reference containers (RCs)
 ![](https://i.imgur.com/aRoTvkq.png)
 
 
 
+## Complex SV syntax
+
+- common SVs
+```text
+DEL = deletion
+INV = inversion
+DUP = tandem duplication
+INS = insertion
+TRA = Translocation;
+```
+
+- customize complex SVs
+```yaml
+delINV:
+    pattern:
+      - [DEL(1/2),INV(1/2)]
+
+INVdel:
+    pattern:
+      - [INV(1/2)DEL(1/2)]
+
+delINVdel:
+    pattern:
+      - [DEL(1/3),INV(1/3),DEL(1/3)]
+
+dupINV:
+    pattern:
+      - [DUP(2/3),STA(1/3)] > [STA(1/3),INV(2/3)]
+
+INVdup:
+    pattern:
+      - [STA(1/3),DUP(2/3)] > [INV(2/3),STA(1/3)]
+
+INVdup:
+    pattern:
+      - [DUP(1/3),DEL(1/3),STA(1/3)] > [STA(1/3),INV(2/3)]
+
+dupINVdup:
+    pattern:
+      - [DUP(2/4),DUP(2/4)] > [STA(1/4),INV(2/4),STA(1/4)]
+
+```
 
 
 
