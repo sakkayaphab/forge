@@ -51,11 +51,16 @@ DEL = deletion
 INV = inversion
 DUP = tandem duplication
 INS = insertion
-TRA = Translocation;
-STA = Static (No mutation)
+TRA = translocation;
+STA = static (No mutation)
 ```
 
 - customize complex SVs
+```text
+# NAME SV
+PATTERN
+```
+
 ```text
 #delINV
 [DEL(1/2),INV(1/2)]
