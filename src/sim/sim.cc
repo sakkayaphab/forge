@@ -23,40 +23,44 @@ std::string Sim::getFastaIndexPath() {
 void Sim::readFasta() {
 
 
-    FastaReader fastareader;
-    fastareader.setFilePath(getFastaPath());
-    fastareader.setIndexFilePath(getFastaIndexPath());
-    fastareader.initialize();
-    fastareader.exitIfNoFilePath();
-    std::string seq = fastareader.getSeqbyChr("1");
-//    std::string seqbaserror;
-//    for (char x:seq) {
-//        seqbaserror += x;
-//    }
-//    std::string_view seqView = seq;
-    BaseError berr;
-    berr.setSeq(&seq);
-    berr.setErrorRate(0.01);
-    for (int i=0;i<100000000;i++) {
-        berr.random_bool_with_prob();
-//        std::cout << berr.random_bool_with_prob();
-    };
-
-
-//    berr.execute();
-//    berr.getSeqWithBaseError();
-
-//    std::cout << seqView << std::endl;
-
+//    FastaReader fastareader;
+//    fastareader.setFilePath(getFastaPath());
+//    fastareader.setIndexFilePath(getFastaIndexPath());
+//    fastareader.initialize();
+//    fastareader.exitIfNoFilePath();
+//    std::string seq = fastareader.getSeqbyChr("1");
+////    std::string seqbaserror;
+////    for (char x:seq) {
+////        seqbaserror += x;
+////    }
+////
+////    BaseError berr;
+////    berr.setSeq(&seq);
+////    berr.setErrorRate(0.01);
+//////    for (int i=0;i<100000000;i++) {
+////////        berr.random_bool_with_prob();
+////////        std::cout << berr.random_bool_with_prob();
+//////    };
+////    berr.execute();
+//////    delete fastareader;
+////    std::string seqbaserror = berr.getSeqWithBaseError();
 //
+//
+////    berr.execute();
+////    berr.getSeqWithBaseError();
+//
+////    std::cout << seqView << std::endl;
+//
+////
+//    std::string_view seqView = seq;
 //    FastqWriter fqw;
 //    fqw.setSequence(&seqView);
 //    fqw.setOutputPath("1.fq");
-////    for (int i=0;i<22;i++) {
+//////    for (int i=0;i<22;i++) {
 //        fqw.writeSequence();
-////    }
-
-    return;
+//////    }
+//
+//    return;
 
     Config config;
     config.setReferencePath(Sim::getFastaPath());
@@ -82,12 +86,12 @@ void Sim::readFasta() {
 //    variantbin.showVariantList();
 //    return;
 
-//    FastaReader fastareader;
-//    fastareader.setFilePath(getFastaPath());
-//    fastareader.setIndexFilePath(getFastaIndexPath());
-//    fastareader.initialize();
-//    fastareader.exitIfNoFilePath();
-    ContainerManager cm  = fastareader.getAllChrBlockContainerWithThreads(8);
+    FastaReader fastareader;
+    fastareader.setFilePath(getFastaPath());
+    fastareader.setIndexFilePath(getFastaIndexPath());
+    fastareader.initialize();
+    fastareader.exitIfNoFilePath();
+    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread(8);
     cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
 
 //    cm.writeBlockContainerTextFile("ll");

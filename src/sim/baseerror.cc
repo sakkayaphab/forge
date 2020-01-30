@@ -31,11 +31,10 @@ std::string* BaseError::getSeq() {
 void BaseError::execute() {
     for (char x:*seq) {
         if (random_bool_with_prob()) {
-            seqwitherror = 'G';
+            seqwitherror += 'G';
         } else {
-            seqwitherror = x;
+            seqwitherror += x;
         }
-
     }
 }
 

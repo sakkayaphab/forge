@@ -47,3 +47,11 @@ void Block::setTextPos(std::string textpos) {
 void Block::setTextEnd(std::string textend) {
     end = stoul(textend, 0, 10);
 }
+
+void Block::setSeq(std::string seq) {
+    Block::seq = seq;
+}
+
+std::string Block::getSeq() {
+    return Block::seq;
+}

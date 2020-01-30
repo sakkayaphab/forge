@@ -250,3 +250,11 @@ void FastaReader::showChromosomeRegion(FastaReader::ChromosomeRegion cr) {
 
     std::cout << "region length w/o masked : " << regionlength << std::endl;
 }
+
+void FastaReader::saveSeqInBlockContainer(bool save) {
+    FastaReader::saveseqinRC = save;
+}
+
+bool FastaReader::isSaveSeqInBlockContainer() {
+    return FastaReader::saveseqinRC;
+}
