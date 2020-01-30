@@ -15,6 +15,12 @@
 #include <tbb/task_arena.h>
 #include <tbb/global_control.h>
 #include <mutex>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <cctype>
+#include <cstring>
 
 class FastaReader {
 private:
@@ -80,8 +86,6 @@ public:
     void showChromosomeRegion(FastaReader::ChromosomeRegion cr);
 
     void saveSeqInBlockContainer(bool save);
-
-    void writeSeqInOtherFile(std::string filepath,std::string chr,int64_t pos,int64_t end);
 
     bool isSaveSeqInBlockContainer();
 };

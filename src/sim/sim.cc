@@ -69,12 +69,14 @@ void Sim::readFasta() {
     for (BlockContainer bc:cm.getBlockContainers()) {
         for (Block b:bc.getBlocks()) {
 //            if (b.getChr()=="22"&& b.getPos()==20609431) {
-                fastareader.writeSeqInOtherFile("referencecontainer/"+b.getChr()+"_"+std::to_string(b.getPos()),b.getChr(),b.getPos(),b.getEnd());
+                FastaWriter fastawriter;
+                std::string rrseq = fastareader.getSeqbyPosition(b.getChr(),b.getPos(),b.getEnd());
+                fastawriter.writeRefFile("referencecontainer/" + b.getChr() + "." + std::to_string(b.getPos()), &rrseq,
+                                     b.getChr(), b.getPos(), b.getEnd());
 //            }
 
         }
     }
-
 
 
     ReferenceContainerHandler rch;

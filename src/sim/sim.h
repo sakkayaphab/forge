@@ -22,7 +22,7 @@
 #include "fastqwriter.h"
 #include <string_view>
 #include "baseerror.h"
-
+#include "fastawriter.h"
 class Sim {
     private:
         std::string fastaPath;

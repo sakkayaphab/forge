@@ -1,10 +1,5 @@
 #include "fastareader.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <cctype>
-#include <cstring>
+
 
 
 FastaReader::FastaReader() {
@@ -272,28 +267,4 @@ ContainerManager FastaReader::getOnlylChrBlockContainer(std::string chrname) {
     cm.setBlockContainers(bcs);
 
     return cm;
-}
-
-void FastaReader::writeSeqInOtherFile(std::string filepath, std::string chr, int64_t pos, int64_t end) {
-    std::ofstream myfile;
-    std::string tempseqstring = getSeqbyPosition(chr,pos,end);
-    std::string_view tempseq = tempseqstring;
-//    std::cout << tempseq << std::endl;
-    myfile.open (filepath, std::fstream::app);
-    myfile << ">" << chr << "\n";
-    std::cout << " ------------------------- " << std::endl;
-    std::cout << chr << " " << pos << " " << end << std::endl;
-    int64_t i =0;
-    for (;;) {
-//        std::cout << chr << " " << i << " " << i+50 << " " << end-pos << " "<< tempseq.size() << std::endl;
-        if (i+50<end-pos) {
-//            std::cout << tempseq.substr(i,50) << std::endl;
-            myfile << tempseq.substr(i,50) << "\n";
-            i += 50;
-        } else {
-            myfile << tempseq.substr(i,i+50-(end-pos)) << "\n";
-            break;
-        }
-    }
-    myfile.close();
 }
