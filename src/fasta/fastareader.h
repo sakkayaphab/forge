@@ -81,6 +81,8 @@ public:
 
     void saveSeqInBlockContainer(bool save);
 
+    void writeSeqInOtherFile(std::string filepath,std::string chr,int64_t pos,int64_t end);
+
     bool isSaveSeqInBlockContainer();
 };
 
