@@ -19,6 +19,10 @@
 #include "referencecontainer.h"
 #include "referencecontainerhandler.h"
 #include "arrangementcontainer.h"
+#include "fastqwriter.h"
+#include <string_view>
+#include "baseerror.h"
+
 class Sim {
     private:
         std::string fastaPath;

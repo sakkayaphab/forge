@@ -7,23 +7,21 @@
 #include <cstring>
 
 
-FastaReader::FastaReader()
-{
+FastaReader::FastaReader() {
 }
 
-void FastaReader::initialize()
-{
+void FastaReader::initialize() {
     if (hasIndexFilePath()) {
         faidx.initialize();
     } else {
-        faidx.genarateIndexFile(getFilePath(),getIndexFilePath());
+        faidx.genarateIndexFile(getFilePath(), getIndexFilePath());
         faidx.initialize();
     }
 }
 
 bool FastaReader::FileExists(std::string filename) {
     std::ifstream ifile(filename.c_str());
-    return (bool)ifile;
+    return (bool) ifile;
 }
 
 bool FastaReader::hasIndexFilePath() {
@@ -36,39 +34,37 @@ bool FastaReader::hasFilePath() {
 
 void FastaReader::exitIfNoFilePath() {
     if (!hasIndexFilePath()) {
-        exit (EXIT_FAILURE);
+        std::cerr << "not found index file" << std::endl;
+        exit(EXIT_FAILURE);
     }
 
     if (!hasFilePath()) {
-        exit (EXIT_FAILURE);
+        std::cerr << "not found file path" << std::endl;
+        exit(EXIT_FAILURE);
     }
 }
 
-void FastaReader::setIndexFilePath(std::string t_indexfilepath)
-{
+void FastaReader::setIndexFilePath(std::string t_indexfilepath) {
     faidx.setIndexFilePath(t_indexfilepath);
 }
 
-std::string FastaReader::getIndexFilePath()
-{
+std::string FastaReader::getIndexFilePath() {
     return faidx.getIndexFilePath();
 }
 
-void FastaReader::setFilePath(std::string filepath)
-{
+void FastaReader::setFilePath(std::string filepath) {
     fasta.setFilePath(filepath);
 }
 
-std::string FastaReader::getFilePath()
-{
+std::string FastaReader::getFilePath() {
     return fasta.getFilePath();
 }
 
-std::string FastaReader::getSeqbyPosition(std::string chromosome,int64_t start,int64_t  end) {
-    int64_t offsetstart = faidx.getOffsetStartByPosition(chromosome,start);
-    int64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,end);
+std::string FastaReader::getSeqbyPosition(std::string chromosome, int64_t start, int64_t end) {
+    int64_t offsetstart = faidx.getOffsetStartByPosition(chromosome, start);
+    int64_t offsetend = faidx.getOffsetEndByPosition(chromosome, end);
 
-    return fasta.getSeqByOffset(offsetstart,offsetend);
+    return fasta.getSeqByOffset(offsetstart, offsetend);
 }
 
 std::string FastaReader::getSeqbyChr(std::string chromosome) {
@@ -78,9 +74,9 @@ std::string FastaReader::getSeqbyChr(std::string chromosome) {
 
     int64_t length = faidx.getLengthbyChromosome(chromosome);
     int64_t offset = faidx.getOffsetbyChromosome(chromosome);
-    int64_t offsetend  = faidx.getOffsetEndByPosition(chromosome,length);
+    int64_t offsetend = faidx.getOffsetEndByPosition(chromosome, length);
 
-    return fasta.getSeqByOffset(offset,offsetend);
+    return fasta.getSeqByOffset(offset, offsetend);
 }
 
 Faidx FastaReader::getFastaIndex() {
@@ -98,7 +94,7 @@ ContainerManager FastaReader::getAllChrBlockContainerWithThreads(int threads) {
         mxBCS.lock();
         i++;
         mxBCS.unlock();
-        BlockContainer bc = getBlockContainerByChr(faidx.getChrByNumberID(i-1));
+        BlockContainer bc = getBlockContainerByChr(faidx.getChrByNumberID(i - 1));
 
         mxBCS.lock();
         bcs.push_back(bc);
@@ -126,13 +122,15 @@ ContainerManager FastaReader::getAllChrBlockContainerWithSingleThread() {
         if (line.at(0) == '>') {
             if (tempLENGTH != 0) {
                 BlockContainer bc;
-                std::vector<Block> blocks = convertSeqToBlockWithoutMasked(tempNAME,&tempSEQ);
+                std::vector<Block> blocks = convertSeqToBlockWithoutMasked(tempNAME, &tempSEQ);
                 bc.setBlocks(blocks);
                 bc.setChr(tempNAME);
                 bcs.push_back(bc);
                 tempNAME = "";
                 tempLENGTH = 0;
                 tempSEQ = "";
+                blocks.clear();
+
             }
             std::string delimiter = " ";
             std::string token = line.substr(0, line.find(delimiter));
@@ -147,7 +145,7 @@ ContainerManager FastaReader::getAllChrBlockContainerWithSingleThread() {
 
     BlockContainer bc;
     std::string seq = getSeqbyChr(tempNAME);
-    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(tempNAME,&seq);
+    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(tempNAME, &seq);
     bc.setBlocks(blocks);
     bc.setChr(tempNAME);
     bcs.push_back(bc);
@@ -160,47 +158,56 @@ ContainerManager FastaReader::getAllChrBlockContainerWithSingleThread() {
 BlockContainer FastaReader::getBlockContainerByChr(std::string chrname) {
     BlockContainer bc;
     std::string seq = getSeqbyChr(chrname);
-    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(chrname,&seq);
+    std::vector<Block> blocks = convertSeqToBlockWithoutMasked(chrname, &seq);
     bc.setBlocks(blocks);
     bc.setChr(chrname);
+    blocks.clear();
     return bc;
 }
 
-std::vector<Block> FastaReader::convertSeqToBlockWithoutMasked(std::string chrname,std::string *seq) {
+std::vector<Block> FastaReader::convertSeqToBlockWithoutMasked(std::string chrname, std::string *seq) {
     std::vector<Block> blocks;
 
     unsigned currentPosition = 0;
     unsigned sumPosition = 0;
+    std::string currentSeq;
     for (char n:*seq) {
         // X for hard masked, N for soft masked
-        if (n=='N'||n=='n'||n=='X'||n=='x') {
-            if (sumPosition>0) {
+        if (n == 'N' || n == 'n' || n == 'X' || n == 'x') {
+            if (sumPosition > 0) {
                 Block rr;
                 rr.setChr(chrname);
-                rr.setPos(currentPosition-sumPosition);
+                rr.setPos(currentPosition - sumPosition);
                 rr.setEnd(currentPosition);
+                rr.setSeq(currentSeq);
                 blocks.push_back(rr);
             }
             sumPosition = 0;
+            currentSeq.clear();
         } else {
             sumPosition++;
+            if (FastaReader::isSaveSeqInBlockContainer()) {
+                currentSeq += n;
+            }
+
         }
 
         currentPosition++;
     }
 
-    if (sumPosition>0) {
+    if (sumPosition > 0) {
         Block rr;
         rr.setChr(chrname);
-        rr.setPos(currentPosition-sumPosition);
+        rr.setPos(currentPosition - sumPosition);
         rr.setEnd(currentPosition);
+        rr.setSeq(currentSeq);
         blocks.push_back(rr);
     }
 
     return blocks;
 }
 
-std::vector<Block> FastaReader::convertSeqToBlockWithMasked(std::string chrname,std::string *seq) {
+std::vector<Block> FastaReader::convertSeqToBlockWithMasked(std::string chrname, std::string *seq) {
     std::vector<Block> blocks;
 
     unsigned currentPosition = 0;
@@ -208,13 +215,13 @@ std::vector<Block> FastaReader::convertSeqToBlockWithMasked(std::string chrname,
 
     for (char n:*seq) {
         // X for hard masked, N for soft masked
-        if (n=='N'||n=='n'||n=='X'||n=='x') {
+        if (n == 'N' || n == 'n' || n == 'X' || n == 'x') {
             sumPosition++;
         } else {
-            if (sumPosition>0) {
+            if (sumPosition > 0) {
                 Block rr;
                 rr.setChr(chrname);
-                rr.setPos(currentPosition-sumPosition);
+                rr.setPos(currentPosition - sumPosition);
                 rr.setEnd(currentPosition);
                 blocks.push_back(rr);
             }
@@ -224,10 +231,10 @@ std::vector<Block> FastaReader::convertSeqToBlockWithMasked(std::string chrname,
         currentPosition++;
     }
 
-    if (sumPosition>0) {
+    if (sumPosition > 0) {
         Block rr;
         rr.setChr(chrname);
-        rr.setPos(currentPosition-sumPosition);
+        rr.setPos(currentPosition - sumPosition);
         rr.setEnd(currentPosition);
         blocks.push_back(rr);
     }
@@ -236,15 +243,34 @@ std::vector<Block> FastaReader::convertSeqToBlockWithMasked(std::string chrname,
 }
 
 void FastaReader::showChromosomeRegion(FastaReader::ChromosomeRegion cr) {
-    int64_t regionlength=0;
+    int64_t regionlength = 0;
     for (RegionRange x:cr.RegionRange) {
-        regionlength += x.end-x.pos;
+        regionlength += x.end - x.pos;
         std::cout << x.chrname <<
-        ", " << x.pos <<
-        ", " << x.end <<
-        " | " << x.end-x.pos <<
-        std::endl;
+                  ", " << x.pos <<
+                  ", " << x.end <<
+                  " | " << x.end - x.pos <<
+                  std::endl;
     }
 
     std::cout << "region length w/o masked : " << regionlength << std::endl;
+}
+
+void FastaReader::saveSeqInBlockContainer(bool save) {
+    FastaReader::saveseqinRC = save;
+}
+
+bool FastaReader::isSaveSeqInBlockContainer() {
+    return FastaReader::saveseqinRC;
+}
+
+ContainerManager FastaReader::getOnlylChrBlockContainer(std::string chrname) {
+    ContainerManager cm;
+    std::vector<BlockContainer> bcs;
+    BlockContainer bc = getBlockContainerByChr(chrname);
+    bcs.push_back(bc);
+
+    cm.setBlockContainers(bcs);
+
+    return cm;
 }

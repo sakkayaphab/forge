@@ -37,35 +37,35 @@ void Config::readConfigFile() {
         Config::setOutputDirectoryPath(outputdirectory);
     }
 
-    if (configNode["files"]["config"]["sequencing"]) {
-        std::string sequencing = configNode["files"]["config"]["sequencing"].as<std::string>();
+    if (configNode["config"]["sequencing"]) {
+        std::string sequencing = configNode["config"]["sequencing"].as<std::string>();
         Config::setSequencing(sequencing);
     }
-    if (configNode["files"]["config"]["read_length"]) {
-        std::string readlength = configNode["files"]["config"]["read_length"].as<std::string>();
+    if (configNode["config"]["read_length"]) {
+        std::string readlength = configNode["config"]["read_length"].as<std::string>();
         Config::setTextReadlength(readlength);
     }
 
-    if (configNode["files"]["config"]["insert_size"]) {
-        std::string insertsize = configNode["files"]["config"]["insert_size"].as<std::string>();
+    if (configNode["config"]["insert_size"]) {
+        std::string insertsize = configNode["config"]["insert_size"].as<std::string>();
         Config::setTextAverageInsertSize(insertsize);
     }
 
-    if (configNode["files"]["config"]["pattern"]) {
-        std::string pattern = configNode["files"]["config"]["pattern"].as<std::string>();
-        std::cout << pattern << std::endl;
+    if (configNode["config"]["debug"]) {
+        std::string debug = configNode["config"]["debug"].as<std::string>();
+        std::cout << debug << std::endl;
     }
 
-    if (configNode["files"]["config"]["sd"]) {
-        std::string sd = configNode["files"]["config"]["sd"].as<std::string>();
+    if (configNode["config"]["sd_insert_size"]) {
+        std::string sd = configNode["config"]["sd_insert_size"].as<std::string>();
         Config::setTextSD(sd);
     }
-    if (configNode["files"]["config"]["base_error_rate"]) {
-        std::string baseerrorrate = configNode["files"]["config"]["base_error_rate"].as<std::string>();
+    if (configNode["config"]["base_error_rate"]) {
+        std::string baseerrorrate = configNode["config"]["base_error_rate"].as<std::string>();
         Config::setTextBaseErrorRate(baseerrorrate);
     }
-    if (configNode["files"]["config"]["coverage"]) {
-        std::string coverage = configNode["files"]["config"]["coverage"].as<std::string>();
+    if (configNode["config"]["coverage"]) {
+        std::string coverage = configNode["config"]["coverage"].as<std::string>();
         Config::setTextCoverage(coverage);
     }
 

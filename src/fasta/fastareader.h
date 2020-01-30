@@ -20,6 +20,7 @@ class FastaReader {
 private:
     Faidx faidx;
     Fasta fasta;
+    bool saveseqinRC = false;
 
 public:
     FastaReader();
@@ -46,6 +47,7 @@ public:
 
     std::string getSeqbyChr(std::string chromosome);
 
+
     Faidx getFastaIndex();
 
     void replaceSeqToUppercase(std::string *str) {
@@ -64,12 +66,22 @@ public:
     };
 
     ContainerManager getAllChrBlockContainerWithThreads(int threads);
+
     ContainerManager getAllChrBlockContainerWithSingleThread();
+
+    ContainerManager getOnlylChrBlockContainer(std::string chrname);
+
     BlockContainer getBlockContainerByChr(std::string chrname);
-    std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname,std::string *seq);
-    std::vector<Block> convertSeqToBlockWithMasked(std::string chrname,std::string *seq);
+
+    std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname, std::string *seq);
+
+    std::vector<Block> convertSeqToBlockWithMasked(std::string chrname, std::string *seq);
 
     void showChromosomeRegion(FastaReader::ChromosomeRegion cr);
+
+    void saveSeqInBlockContainer(bool save);
+
+    bool isSaveSeqInBlockContainer();
 };
 
 #endif

@@ -28,15 +28,27 @@ variations:
   DEL:
     range:
       - 100-1000
-      - 1001-10000
     number:
-      - 200
-      - 100
+      - 1
+
+  INV:
+    range:
+      - 100-1000
+    number:
+      - 1
+
+  DUP:
+    range:
+      - 1000-10000
+    number:
+      - 1
+
   INS:
     range:
       - 100-20000
     number:
       - 100
+
   delINV:
     allocate: AB
     pattern: DEL[A],INV[B]
@@ -44,6 +56,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   INVdel:
     allocate: AB
     pattern: INV[A],DEL[B]
@@ -51,6 +64,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   delINVdel:
     allocate: ABC
     pattern: DEL[A],INV[B],DEL[C]
@@ -58,6 +72,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupINV:
     allocate: AB
     pattern: A,INV[A;B]
@@ -65,6 +80,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   INVdup:
     allocate: AB
     pattern: INV[A;B],A
@@ -72,6 +88,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupINVdup:
     allocate: ABC
     pattern: A;INV[A,B,C];C
@@ -79,6 +96,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupINVdel:
     allocate: ABC
     pattern: A;INV[A,B];C
@@ -86,6 +104,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   delINVdup:
     allocate: ABC
     pattern: DEL[A];INV[B,C];C
@@ -93,6 +112,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   delINVdup:
     allocate: ABC
     pattern: DEL[A];INV[B,C];C
@@ -100,6 +120,7 @@ variations:
       - 10000-20000
     number:
       - 1
+
   dupTRIPdup-INV:
     allocate: ABC
     pattern: A;B;C;INV[A,B,C];B
@@ -107,9 +128,34 @@ variations:
       - 10000-20000
     number:
       - 1
+
   IR:
     allocate: AB
     pattern: A;INV[B]
+    range:
+      - 10000-20000
+    number:
+      - 1
+
+  dDUP:
+    allocate: AB
+    pattern: A;B;A
+    range:
+      - 10000-20000
+    number:
+      - 1
+
+  dDUPdel:
+    allocate: ABC
+    pattern: A;B;DEL[C];A
+    range:
+      - 10000-20000
+    number:
+      - 1
+
+  cpdINS:
+    allocate: ABC
+    pattern: DEL[A];B;DEL[C];A
     range:
       - 10000-20000
     number:

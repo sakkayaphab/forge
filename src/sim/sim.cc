@@ -22,69 +22,61 @@ std::string Sim::getFastaIndexPath() {
 
 void Sim::readFasta() {
 
-    Config config;
-    config.setReferencePath(Sim::getFastaPath());
-    config.setReferenceIndexPath(Sim::getFastaIndexPath());
-
-    config.setConfigFilePath("../templates/custom.yaml");
-    config.readConfigFile();
-    return;
-
-    VariantBinHandler variantbin;
-    variantbin.setSpace((101*2)+(400*5));
-    std::vector<VariantionConfig> vcs = config.getVariantionConfig();
-    for (VariantionConfig vc:vcs) {
-        for (VariantionRange r:vc.getVariantRangeList()) {
-            std::cout << vc.getSvType() << " " << r.getMinLength()<< " "  << r.getMaxLength()<< " "  << r.getNumber() << std::endl;
-            variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
-        }
-    }
-//        variantbin.showVariantList();
-
-//    variantbin.sortVariantList();
-    variantbin.shuffleVariantList();
-//    variantbin.showVariantList();
-//    return;
-
-
-
     FastaReader fastareader;
     fastareader.setFilePath(getFastaPath());
     fastareader.setIndexFilePath(getFastaIndexPath());
     fastareader.initialize();
     fastareader.exitIfNoFilePath();
-    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
-    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
-//    cm.writeBlockContainerTextFile("ll");
+    std::string seq = fastareader.getSeqbyChr("1");
 
+    std::string_view seqView = seq;
+    FastqWriter fqw;
+    fqw.setSequence(&seqView);
+    fqw.setOutputPath("1.fq");
+////    for (int i=0;i<22;i++) {
+        fqw.writeSequence();
+////    }
 
-//    ContainerManager cm;
-//    cm.loadBlockContainersFromFile("ll");
+    return;
 
-//    std::cout << cm.getBlockContainers().size() << std::endl;
-//    return;
-// ReferenceContainerHandler
-    ReferenceContainerHandler rch;
-    rch.addContainerManagerToReferenceContainer(cm);
-//    rch.showReferenceContainer();
-    rch.shuffleReferenceContainer();
-//    rch.showReferenceContainer();
-//    return;
-
-// ArrangementContainer
-    ArrangementContainer arrangementcontainer;
-    arrangementcontainer.setVariantBin(&variantbin);
-    arrangementcontainer.setReferenceContainerHandler(&rch);
-    arrangementcontainer.execute();
-//    arrangementcontainer.showReferenceContainerContainVaraintOnly();
-//    std::cout << arrangementcontainer.getReferenceContainerHandler()->getSizeReferenceContainer() << std::endl;
-
-
-//    printf ("Again the first number: %d\n", rand()%100);
-//    printf ("Again the first number: %d\n", rand()%100);
-//    printf ("Again the first number: %d\n", rand()%100);
+//    Config config;
+//    config.setReferencePath(Sim::getFastaPath());
+//    config.setReferenceIndexPath(Sim::getFastaIndexPath());
+//    config.setConfigFilePath("../templates/custom.yaml");
+//    config.readConfigFile();
 //
-//    printf ("Again the first number: %d\n", rand()%100);
+//    VariantBinHandler variantbin;
+//    variantbin.setSpace((101*2)+(400*5));
+//    std::vector<VariantionConfig> vcs = config.getVariantionConfig();
+//    for (VariantionConfig vc:vcs) {
+//        for (VariantionRange r:vc.getVariantRangeList()) {
+//            std::cout << vc.getSvType() << " " << r.getMinLength()<< " "  << r.getMaxLength()<< " "  << r.getNumber() << std::endl;
+//            variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
+//        }
+//    }
+//    variantbin.shuffleVariantList();
+//
+//
+//    FastaReader fastareader;
+//    fastareader.setFilePath(getFastaPath());
+//    fastareader.setIndexFilePath(getFastaIndexPath());
+//    fastareader.initialize();
+//    fastareader.exitIfNoFilePath();
+//    fastareader.saveSeqInBlockContainer(false);
+//    ContainerManager cm  = fastareader.getAllChrBlockContainerWithThreads(8);
+////    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
+//    cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
+//
+//    ReferenceContainerHandler rch;
+//    rch.addContainerManagerToReferenceContainer(cm);
+//
+//// ArrangementContainer
+//    ArrangementContainer arrangementcontainer;
+//    arrangementcontainer.setVariantBin(&variantbin);
+//    arrangementcontainer.setReferenceContainerHandler(&rch);
+//    arrangementcontainer.execute();
+////    arrangementcontainer.showReferenceContainerContainVaraintOnly();
+
 
 
 
