@@ -22,7 +22,6 @@ std::string Sim::getFastaIndexPath() {
 
 void Sim::readFasta() {
 
-
 //    FastaReader fastareader;
 //    fastareader.setFilePath(getFastaPath());
 //    fastareader.setIndexFilePath(getFastaIndexPath());
@@ -91,11 +90,13 @@ void Sim::readFasta() {
     fastareader.setIndexFilePath(getFastaIndexPath());
     fastareader.initialize();
     fastareader.exitIfNoFilePath();
+    fastareader.saveSeqInBlockContainer(false);
     ContainerManager cm  = fastareader.getAllChrBlockContainerWithThreads(8);
+//    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
     cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
+    return;
 
 //    cm.writeBlockContainerTextFile("ll");
-
 
 //    ContainerManager cm;
 //    cm.loadBlockContainersFromFile("ll");

@@ -69,6 +69,8 @@ public:
 
     ContainerManager getAllChrBlockContainerWithSingleThread();
 
+    ContainerManager getOnlylChrBlockContainer(std::string chrname);
+
     BlockContainer getBlockContainerByChr(std::string chrname);
 
     std::vector<Block> convertSeqToBlockWithoutMasked(std::string chrname, std::string *seq);
