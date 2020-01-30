@@ -36,10 +36,12 @@ bool FastaReader::hasFilePath() {
 
 void FastaReader::exitIfNoFilePath() {
     if (!hasIndexFilePath()) {
+        std::cerr << "not found index file" << std::endl;
         exit (EXIT_FAILURE);
     }
 
     if (!hasFilePath()) {
+        std::cerr << "not found file path" << std::endl;
         exit (EXIT_FAILURE);
     }
 }

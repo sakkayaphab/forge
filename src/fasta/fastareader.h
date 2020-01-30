@@ -46,6 +46,7 @@ public:
 
     std::string getSeqbyChr(std::string chromosome);
 
+
     Faidx getFastaIndex();
 
     void replaceSeqToUppercase(std::string *str) {
