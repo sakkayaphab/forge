@@ -21,6 +21,7 @@ unsigned Config::getSeed() {
     return Config::seed;
 }
 
+
 void Config::readConfigFile() {
     if (!FileExists(getConfigFilePath())) {
         std::cerr << "not found file : " << getConfigFilePath() << std::endl;
@@ -34,6 +35,7 @@ void Config::readConfigFile() {
     }
     if (configNode["files"]["output"]["output_directory"]) {
         std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
+        createDirectory(outputdirectory);
         Config::setOutputDirectoryPath(outputdirectory);
     }
 
@@ -254,4 +256,11 @@ void Config::setVariantionConfig(std::vector<VariantionConfig> vcs) {
 
 std::vector<VariantionConfig> Config::getVariantionConfig() {
     return Config::variantionconfigs;
+}
+
+void Config::createDirectory(std::string createdirectory) {
+    struct stat st = {0};
+    if (stat(createdirectory.c_str(), &st) == -1) {
+        mkdir(createdirectory.c_str(), 0700);
+    }
 }

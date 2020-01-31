@@ -15,6 +15,12 @@
 #include <tbb/task_arena.h>
 #include <tbb/global_control.h>
 #include <mutex>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <cctype>
+#include <cstring>
 
 class FastaReader {
 private:

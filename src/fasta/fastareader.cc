@@ -1,10 +1,5 @@
 #include "fastareader.h"
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <cctype>
-#include <cstring>
+
 
 
 FastaReader::FastaReader() {
@@ -189,7 +184,6 @@ std::vector<Block> FastaReader::convertSeqToBlockWithoutMasked(std::string chrna
             if (FastaReader::isSaveSeqInBlockContainer()) {
                 currentSeq += n;
             }
-
         }
 
         currentPosition++;
