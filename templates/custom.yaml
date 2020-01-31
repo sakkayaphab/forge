@@ -40,7 +40,7 @@ variations:
 
   delINV:
     allocate: AB
-    pattern: DEL[A],INV[B]
+    pattern: DEL[A];INV[B]
     range:
       - 10000-20000
     number:
@@ -48,7 +48,7 @@ variations:
 
   INVdel:
     allocate: AB
-    pattern: INV[A],DEL[B]
+    pattern: INV[A],;DEL[B]
     range:
       - 10000-20000
     number:
@@ -56,7 +56,7 @@ variations:
 
   delINVdel:
     allocate: ABC
-    pattern: DEL[A],INV[B],DEL[C]
+    pattern: DEL[A];INV[B];DEL[C]
     range:
       - 10000-20000
     number:
@@ -64,7 +64,7 @@ variations:
 
   dupINV:
     allocate: AB
-    pattern: A,INV[A;B]
+    pattern: A;INV[A,B]
     range:
       - 10000-20000
     number:
@@ -72,7 +72,7 @@ variations:
 
   INVdup:
     allocate: AB
-    pattern: INV[A;B],A
+    pattern: INV[A,B];A
     range:
       - 10000-20000
     number:

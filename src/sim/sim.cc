@@ -21,7 +21,9 @@ std::string Sim::getFastaIndexPath() {
 }
 
 void Sim::readFasta() {
-
+    TranformSeq tranformseq;
+    tranformseq.ConvertSyntax("A;INV[A,B,C];C");
+    return;
 //    FastaReader fastareader;
 //    fastareader.setFilePath(getFastaPath());
 //    fastareader.setIndexFilePath(getFastaIndexPath());
