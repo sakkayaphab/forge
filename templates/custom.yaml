@@ -2,7 +2,7 @@ files:
   input:
     reference: ~/reference/ucsc_hg19.fa
   output:
-    output_directory : ~/mysim
+    output_directory : mysim
   config:
     sequencing: paired-end
     read_length: 101

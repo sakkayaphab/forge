@@ -13,6 +13,10 @@
 #include <vector>
 #include "variantionconfig.h"
 #include "variantionrange.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 class Config {
 private:
     std::string configfilepath;
@@ -87,6 +91,8 @@ public:
     void setCoverage(int64_t coverage);
 
     void setTextCoverage(std::string coverage);
+
+    void createDirectory(std::string createdirectory);
 
     int64_t getReadLength();
 
