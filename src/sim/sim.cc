@@ -21,9 +21,9 @@ std::string Sim::getFastaIndexPath() {
 }
 
 void Sim::readFasta() {
-    TranformSeq tranformseq;
-    tranformseq.ConvertSyntax("A;INV[A,B,C];C");
-    return;
+//    TranformSeq tranformseq;
+//    tranformseq.ConvertSyntax("A;INV[A,B,C];C");
+//    return;
 //    FastaReader fastareader;
 //    fastareader.setFilePath(getFastaPath());
 //    fastareader.setIndexFilePath(getFastaIndexPath());
@@ -53,10 +53,11 @@ void Sim::readFasta() {
     for (VariantionConfig vc:vcs) {
         for (VariantionRange r:vc.getVariantRangeList()) {
             std::cout << vc.getSvType() << " " << r.getMinLength()<< " "  << r.getMaxLength()<< " "  << r.getNumber() << std::endl;
-            variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
+//            variantbin.addVariantByRange(vc.getSvType(),r.getMinLength(),r.getMaxLength(),r.getNumber());
         }
     }
     variantbin.shuffleVariantList();
+    return;
 
     FastaReader fastareader;
     fastareader.setFilePath(getFastaPath());
@@ -70,13 +71,10 @@ void Sim::readFasta() {
 
     for (BlockContainer bc:cm.getBlockContainers()) {
         for (Block b:bc.getBlocks()) {
-//            if (b.getChr()=="22"&& b.getPos()==20609431) {
                 FastaWriter fastawriter;
                 std::string rrseq = fastareader.getSeqbyPosition(b.getChr(),b.getPos(),b.getEnd());
-                fastawriter.writeRefFile("referencecontainer/" + b.getChr() + "." + std::to_string(b.getPos()), &rrseq,
+                fastawriter.writeRefFile(config.getOutputDirectoryPath()+"/referencecontainer/" + b.getChr() + "." + std::to_string(b.getPos()), &rrseq,
                                      b.getChr(), b.getPos(), b.getEnd());
-//            }
-
         }
     }
 
@@ -89,7 +87,6 @@ void Sim::readFasta() {
     arrangementcontainer.setVariantBin(&variantbin);
     arrangementcontainer.setReferenceContainerHandler(&rch);
     arrangementcontainer.execute();
-
 //    arrangementcontainer.showReferenceContainerContainVaraintOnly();
 
 

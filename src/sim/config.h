@@ -11,7 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "variantionconfig.h"
+#include "variationconfig.h"
 #include "variantionrange.h"
 #include <sys/types.h>
 #include <sys/stat.h>
