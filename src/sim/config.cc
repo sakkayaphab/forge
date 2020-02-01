@@ -33,9 +33,9 @@ void Config::readConfigFile() {
         std::string reference = configNode["files"]["input"]["reference"].as<std::string>();
         Config::setReferencePath(reference);
     }
+
     if (configNode["files"]["output"]["output_directory"]) {
         std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
-        createDirectory(outputdirectory);
         Config::setOutputDirectoryPath(outputdirectory);
     }
 
@@ -43,6 +43,7 @@ void Config::readConfigFile() {
         std::string sequencing = configNode["config"]["sequencing"].as<std::string>();
         Config::setSequencing(sequencing);
     }
+
     if (configNode["config"]["read_length"]) {
         std::string readlength = configNode["config"]["read_length"].as<std::string>();
         Config::setTextReadlength(readlength);

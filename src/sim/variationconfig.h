@@ -2,8 +2,8 @@
 // Created by Sakkayaphab Piwluang on 27/1/20.
 //
 
-#ifndef FORGE_VARIANTIONCONFIG_H
-#define FORGE_VARIANTIONCONFIG_H
+#ifndef FORGE_VARIATIONCONFIG_H
+#define FORGE_VARIATIONCONFIG_H
 
 #include <string>
 #include <vector>
@@ -22,9 +22,7 @@ class VariantionConfig {
         std::vector<VariantionRange> getVariantRangeList();
         void addVariantRangeToList(VariantionRange variantrange);
         int getNumberOfVariant();
-
-
 };
 
 
-#endif //FORGE_VARIANTIONCONFIG_H
+#endif //FORGE_VARIATIONCONFIG_H

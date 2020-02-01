@@ -17,7 +17,9 @@ variations:
   DEL:
     range:
       - 100-1000
+      - 100-1000
     number:
+      - 1
       - 1
 
   INV:
