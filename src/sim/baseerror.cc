@@ -5,7 +5,8 @@
 #include "baseerror.h"
 
 BaseError::BaseError() {
-    std::knuth_b rddengine;  // replace knuth_b with one of the engines listed below
+//    std::knuth_b rddengine;
+    std::minstd_rand rddengine;
     BaseError::rand_engine = rddengine;
     std::uniform_real_distribution<> random(0.0000, 1.0000);
     BaseError::uniform_zero_to_one = random;
@@ -31,7 +32,8 @@ std::string* BaseError::getSeq() {
 void BaseError::execute() {
     for (char x:*seq) {
         if (random_bool_with_prob()) {
-            seqwitherror += 'G';
+//        if (true) {
+                seqwitherror += 'G';
         } else {
             seqwitherror += x;
         }
