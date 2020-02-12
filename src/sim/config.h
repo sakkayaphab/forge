@@ -113,6 +113,9 @@ public:
     void addVariantionConfig(VariantionConfig vc);
     std::vector<VariantionConfig> getVariantionConfig();
     void setVariantionConfig(std::vector<VariantionConfig> vcs);
+    std::string getOutputDirectoryReferencePath();
+    void createStructureOutputDirectory();
+
 
 };
 

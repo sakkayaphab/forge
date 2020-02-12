@@ -57,7 +57,7 @@ void Sim::readFasta() {
         }
     }
     variantbin.shuffleVariantList();
-    return;
+//    return;
 
     FastaReader fastareader;
     fastareader.setFilePath(getFastaPath());
@@ -68,25 +68,25 @@ void Sim::readFasta() {
     ContainerManager cm  = fastareader.getAllChrBlockContainerWithThreads(8);
 //    ContainerManager cm  = fastareader.getAllChrBlockContainerWithSingleThread();
     cm.removeAllBlocksSmallerThan(((101*2)+400+50)*10);
-
+    std::cout << config.getOutputDirectoryPath() << std::endl;
     for (BlockContainer bc:cm.getBlockContainers()) {
         for (Block b:bc.getBlocks()) {
                 FastaWriter fastawriter;
                 std::string rrseq = fastareader.getSeqbyPosition(b.getChr(),b.getPos(),b.getEnd());
-                fastawriter.writeRefFile(config.getOutputDirectoryPath()+"/referencecontainer/" + b.getChr() + "." + std::to_string(b.getPos()), &rrseq,
+                fastawriter.writeRefFile(config.getOutputDirectoryReferencePath()+"/" + b.getChr() + "." + std::to_string(b.getPos()), &rrseq,
                                      b.getChr(), b.getPos(), b.getEnd());
         }
     }
 
 
-    ReferenceContainerHandler rch;
-    rch.addContainerManagerToReferenceContainer(cm);
-
-// ArrangementContainer
-    ArrangementContainer arrangementcontainer;
-    arrangementcontainer.setVariantBin(&variantbin);
-    arrangementcontainer.setReferenceContainerHandler(&rch);
-    arrangementcontainer.execute();
+//    ReferenceContainerHandler rch;
+//    rch.addContainerManagerToReferenceContainer(cm);
+//
+//// ArrangementContainer
+//    ArrangementContainer arrangementcontainer;
+//    arrangementcontainer.setVariantBin(&variantbin);
+//    arrangementcontainer.setReferenceContainerHandler(&rch);
+//    arrangementcontainer.execute();
 //    arrangementcontainer.showReferenceContainerContainVaraintOnly();
 
 

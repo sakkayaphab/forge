@@ -21,7 +21,6 @@ unsigned Config::getSeed() {
     return Config::seed;
 }
 
-
 void Config::readConfigFile() {
     if (!FileExists(getConfigFilePath())) {
         std::cerr << "not found file : " << getConfigFilePath() << std::endl;
@@ -37,6 +36,12 @@ void Config::readConfigFile() {
     if (configNode["files"]["output"]["output_directory"]) {
         std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
         Config::setOutputDirectoryPath(outputdirectory);
+        if (Config::FileExists(Config::getOutputDirectoryPath())) {
+            std::cerr << "output directory is exist" << std::endl;
+            exit(EXIT_FAILURE);
+        } else {
+            createStructureOutputDirectory();
+        }
     }
 
     if (configNode["config"]["sequencing"]) {
@@ -264,4 +269,13 @@ void Config::createDirectory(std::string createdirectory) {
     if (stat(createdirectory.c_str(), &st) == -1) {
         mkdir(createdirectory.c_str(), 0700);
     }
+}
+
+std::string Config::getOutputDirectoryReferencePath() {
+    return Config::getOutputDirectoryPath()+"/referencecontainer";
+}
+
+void Config::createStructureOutputDirectory() {
+    createDirectory(getOutputDirectoryPath());
+    createDirectory(getOutputDirectoryReferencePath());
 }
