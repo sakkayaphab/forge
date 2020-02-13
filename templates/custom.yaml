@@ -14,13 +14,13 @@ files:
     threads: 8
 
 variations:
-#  DEL:
-#    range:
-#      - 100-1000
-#      - 1001-10000
-#    number:
-#      - 1
-#      - 2
+  DEL:
+    range:
+      - 100-1000
+      - 1001-10000
+    number:
+      - 1
+      - 2
 #
 #  INV:
 #    range:
@@ -40,17 +40,17 @@ variations:
 #    number:
 #      - 100
 
-  delINV:
-    allocate-variable: A;B
-    pattern: DEL[A];INV[B]
-    allocate-length:
-      - 100-200;100-200
-    allocate-depth:
-      - 1.0-1.0;1.0-1.0
-    range:
-      - 10000-20000
-    number:
-      - 1
+#  delINV:
+#    allocate-variable: A;B
+#    pattern: DEL[A];INV[B]
+#    allocate-length:
+#      - 100-200;100-200
+#    allocate-depth:
+#      - 1.0-1.0;1.0-1.0
+#    range:
+#      - 10000-20000
+#    number:
+#      - 1
 
 #  INVdel:
 #    allocate-variable: AB

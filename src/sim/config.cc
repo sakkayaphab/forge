@@ -36,12 +36,12 @@ void Config::readConfigFile() {
     if (configNode["files"]["output"]["output_directory"]) {
         std::string outputdirectory = configNode["files"]["output"]["output_directory"].as<std::string>();
         Config::setOutputDirectoryPath(outputdirectory);
-        if (Config::FileExists(Config::getOutputDirectoryPath())) {
-            std::cerr << "output directory is exist" << std::endl;
-            exit(EXIT_FAILURE);
-        } else {
-            createStructureOutputDirectory();
-        }
+//        if (Config::FileExists(Config::getOutputDirectoryPath())) {
+//            std::cerr << "output directory is exist" << std::endl;
+//            exit(EXIT_FAILURE);
+//        } else {
+//            createStructureOutputDirectory();
+//        }
     }
 
     if (configNode["config"]["sequencing"]) {
