@@ -47,12 +47,9 @@ void FastqWriter::writeSingleEnd() {
     int64_t numberbaseq = 0;
     myfile.open ("example.txt", std::fstream::app);
     for (;readlength+space+lastpos<FastqWriter::length;) {
-//        (*sequence).substr(lastpos+space,lastpos+readlength+space).size();
-//        std::string_view *seq = getSequenceByPos(lastpos+space,lastpos+readlength+space);
         if (numberbaseq!= readlength) {
             baseq = getBaseQ(readlength);
         }
-
         myfile << "@"+chr+"_"+std::to_string(lastpos+space)+"_"+std::to_string(lastpos+space+readlength)+"_3:0:0_2:0:0_0/1\n";
         myfile << (*sequence).substr(lastpos+space,readlength) << "\n+\n";
         myfile << baseq << "\n";

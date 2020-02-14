@@ -188,7 +188,7 @@ int Cli::vcfSV()
 //    seqan::readRegion(sequenceInfix, faiIndex, idx, beginPos, endPos);
 //    std::cout << sequenceInfix << "\n";
     Sim sim;
-    sim.setFastaPath("/data/users/duangdao/kan/reference/hs37d5.fa");
+    sim.setFastaPath("/home/sakkayaphab/kan/reference/ucsc_hg19.fa");
     sim.readFasta();
 
     return 0;

@@ -11,7 +11,7 @@
 class BaseError {
     std::string *seq;
     double errorrate = 0;
-    std::knuth_b rand_engine;
+    std::minstd_rand rand_engine;
     std::uniform_real_distribution<> uniform_zero_to_one;
     std::string seqwitherror;
 
