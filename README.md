@@ -26,34 +26,35 @@ files:
 
 variations:
   DEL:
-    range:
-      - 100-1000
+    allocate: A
+    range: 100-1000
+    pattern: DEL[A]
     number:
       - 1
 
   INV:
-    range:
-      - 100-1000
+    allocate: A
+    range: 100-1000
+    pattern: INV[A]
     number:
       - 1
 
   DUP:
-    range:
-      - 1000-10000
+    allocate: A
+    range: 100-1000
+    pattern: DUP[A]
     number:
       - 1
 
   INS:
-    range:
-      - 100-20000
+    pattern: INS[1000-20000]
     number:
-      - 100
+      - 1
 
   delINV:
     allocate: AB
+    range: 1000-2000,1000-2000
     pattern: DEL[A],INV[B]
-    range:
-      - 10000-20000
     number:
       - 1
 
